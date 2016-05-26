@@ -1,4 +1,6 @@
-class App extends React.Component {
+import React from 'react';
+
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -11,5 +13,3 @@ class App extends React.Component {
     return( <div>Hey world</div>);
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));
