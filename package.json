@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "make test",
-    "start": "node server/app.js"
+    "run": "node server/server.js",
+    "start": "webpack-dev-server --content-base ./client/public"
   },
   "author": "Jobless Team",
   "license": "ISC",
