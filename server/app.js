@@ -1,10 +1,12 @@
 var express  = require('express');
-var app      = express();
+var app = express();
 var bodyParser   = require('body-parser');
-// var index = require('./routes');
+var port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})) // get information from html forms
 app.use(express.static(__dirname + '/../client'));
 
-module.exports = app
+app.listen(port);
+console.log("listening to port: " + port)
+// module.exports = app
