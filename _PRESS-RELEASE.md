@@ -38,11 +38,11 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-    "Job applications made easy!" - Chris Choi
+    "Jobappily ever after!" - Chris Choi
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-    You are one click away from streamlining your app.
+    You are one click away from streamlining your job app.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
