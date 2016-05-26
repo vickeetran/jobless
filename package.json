@@ -4,7 +4,8 @@
   "description": "Jobless Application",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "start": "node server/app.js"
   },
   "author": "Jobless Team",
   "license": "ISC",
@@ -16,5 +17,12 @@
     "should": "^4.1.0",
     "supertest": "^0.14.0",
     "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-live-server": "0.0.29",
+    "gulp-sass": "^2.3.1",
+    "gulp-watch": "^4.3.6"
   }
 }
