@@ -19,7 +19,7 @@ module.exports = {
     }); 
   },
 
-  put: function(req, res) => {
+  put: (req, res) => {
     models.put(err => {
       if(err) {
         console.log('error updating event data');
