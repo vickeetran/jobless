@@ -2,7 +2,7 @@ var db = require('../db');
 
 module.exports = {
   get: callback => {
-    let queryStr = 
+    // let queryStr = 
     db.query(queryStr, function(err, results) {
       if(err) {
         callback(err, null);
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   post: (params, callback) => {
-    let queryStr =
+    // let queryStr =
     db.query(queryStr, function(err, results) {
       if(err) {
         callback(err, null);
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   put: (params, callback) => {
-    let queryStr = 
+    // let queryStr = 
     db.query(queryStr, function(err, results) {
       if(err) {
         callback(err, null);
