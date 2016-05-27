@@ -12,6 +12,6 @@ app.use(express.static(__dirname + '/../client/public'));
 //   console.log('/user');
 //   res.json({user: 'bob'});
 // });
+
 app.listen(port);
-console.log("listening to port: " + port)
-// module.exports = app
+console.log("listening to port: " + port);
