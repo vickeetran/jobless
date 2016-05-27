@@ -28,7 +28,7 @@ node_modules/
 bower_components
 
 #db configuration
-./server/config.js 
+server/db/config.js
 
 # Floobits
 .floo
