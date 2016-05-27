@@ -1,15 +1,20 @@
-class App extends React.Component {
+import React from 'react';
+import JobList from './jobList.jsx';
+
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      
+    this.state = {      
     }
   }
-
   render() {
-    return( <div>Hey world</div>);
+    return(  
+      <div>
+        Hey world
+        <JobList />
+      </div>
+      
+    );
   }
 }
-
-ReactDOM.render(<App />, document.getElementById('app'));

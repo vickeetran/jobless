@@ -5,7 +5,7 @@ var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})) // get information from html forms
-app.use(express.static(__dirname + '/client/public'));
+app.use(express.static(__dirname + '/../client/public'));
 
 
 app.listen(port);
