@@ -1,6 +1,3 @@
-import React from 'react';
-import JobList from './jobList.jsx';
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +8,6 @@ export default class App extends React.Component {
   render() {
     return(  
       <div>
-        Hey world
         <JobList />
       </div>
       
