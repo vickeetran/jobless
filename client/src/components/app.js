@@ -4,13 +4,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      
+    this.state = {      
     }
   }
-
   render() {
     return( <div>Hey world</div>);
   }
 }
-
