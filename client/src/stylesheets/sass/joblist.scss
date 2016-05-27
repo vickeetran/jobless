@@ -1,0 +1,20 @@
+.job-list {
+  .header {
+    margin: 20px auto;
+    font-size: 1.5em;
+    font-weight: 900;
+  },
+  .listing {
+    margin: 10px auto;
+
+    .company {
+      font-weight: 600;
+      font-size: 1.1em;
+    },
+    .status {
+      font-weight: 300;
+      font-size: 1em;
+    }
+  }
+}
+
