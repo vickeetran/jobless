@@ -17,6 +17,7 @@ export default class App extends React.Component {
     }
     fetchUser()(this.store.dispatch);
   }
+  
   render() {
     return(  
       <div>
