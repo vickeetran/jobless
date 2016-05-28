@@ -23,7 +23,7 @@ export default class App extends React.Component {
   render() {
     return(  
       <div>
-        <JobList />
+        //<JobView /> how to test
       </div>
       
     );
