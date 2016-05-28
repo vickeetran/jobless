@@ -1,6 +1,10 @@
+/* eslint-disable no-console */
 const models = require('../models/eventModel');
 
 module.exports = {
+  getAll: (req, res) => {
+    res.send();
+  },
   get: (req, res) => {
     models.get((err, results) => {
       if (err) {

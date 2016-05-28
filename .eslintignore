@@ -6,3 +6,6 @@ gulpfile.js
 package.json
 README.md
 webpack.config.js
+
+# Ignore some server files
+server/db/schema.sql

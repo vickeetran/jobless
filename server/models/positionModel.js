@@ -8,4 +8,6 @@ const Position = db.define('position', {
   freezeTableName: true, // Model tableName will be the same as the model name
 });
 
+Position.sync();
+
 module.exports = Position;

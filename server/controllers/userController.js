@@ -1,6 +1,15 @@
+/* eslint-disable no-console */
 const models = require('../models/userModel');
 
 module.exports = {
+  getAll: (req, res) => {
+    models.get((err, results) => {
+      if (err) {
+        console.log('error getting event data');
+      }
+      res.json(results);
+    });
+  },
   get: (req, res) => {
     models.get((err, results) => {
       if (err) {

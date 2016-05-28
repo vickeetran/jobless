@@ -14,6 +14,7 @@ router.get('/event/:id', eventController.get);
 router.post('/event', eventController.post);
 router.put('/event', eventController.put);
 
+router.get('/position', positionController.getAll);
 router.get('/position', positionController.get);
 router.post('/position', positionController.post);
 router.put('/position', positionController.put);
