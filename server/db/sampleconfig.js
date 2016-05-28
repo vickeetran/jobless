@@ -1,5 +1,14 @@
 module.exports = {
-  user: 'Username',
-  password: 'Password',
-  database: 'Database Name'
+  username: 'root',
+  password: '',
+  database: 'job',
+  config: {
+    host: 'localhost',
+    dialect: 'mysql',
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000,
+    },
+  },
 };
