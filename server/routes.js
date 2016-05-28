@@ -1,13 +1,16 @@
-var userController = require('./controllers/userController');
-var eventController = require('./controllers/eventController');
-var positionController = require('./controllers/positionController');
-var router = require('express').Router();
+// eslint-disable-next-line new-cap
+const router = require('express').Router();
+const userController = require('./controllers/userController');
+const eventController = require('./controllers/eventController');
+const positionController = require('./controllers/positionController');
 
-router.get('/user', userController.get);
+router.get('/user', userController.getAll);
+router.get('/user/:id', userController.get);
 router.post('/user', userController.post);
 router.put('/user', userController.put);
 
-router.get('/event', eventController.get);
+router.get('/event', eventController.getAll);
+router.get('/event/:id', eventController.get);
 router.post('/event', eventController.post);
 router.put('/event', eventController.put);
 
