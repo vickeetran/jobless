@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import fetch from 'isomorphic-fetch'
-import JobView from './jobView.jsx';
+//import JobView from './jobView.jsx'; how to test
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class App extends React.Component {
   render() {
     return(  
       <div>
-        <JobView />
+        //<JobView /> how to test
       </div>
       
     );
