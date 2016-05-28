@@ -3,25 +3,26 @@ import { combineReducers } from 'redux';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import fetch from 'isomorphic-fetch'
+//import JobView from './jobView.jsx'; how to test
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.store = createStore(user);
-    this.unsubscribe = this.store.subscribe((()=>{
-      console.log(this.store.getState());
-      this.setState(this.store.getState());
-    }));
+    // this.store = createStore(user);
+    // this.unsubscribe = this.store.subscribe((()=>{
+    //   console.log(this.store.getState());
+    //   this.setState(this.store.getState());
+    // }));
 
-    this.state = {      
-    }
-    fetchUser()(this.store.dispatch);
+    // this.state = {      
+    // }
+    // fetchUser()(this.store.dispatch);
   }
   
   render() {
     return(  
       <div>
-        <JobList />
+        //<JobView /> how to test
       </div>
       
     );
