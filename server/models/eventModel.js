@@ -1,36 +1,11 @@
-var db = require('../db');
+const Sequelize = require('sequelize');
+const db = require('./../db');
 
-module.exports = {
-  get: callback => {
-    // let queryStr = 
-    db.query(queryStr, function(err, results) {
-      if(err) {
-        callback(err, null);
-      } else {
-        callback(null, results);
-      }
-    });
-  },
+const Event = db.define('event', {
+  firstName: Sequelize.STRING,
+  lastName: Sequelize.STRING,
+}, {
+  freezeTableName: true, // Model tableName will be the same as the model name
+});
 
-  post: (params, callback) => {
-    // let queryStr =
-    db.query(queryStr, function(err, results) {
-      if(err) {
-        callback(err, null);
-      } else {
-        callback(null, results);
-      }
-    });
-  },
-
-  put: (params, callback) => {
-    // let queryStr = 
-    db.query(queryStr, function(err, results) {
-      if(err) {
-        callback(err, null);
-      } else {
-        callback(null, results);
-      }
-    });
-  }
-};
+module.exports = Event;
