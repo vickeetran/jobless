@@ -4,7 +4,8 @@
   "description": "Jobless Application",
   "main": "index.js",
   "scripts": {
-    "test": "eslint -c .eslintrc.js --ignore-path .eslintignore",
+    "eslint": "eslint -c .eslintrc.js * --quiet",
+    "test": "make test",
     "webpack": "webpack-dev-server --content-base ./client/public",
     "start": "webpack & node server/server.js"
   },
