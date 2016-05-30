@@ -8,7 +8,11 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+connection.query(`DROP DATABASE IF EXISTS ${config.database}`, err => {
+  if (err) throw err;
+});
 connection.query(`CREATE DATABASE IF NOT EXISTS ${config.database}`, err => {
   if (err) throw err;
-  connection.end();
 });
+
+connection.end();
