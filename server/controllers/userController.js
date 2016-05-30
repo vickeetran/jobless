@@ -1,39 +1,29 @@
 /* eslint-disable no-console */
-const models = require('../models/userModel');
+const User = require('../models/userModel');
 
 module.exports = {
+  // Get all Users
   getAll: (req, res) => {
-    models.get((err, results) => {
-      if (err) {
-        console.log('error getting event data');
-      }
-      res.json(results);
-    });
+    User.findAll()
+      .then(users => res.send(users))
+      .catch(res.send(500));
   },
+  // Get User by ID
   get: (req, res) => {
-    models.get((err, results) => {
-      if (err) {
-        console.log('error getting event data');
-      }
-      res.json(results);
-    });
+    User.findOne({ where: { id: req.params.id } })
+      .then(user => res.send(user))
+      .catch(res.send(500));
   },
-
+  // Create User
   post: (req, res) => {
-    models.post(err => {
-      if (err) {
-        console.log('error posting event data');
-      }
-      res.send(201);
-    });
+    User.create(req.body.user)
+      .then(res.send())
+      .catch(res.send(500));
   },
-
+  // Update User
   put: (req, res) => {
-    models.put(err => {
-      if (err) {
-        console.log('error updating event data');
-      }
-      res.send(201);
-    });
+    User.findOne({ where: { id: req.body.user.id } })
+      .then(user => user.update(req.body.user))
+      .catch(res.send(500));
   },
 };

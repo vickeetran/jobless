@@ -1,34 +1,29 @@
 /* eslint-disable no-console */
-const models = require('../models/eventModel');
+const Event = require('../models/eventModel');
 
 module.exports = {
+  // Get all Events
   getAll: (req, res) => {
-    res.send();
+    Event.findAll()
+      .then(events => res.send(events))
+      .catch(res.send(500));
   },
+  // Get Event by ID
   get: (req, res) => {
-    models.get((err, results) => {
-      if (err) {
-        console.log('error getting event data');
-      }
-      res.json(results);
-    });
+    Event.findOne({ where: { id: req.params.id } })
+      .then(event => res.send(event))
+      .catch(res.send(500));
   },
-
+  // Create Event
   post: (req, res) => {
-    models.post(err => {
-      if (err) {
-        console.log('error posting event data');
-      }
-      res.send(201);
-    });
+    Event.create(req.body.event)
+      .then(res.send())
+      .catch(res.send(500));
   },
-
+  // Update Event
   put: (req, res) => {
-    models.put(err => {
-      if (err) {
-        console.log('error updating event data');
-      }
-      res.send(201);
-    });
+    Event.findOne({ where: { id: req.body.event.id } })
+      .then(event => event.update(req.body.event))
+      .catch(res.send(500));
   },
 };

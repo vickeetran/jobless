@@ -1,34 +1,29 @@
 /* eslint-disable no-console */
-const models = require('../models/positionModel');
+const Position = require('../models/positionModel');
 
 module.exports = {
+  // Get all Positions
   getAll: (req, res) => {
-    res.send();
+    Position.findAll()
+      .then(positions => res.send(positions))
+      .catch(res.send(500));
   },
+  // Get Position by ID
   get: (req, res) => {
-    models.get((err, results) => {
-      if (err) {
-        console.log('error getting position data');
-      }
-      res.json(results);
-    });
+    Position.findOne({ where: { id: req.params.id } })
+      .then(position => res.send(position))
+      .catch(res.send(500));
   },
-
+  // Create Position
   post: (req, res) => {
-    models.post(err => {
-      if (err) {
-        console.log('error posting position data');
-      }
-      res.send(201);
-    });
+    Position.create(req.body.position)
+      .then(res.send())
+      .catch(res.send(500));
   },
-
+  // Update Position
   put: (req, res) => {
-    models.put(err => {
-      if (err) {
-        console.log('error updating position data');
-      }
-      res.send(201);
-    });
+    Position.findOne({ where: { id: req.body.position.id } })
+      .then(position => position.update(req.body.position))
+      .catch(res.send(500));
   },
 };
