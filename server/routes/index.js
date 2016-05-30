@@ -1,8 +1,8 @@
 // eslint-disable-next-line new-cap
 const router = require('express').Router();
-const userController = require('./controllers/userController');
-const eventController = require('./controllers/eventController');
-const positionController = require('./controllers/positionController');
+const userController = require('../controllers/userController');
+const eventController = require('../controllers/eventController');
+const positionController = require('../controllers/positionController');
 
 router.get('/user', userController.getAll);
 router.get('/user/:id', userController.get);
