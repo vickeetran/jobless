@@ -14,5 +14,6 @@ connection.query(`DROP DATABASE IF EXISTS ${config.database}`, err => {
 connection.query(`CREATE DATABASE IF NOT EXISTS ${config.database}`, err => {
   if (err) throw err;
 });
+require('./index.js');
 
 connection.end();
