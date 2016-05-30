@@ -1,30 +1,22 @@
-var models = require('../models/positionModel');
+const Position = require('../models/positionModel');
 
 module.exports = {
   get: (req, res) => {
-    models.get((err, results) => {
-      if(err) {
-        console.log('error getting position data');
-      }
-      res.json(results);
+    Position.get(req.params.id, (err, data) => {
+      if (err) throw err;
+      res.send(data);
     });
   },
-
   post: (req, res) => {
-    models.post(err => {
-      if(err) {
-        console.log('error posting position data');
-      } 
-      res.send(201);
-    }); 
-  },
-
-  put: (req, res) => {
-    models.put(err => {
-      if(err) {
-        console.log('error updating position data');
-      }
-      res.send(201);
+    Position.post(req.body.position, err => {
+      if (err) throw err;
+      res.sendStatus(201);
     });
-  }
+  },
+  put: (req, res) => {
+    Position.put(req.body.position, err => {
+      if (err) throw err;
+      res.sendStatus(201);
+    });
+  },
 };

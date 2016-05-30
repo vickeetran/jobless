@@ -1,8 +1,17 @@
-.eslintignore
-.eslintrc.js
-.gitignore
-node_modules/
-gulpfile.js
-package.json
-README.md
-webpack.config.js
+# Ignore eslint files
+.eslint*
+
+# Ignore package.json
+**/package.json
+
+# Ignore some server files
+server/db/schema.sql
+
+# Ignore public folder
+client/public
+
+# Ignore node modules
+**/node_modules
+
+# Ignore md files
+*.md
