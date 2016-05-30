@@ -1,30 +1,22 @@
-var models = require('../models/eventModel');
+const Event = require('../models/eventModel');
 
 module.exports = {
   get: (req, res) => {
-    models.get((err, results) => {
-      if(err) {
-        console.log('error getting event data');
-      }
-      res.json(results);
+    Event.get(req.params.id, (err, data) => {
+      if (err) throw err;
+      res.send(data);
     });
   },
-
   post: (req, res) => {
-    models.post(err => {
-      if(err) {
-        console.log('error posting event data');
-      } 
-      res.send(201);
-    }); 
-  },
-
-  put: (req, res) => {
-    models.put(err => {
-      if(err) {
-        console.log('error updating event data');
-      }
-      res.send(201);
+    Event.post(req.body.event, err => {
+      if (err) throw err;
+      res.sendStatus(201);
     });
-  }
+  },
+  put: (req, res) => {
+    Event.put(req.body.event, err => {
+      if (err) throw err;
+      res.sendStatus(201);
+    });
+  },
 };

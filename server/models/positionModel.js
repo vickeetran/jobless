@@ -1,11 +1,32 @@
-const Sequelize = require('sequelize');
+// position:
+//  id: integer
+//  title: string
+//  company: string
+//  description: string
+//  UserId: integer
 const db = require('./../db');
 
-const Position = db.define('position', {
-  firstName: Sequelize.STRING,
-  lastName: Sequelize.STRING,
-}, {
-  freezeTableName: true, // Model tableName will be the same as the model name
-});
-
-module.exports = Position;
+module.exports = {
+  get: (id, cb) => {
+    if (id) {
+      db.Position.findOne({ include: [{ model: db.Event }], where: { id } })
+        .then(position => cb(null, position))
+        .catch(cb);
+    } else {
+      db.Position.findAll()
+        .then(positions => cb(null, positions))
+        .catch(cb);
+    }
+  },
+  post: (newPosition, cb) => {
+    db.Position.create(newPosition)
+      .then(() => cb())
+      .catch(cb);
+  },
+  put: (positionChanges, cb) => {
+    db.Position.findOne({ where: { id: positionChanges.id } })
+      .then(position => position.update(positionChanges))
+      .then(() => cb())
+      .catch(cb);
+  },
+};
