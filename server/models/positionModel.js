@@ -9,7 +9,7 @@ const db = require('./../db');
 module.exports = {
   get: (id, cb) => {
     if (id) {
-      db.Position.findOne({ where: { id } })
+      db.Position.findOne({ include: [{ model: db.Event }], where: { id } })
         .then(position => cb(null, position))
         .catch(cb);
     } else {

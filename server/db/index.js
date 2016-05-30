@@ -38,9 +38,11 @@ const Position = sequelize.define('position', {
   freezeTableName: true,
 });
 
+
 User.hasMany(Position);
-User.hasMany(Event);
+Position.belongsTo(User);
 Position.hasMany(Event);
+Event.belongsTo(Position);
 sequelize.sync();
 
 module.exports = { User, Position, Event };

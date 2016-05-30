@@ -4,6 +4,8 @@
   "description": "Jobless Application",
   "main": "index.js",
   "scripts": {
+    "database": "node server/db/createDB.js",
+    "setup": "node server/db/createDB.js && node server/db/seed.js",
     "eslint": "eslint -c .eslintrc.js * --quiet",
     "lint": "eslint -c .eslintrc.js --quiet",
     "test": "make test",
