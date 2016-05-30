@@ -19,7 +19,7 @@ const Event = sequelize.define('event', {
   image: Sequelize.STRING,
   emotion: Sequelize.STRING,
 }, {
-  freezeTableName: true, // Model tableName will be the same as the model name
+  freezeTableName: true,
 });
 
 const User = sequelize.define('user', {
@@ -27,7 +27,7 @@ const User = sequelize.define('user', {
   lastName: Sequelize.STRING,
   email: Sequelize.STRING,
 }, {
-  freezeTableName: true, // Model tableName will be the same as the model name
+  freezeTableName: true,
 });
 
 const Position = sequelize.define('position', {
@@ -35,7 +35,7 @@ const Position = sequelize.define('position', {
   company: Sequelize.STRING,
   description: Sequelize.STRING,
 }, {
-  freezeTableName: true, // Model tableName will be the same as the model name
+  freezeTableName: true,
 });
 
 User.hasMany(Position);
