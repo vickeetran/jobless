@@ -2,8 +2,8 @@ import React from 'react';
 import { combineReducers } from 'redux';
 import { createStore } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './actions.js';
-import * as reducers from './reducer.js';
+import * as actions from '../actions.js';
+import * as reducers from '../reducer.js';
 
 export default class App extends React.Component {
   constructor(props) {
