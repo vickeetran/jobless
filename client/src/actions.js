@@ -20,24 +20,24 @@ const receiveUser = function(userJson) {
 const fetchUser = function() {
   return dispatcher => {
     dispatcher(requestUser());
-    return fetch('http://localhost:3000/user')
-      .then(response => { response.json() })
+    return fetch('http://localhost:3000/api/user')
+      .then(response => { return response.json() })
       .then(json => { return dispatcher(receiveUser(json)) });
   }
 }
 
-export const invalidateUser = function() {
+export const invalidateUser = function() { //not important...yet?
   return {
     type: INVALIDATE_USER
   }
 }
 
-export const fetchUserIfNeeded = function() {
+export const getUser = function() {
   return (dispatcher, state) => {
     //if it's not fetching, and the user is either empty or invalidated: you fetch
     if(!state.isFetching && (!state.user || state.isInvalidated)) {
-      distacher(fetchUser());
-    }  
+      fetchUser()(dispatcher);
+    } 
   }
 }
 

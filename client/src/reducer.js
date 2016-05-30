@@ -9,12 +9,12 @@ export const user = function(state, action) {
     case RECEIVE_USER:
       return Object.assign({}, state, {
         user: action.userJson,
-        invalidated: false,
+        isInvalidated: false,
         isFetching: false
       });
-    case INVALIDATE_USER:
+    case INVALIDATE_USER: //not important yet
       return Object.assign({}, state, {
-        invalidated: true
+        isInvalidated: true
       })
     default:
       return state

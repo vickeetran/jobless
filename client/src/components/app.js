@@ -8,60 +8,46 @@ import * as reducers from '../reducer.js';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.store = createStore(user);
-    this.unsubscribe = this.store.subscribe((()=>{
-      console.log(this.store.getState());
-      //this.setState(this.store.getState());
-    }));
+    const initalState = {
+      isFetching: false,
+      isInvalidated: false,
+    };
 
-    this.state = {      
-    }
-    this.store.dispatch(actions.fetchUserIfNeeded());
-    //fetchUser()(this.store.dispatch);
+    this.state= {};
+    this.store = createStore(reducers.user, initalState);
+    this.unsubscribe = this.store.subscribe(()=>{
+      this.setState(this.store.getState());
+    });
+    
+    //this.fetchUser();
+    setInterval(this.fetchUser.bind(this), 500);
   }
   
+  fetchUser () {
+    //console.log(this.store.getState());
+    actions.getUser()(this.store.dispatch, this.store.getState());
+  }
+
+  getUser() {
+    return this.store.getState();
+  }
+
+  getJob() {
+    
+  }
+
   render() {
+
+
     return(  
       <div>
-        //<JobView /> how to test
+        {this.getUser()}
       </div>
       
     );
   }
 }
 
-/////ACTIONS
-// const REQUEST_USER = 'REQUEST_USER',
-// RECEIVE_USER = 'RECEIVE_USER',
-// INVALID_USER = 'INVALID_USER';
 
-// const requestUser = function() {
-//   return {
-//     type: REQUEST_USER
-//   }
-// }
-
-// const fetchUser = function() {
-//   console.log('fetchUser');
-//   return dispatcher => {
-//     dispatcher(requestUser());
-//     return fetch('http://localhost:3000/user')
-//       .then(response => { response.json() })
-//       .then(json => { return dispatcher(receiveUser(json)) });
-//   }
-// }
-
-// const receiveUser = function(userJson) {
-//   return {
-//     type: RECEIVE_USER,
-//     userJson: userJson 
-//   }
-// }
-
-// const invalidUser = function() {
-//   return {
-//     type: INVALID_USER
-//   }
-// }
 
 
