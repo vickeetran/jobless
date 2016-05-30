@@ -8,7 +8,7 @@
     "lint": "eslint -c .eslintrc.js --quiet",
     "test": "make test",
     "webpack": "webpack-dev-server --content-base ./client/public",
-    "start": "webpack & node server/server.js"
+    "start": "webpack && node server/server.js"
   },
   "author": "Jobless Team",
   "license": "ISC",
