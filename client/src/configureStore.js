@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware} from 'redux';
-import * as reducers from './reducer.js';
+import { createStore, applyMiddleware, combineReducers} from 'redux';
+import {user, jobList} from './reducer.js';
 import thunkMiddleware from 'redux-thunk'
 
 export default function configureStore(initalState) {
   return createStore(
-    reducers.user,
+    combineReducers({user, jobList}),
     initalState,
     applyMiddleware(thunkMiddleware)
   );

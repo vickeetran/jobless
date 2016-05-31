@@ -5,6 +5,12 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export const INVALIDATE_USER = 'INVALIDATE_USER';
 export const POST_USER = 'POST_USER';
 
+export const GET_JOBLIST = 'GET_JOBLIST';
+export const RECEIVE_JOBLIST = 'RECEIVE_JOBLIST';
+
+
+
+/////////USERS///////////
 const requestUser = function() {
   return {
     type: GET_USER
@@ -75,4 +81,34 @@ export const postUser = function(data) {
   }
 }
 
+//////////JOBLIST/////////
+const requestJobList = function() {
+  return {
+    type: GET_JOBLIST
+  }
+}
 
+const receiveJobList = function(jobListJson) {
+  return {
+    type: RECEIVE_JOBLIST,
+    jobListJson
+  }
+}
+
+const fetchJobList = function() {
+  return dispatcher => {
+    dispatcher(requestJobList());
+    return fetch('http://localhost:3000/api/position')
+      .then(response => {return response.json()})
+      .then(json => {return dispatcher(receiveJobList(json))});
+  }
+}
+
+export const getJobList = function() {
+  return (dispatcher,getState) => {
+    const state = getState();
+    if(!state.isFetching) {
+      dispatcher(fetchJobList());
+    }
+  }
+}

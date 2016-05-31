@@ -11,6 +11,7 @@ require('./stylesheets/sass/style.scss');
 require('./stylesheets/sass/joblist.scss');
 
 const initalState =  {
+    user: null,
     jobList: [],
     isFetching: false,
     isInvalidated: false
