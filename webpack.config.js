@@ -12,6 +12,21 @@ module.exports = {
     path: path.join(__dirname, './client/public'),
     filename: 'bundle.js',
   },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: {
+          host: 'localhost',
+          port: 3000,
+          "protocol": 'http:',
+        },
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   resolve: {
     modulesDirectories: ['node_modules', 'client/src'],
     extensions: ['', '.js'],
