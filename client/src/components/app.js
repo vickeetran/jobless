@@ -1,52 +1,65 @@
 import React from 'react';
-import { combineReducers } from 'redux';
-import { createStore } from 'redux';
+//import { combineReducers } from 'redux';
+//import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions.js';
 import * as reducers from '../reducer.js';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
-    const initalState = {
-      isFetching: false,
-      isInvalidated: false,
-    };
-
-    this.state= {};
-    this.store = createStore(reducers.user, initalState);
-    this.unsubscribe = this.store.subscribe(()=>{
-      this.setState(this.store.getState());
-    });
     
-    //this.fetchUser();
-    setInterval(this.fetchUser.bind(this), 500);
-  }
-  
-  fetchUser () {
-    //console.log(this.store.getState());
-    actions.getUser()(this.store.dispatch, this.store.getState());
   }
 
-  getUser() {
-    return this.store.getState();
-  }
+  componentDidMount() {
+    this.props.fetchUser();
 
-  getJob() {
-    
+    //These methods are available to props, you can pass them down
+    // this.props.postUser({
+    //   firstName: 'hey',
+    //   lastName: 'bro',
+    //   email: 'example@example.com'
+    // });
+    //this.props.getJobList();
   }
 
   render() {
-
-
     return(  
       <div>
-        {this.getUser()}
-      </div>
+        {JSON.stringify(this.props)}
+     </div>
       
     );
   }
 }
+
+const mapStateToProps = function mapStateToProps(state) {
+  const {user, jobList, isFetching, isInvalidated} = state;
+
+  return {
+    user,
+    jobList,
+    isFetching,
+    isInvalidated
+  }
+}
+
+const mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchUser: () => {
+      dispatch(actions.getUser());
+    },
+    postUser: (data) => {
+      dispatch(actions.postUser());
+    },
+    getJobList: () => {
+      dispatch(actions.getJobList());
+    }
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (App)
 
 
 

@@ -1,12 +1,25 @@
 import fetch from 'isomorphic-fetch';
 
-export const REQUEST_USER = 'REQUEST_USER';
+export const GET_USER = 'GET_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const INVALIDATE_USER = 'INVALIDATE_USER';
+export const POST_USER = 'POST_USER';
 
+export const GET_JOBLIST = 'GET_JOBLIST';
+export const RECEIVE_JOBLIST = 'RECEIVE_JOBLIST';
+
+
+
+/////////USERS///////////
 const requestUser = function() {
   return {
-    type: REQUEST_USER
+    type: GET_USER
+  }
+}
+
+const requestPostUser = function() {
+  return {
+    type: POST_USER
   }
 }
 
@@ -26,6 +39,23 @@ const fetchUser = function() {
   }
 }
 
+const fetchPostUser = function(data) {
+  return (dispatcher) => {
+    dispatcher(requestPostUser());
+    return fetch(
+    'http://localhost:3000/api/user', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),//add data here later
+    })
+    .then(response => { console.log(response.body); return response.json() })
+    .then(json => {console.log(json); return dispatcher(receiveUser(json))});
+  }
+}
+
 export const invalidateUser = function() { //not important...yet?
   return {
     type: INVALIDATE_USER
@@ -33,12 +63,52 @@ export const invalidateUser = function() { //not important...yet?
 }
 
 export const getUser = function() {
-  return (dispatcher, state) => {
+  return (dispatcher, getState) => {
+    const state = getState();
     //if it's not fetching, and the user is either empty or invalidated: you fetch
     if(!state.isFetching && (!state.user || state.isInvalidated)) {
-      fetchUser()(dispatcher);
+      dispatcher(fetchUser());
     } 
   }
 }
 
+export const postUser = function(data) {
+  return (dispatcher, getState) => {
+    const state = getState();
+    if(!state.isFetching) {
+      dispatcher(fetchPostUser(data));
+    } 
+  }
+}
 
+//////////JOBLIST/////////
+const requestJobList = function() {
+  return {
+    type: GET_JOBLIST
+  }
+}
+
+const receiveJobList = function(jobListJson) {
+  return {
+    type: RECEIVE_JOBLIST,
+    jobListJson
+  }
+}
+
+const fetchJobList = function() {
+  return dispatcher => {
+    dispatcher(requestJobList());
+    return fetch('http://localhost:3000/api/position')
+      .then(response => {return response.json()})
+      .then(json => {return dispatcher(receiveJobList(json))});
+  }
+}
+
+export const getJobList = function() {
+  return (dispatcher,getState) => {
+    const state = getState();
+    if(!state.isFetching) {
+      dispatcher(fetchJobList());
+    }
+  }
+}
