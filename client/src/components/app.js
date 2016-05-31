@@ -15,12 +15,12 @@ class App extends React.Component {
     //this.props.fetchUser();
 
     //These methods are available to props, you can pass them down
-    this.props.postUser({
-      firstName: 'hey',
-      lastName: 'bro',
-      email: 'example@example.com'
-    });
-    this.props.getJobList();
+    // this.props.postUser({
+    //   firstName: 'hey',
+    //   lastName: 'bro',
+    //   email: 'example@example.com'
+    // });
+    // this.props.getJobList();
   }
 
   render() {
