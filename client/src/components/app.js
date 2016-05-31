@@ -13,6 +13,11 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.fetchUser();
+    // this.props.postUser({
+    //   firstName: 'hey',
+    //   lastName: 'bro',
+    //   email: 'example@example.com'
+    // });
   }
 
   render() {
@@ -26,11 +31,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = function mapStateToProps(state) {
-  const {user, jobList, isFetching, isInvalidated} = state || {
-    jobList: [],
-    isFetching: false,
-    isInvalidated: false
-  };
+  const {user, jobList, isFetching, isInvalidated} = state;
 
   return {
     user,
@@ -45,6 +46,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: () => {
       //console.log('fetching');
       dispatch(actions.getUser());
+    },
+    postUser: (data) => {
+      dispatch(actions.postUser());
     }
   }
 }
