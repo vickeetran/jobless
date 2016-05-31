@@ -12,12 +12,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser();
+    //this.props.fetchUser();
     // this.props.postUser({
     //   firstName: 'hey',
     //   lastName: 'bro',
     //   email: 'example@example.com'
     // });
+    this.props.getJobList();
   }
 
   render() {
@@ -44,12 +45,15 @@ const mapStateToProps = function mapStateToProps(state) {
 const mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: () => {
-      //console.log('fetching');
       dispatch(actions.getUser());
     },
     postUser: (data) => {
       dispatch(actions.postUser());
+    },
+    getJobList: () => {
+      dispatch(actions.getJobList());
     }
+
   }
 }
 
