@@ -12,15 +12,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser();
+    //this.props.fetchUser();
 
     //These methods are available to props, you can pass them down
-    // this.props.postUser({
-    //   firstName: 'hey',
-    //   lastName: 'bro',
-    //   email: 'example@example.com'
-    // });
-    //this.props.getJobList();
+    this.props.postUser({
+      firstName: 'hey',
+      lastName: 'bro',
+      email: 'example@example.com'
+    });
+    this.props.getJobList();
   }
 
   render() {
@@ -54,6 +54,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     getJobList: () => {
       dispatch(actions.getJobList());
+    },
+    postJob: (id, data) => {
+      dispatch(actions.postJob(id, data));
     }
 
   }
