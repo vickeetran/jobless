@@ -4,11 +4,15 @@ export const GET_USER = 'GET_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const INVALIDATE_USER = 'INVALIDATE_USER';
 export const POST_USER = 'POST_USER';
+export const RECEIVE_POST_USER = 'RECEIVE_POST_USER';
 
 export const GET_JOBLIST = 'GET_JOBLIST';
 export const RECEIVE_JOBLIST = 'RECEIVE_JOBLIST';
 
-
+export const GET_JOB = 'GET_JOB';
+export const RECEIVE_JOB = 'RECEIVE_JOB';
+export const RECEIVE_POST_JOB = 'RECEIVE_POST_JOB';
+export const POST_JOB = 'POST_JOB';
 
 /////////USERS///////////
 const requestUser = function() {
@@ -26,7 +30,13 @@ const requestPostUser = function() {
 const receiveUser = function(userJson) {
   return {
     type: RECEIVE_USER,
-    userJson: userJson 
+    userJson 
+  }
+}
+
+const receivePostUser = function() {
+  return {
+    type: RECEIVE_POST_USER
   }
 }
 
@@ -35,7 +45,7 @@ const fetchUser = function() {
     dispatcher(requestUser());
     return fetch('http://localhost:3000/api/user')
       .then(response => { return response.json() })
-      .then(json => { return dispatcher(receiveUser(json)) });
+      .then(json => { return dispatcher(receivePostUser()) });
   }
 }
 
@@ -51,8 +61,7 @@ const fetchPostUser = function(data) {
       },
       body: JSON.stringify(data),//add data here later
     })
-    .then(response => { console.log(response.body); return response.json() })
-    .then(json => {console.log(json); return dispatcher(receiveUser(json))});
+    .then(json => {return dispatcher(receivePostUser())});
   }
 }
 
@@ -109,6 +118,71 @@ export const getJobList = function() {
     const state = getState();
     if(!state.isFetching) {
       dispatcher(fetchJobList());
+    }
+  }
+}
+
+
+///////JOB///////////
+const requestJob = function(id) {
+  return {
+    type: GET_JOB,
+    id
+  }
+}
+
+const receiveJob = function(jobJson) {
+  return {
+    type: RECEIVE_JOB,
+    jobJson
+  }
+}
+
+const receivePostJob = function() {
+  return {
+    type: RECEIVE_POST_JOB
+  }
+}
+
+const fetchJob = function(id) {
+  return dispatcher => {
+    dispatcher(requestJob(id));
+    return fetch('http://localhost:3000/api/position/'+ id.toString())
+      .then(response => { return response.json()})
+      .then(json => { return dispatcher(receiveJob())})
+  }
+}
+
+const fetchPostJob = function(id, data) {
+  return (dispatcher) => {
+    dispatcher(requestPostUser());
+    return fetch(
+    'http://localhost:3000/api/position'+ id.toString(), {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),//add data here later
+    })
+    .then(() => {return dispatcher(receivePostJob())});
+  }
+}
+
+export const getJob = function(id) {
+  return (dispatcher, getState) => {
+    const state = getState();
+    if(!state.isFetching) {
+      dispatcher(fetchJob(id));
+    }
+  }
+}
+
+export const postJob = function(id, data) {
+  return (dispatcher, getState) => {
+    const state = getState();
+    if(!state.isFetching) {
+      dispatcher(fetchPostJob(id, data))
     }
   }
 }
