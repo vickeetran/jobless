@@ -1,9 +1,9 @@
 import React from 'react';
-//import { combineReducers } from 'redux';
-//import { createStore } from 'redux';
+import { Router, Route, Link, browserHistory } from 'react-router'//import { createStore } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions.js';
 import * as reducers from '../reducer.js';
+import Login from './Login.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,11 +24,12 @@ class App extends React.Component {
   }
 
   render() {
-    return(  
-      <div>
-        {JSON.stringify(this.props)}
+    return (
+     <div>
+       <Router history={browserHistory}>
+         <Route path="/" component={Login}></Route>
+       </Router>
      </div>
-      
     );
   }
 }
@@ -58,6 +59,7 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps) (App)
 
