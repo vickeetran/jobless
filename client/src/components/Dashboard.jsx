@@ -25,7 +25,7 @@ export default class Dashboard extends React.Component {
                   <h2 className="titular">Job Apps<button type="button" className="btn btn-default btn-xs"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button></h2>
                   <ul className="menu-box-menu">
                       <li>
-                          <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Google<p<div className="menu-box-number">X</div></a>                            
+                          <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Google<div className="menu-box-number">X</div></a>                            
                       </li>
                       <li>
                           <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Facebook<div className="menu-box-number">X</div></a>                            
