@@ -16,6 +16,7 @@ export const POST_JOB = 'POST_JOB';
 
 /////////USERS///////////
 const requestUser = function() {
+  console.log('I AM FETCHING USER');
   return {
     type: GET_USER
   }
@@ -28,6 +29,7 @@ const requestPostUser = function() {
 }
 
 const receiveUser = function(userJson) {
+  console.log('I RECEIVED USER', userJson);
   return {
     type: RECEIVE_USER,
     userJson 
@@ -45,7 +47,7 @@ const fetchUser = function() {
     dispatcher(requestUser());
     return fetch('http://localhost:3000/api/user')
       .then(response => { return response.json() })
-      .then(json => { return dispatcher(receivePostUser()) });
+      .then(json => { return dispatcher(receiveUser(json)) });
   }
 }
 
