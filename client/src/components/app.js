@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions.js';
 import * as reducers from '../reducer.js';
 import Login from './Login.jsx';
+import JobView from './jobView.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.fetchUser();
+    //this.result = {hi: 'lynn'}
+    this.props.fetchUser();
 
     //These methods are available to props, you can pass them down
     // this.props.postUser({
@@ -26,9 +28,8 @@ class App extends React.Component {
   render() {
     return (
      <div>
-       <Router history={browserHistory}>
-         <Route path="/" component={Login}></Route>
-       </Router>
+       <JobView newsomething={this.props}/>
+      }
      </div>
     );
   }
