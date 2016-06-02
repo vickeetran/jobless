@@ -21,6 +21,7 @@
     "google-auth-library": "^0.9.8",
     "googleapis": "^7.1.0",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^2.2.4",
     "mocha": "^2.0.1",
     "mongoose": "^3.8.18",
     "mysql": "^2.10.2",
