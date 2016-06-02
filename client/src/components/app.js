@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions.js';
 import * as reducers from '../reducer.js';
 import Login from './Login.jsx';
-import JobView from './jobView.jsx';
+import Dashboard from './Dashboard.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
      <div>
-       <JobView newsomething={this.props}/>
+       <Dashboard/>
       }
      </div>
     );
