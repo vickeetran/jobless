@@ -16,7 +16,6 @@ export const POST_JOB = 'POST_JOB';
 
 /////////USERS///////////
 const requestUser = function() {
-  console.log('I AM FETCHING USER');
   return {
     type: GET_USER
   }
@@ -29,7 +28,6 @@ const requestPostUser = function() {
 }
 
 const receiveUser = function(userJson) {
-  console.log('I RECEIVED USER', userJson);
   return {
     type: RECEIVE_USER,
     userJson 
