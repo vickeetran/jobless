@@ -6,6 +6,8 @@ import * as reducers from '../reducer.js';
 import Login from './Login.jsx';
 import JobView from './jobView.jsx';
 import JobList from './jobList.jsx';
+import TestComponent from './TestComponent.jsx'
+import * as User from '../actions/user';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +28,18 @@ class App extends React.Component {
     // this.props.getJobList();
   }
 
+  renderTest() {
+    return (
+      <div>
+        <TestComponent  user={this.props.user}/>
+      </div>
+    )
+  }
+
   render() {
+
+    return this.renderTest();
+    
     return (
      <div>
        <JobView newsomething={this.props}/>
@@ -49,7 +62,7 @@ const mapStateToProps = function mapStateToProps(state) {
 const mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: () => {
-      dispatch(actions.getUser());
+      dispatch(User.get());
     },
     postUser: (data) => {
       dispatch(actions.postUser());

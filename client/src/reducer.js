@@ -1,3 +1,5 @@
+import { USER_GET_RESPONSE } from './actions/user.js';
+
 import { 
   GET_JOB,
   RECEIVE_JOB,
@@ -11,10 +13,18 @@ import {
   INVALIDATE_USER,
   POST_USER } from './actions.js';
 
+export const debug = function(state = true, action) {
+  switch(action.type) {
+    default:
+      !state || console.log('ACTION:',JSON.stringify(action));
+      return state;
+  }
+}
+
 export const user = function(state={}, action) {
   switch(action.type) {
-    case RECEIVE_USER:
-      return action.userJson
+    case USER_GET_RESPONSE:
+      return action.data
     default:
       return state
   }
