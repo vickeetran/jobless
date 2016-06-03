@@ -26,6 +26,8 @@
     "mongoose": "^3.8.18",
     "mysql": "^2.10.2",
     "node": "0.0.0",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-datepicker": "^0.27.0",

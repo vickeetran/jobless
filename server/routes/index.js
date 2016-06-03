@@ -3,8 +3,9 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 const eventController = require('../controllers/eventController');
 const positionController = require('../controllers/positionController');
+const isLoggedIn = require('../helpers/auth');
 
-router.get('/user', userController.get);
+router.get('/user', isLoggedIn, userController.get);
 router.get('/user/:id', userController.get);
 router.post('/user', userController.post);
 router.put('/user', userController.put);
