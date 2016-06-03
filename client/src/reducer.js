@@ -1,5 +1,5 @@
 import { USER_GET_RESPONSE } from './actions/user.js';
-
+import {DEBUG_ON, DEBUG_OFF} from './actions/debug.js';
 import { 
   GET_JOB,
   RECEIVE_JOB,
@@ -13,10 +13,14 @@ import {
   INVALIDATE_USER,
   POST_USER } from './actions.js';
 
-export const debug = function(state = true, action) {
+export const debug = function(state = false, action) {
   switch(action.type) {
+    case DEBUG_ON:
+      return true;
+    case DEBUG_OFF:
+      return false;
     default:
-      !state || console.log('ACTION:',JSON.stringify(action));
+      !state || console.log('ACTION DISPATCHED:',JSON.stringify(action));
       return state;
   }
 }

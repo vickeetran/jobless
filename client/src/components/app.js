@@ -7,11 +7,14 @@ import Login from './Login.jsx';
 import JobView from './jobView.jsx';
 import JobList from './jobList.jsx';
 import TestComponent from './TestComponent.jsx'
-import * as User from '../actions/user';
+import * as User from '../actions/user.js';
+import * as Debug from '../actions/debug.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.turnOnDebugMode();
     
   }
 
@@ -26,6 +29,10 @@ class App extends React.Component {
     //   email: 'example@example.com'
     // });
     // this.props.getJobList();
+  }
+
+  turnOnDebugMode() {
+    this.props.debugOn();
   }
 
   renderTest() {
@@ -61,6 +68,12 @@ const mapStateToProps = function mapStateToProps(state) {
 
 const mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    debugOn: () => {
+      dispatch(Debug.on());
+    },
+    debugOff: () => {
+      dispatch(Debug.off());
+    },
     fetchUser: () => {
       dispatch(User.get());
     },

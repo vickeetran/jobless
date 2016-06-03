@@ -34,7 +34,7 @@ export const post = function(actions, endpoint, data) {
       },
       body: JSON.stringify(data)
     })
-    .then(() => { return dispatcher(actions.response())})
+    .then((response) => { return dispatcher(actions.response(response.status))})
     .catch(err => { return dispatcher(error(err))});
   }
 }
@@ -50,7 +50,7 @@ export const put = function(actions, endpoint, data) {
       },
       body: JSON.stringify(data)
     })
-    .then(() => { return dispatcher(actions.response())})
+    .then(response => { return dispatcher(actions.response(response.status))})
     .catch(err => { return dispatcher(error(err))});
   }
 }

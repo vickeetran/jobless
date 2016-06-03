@@ -3,8 +3,8 @@ import * as helper from './actionHelper.js';
 export const USER_GET_REQUEST = 'USER_GET_REQUEST';
 export const USER_GET_RESPONSE = 'USER_GET_RESPONSE';
 
-export const USER_POST_REQUEST = 'USER_GET_REQUEST';
-export const USER_POST_RESPONSE = 'USER_GET_RESPONSE';
+export const USER_POST_REQUEST = 'USER_POST_REQUEST';
+export const USER_POST_RESPONSE = 'USER_POST_RESPONSE';
 
 export const USER_PUT_REQUEST = 'USER_PUT_REQUEST';
 export const USER_PUT_RESPONSE = 'USER_PUT_RESPONSE';
@@ -74,8 +74,3 @@ export const put = function(data) {
     response: putResponse,
   }, 'user', data);
 }
-
-
-
-
-
