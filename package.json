@@ -10,7 +10,7 @@
     "lint": "eslint -c .eslintrc.js --quiet",
     "test": "make test",
     "webpack": "webpack-dev-server --content-base ./client/public",
-    "start": "webpack && node server/server.js"
+    "start": "webpack --watch & nodemon server/server.js && fg"
   },
   "author": "Jobless Team",
   "license": "ISC",
@@ -27,6 +27,7 @@
     "mysql": "^2.10.2",
     "node": "0.0.0",
     "react": "^15.1.0",
+    "react-bootstrap": "^0.29.4",
     "react-datepicker": "^0.27.0",
     "react-dom": "^15.1.0",
     "react-dropdown": "^1.0.4",

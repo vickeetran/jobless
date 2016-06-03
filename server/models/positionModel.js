@@ -20,13 +20,13 @@ module.exports = {
   },
   post: (newPosition, cb) => {
     db.Position.create(newPosition)
-      .then(() => cb())
+      .then((pos) => cb(null, pos))
       .catch(cb);
   },
   put: (positionChanges, cb) => {
     db.Position.findOne({ where: { id: positionChanges.id } })
       .then(position => position.update(positionChanges))
-      .then(() => cb())
+      .then((pos) => cb(null, pos))
       .catch(cb);
   },
 };
