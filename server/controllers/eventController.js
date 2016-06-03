@@ -9,15 +9,17 @@ module.exports = {
     });
   },
   post: (req, res) => {
-    Event.post(req.body.event, err => {
+    Event.post(req.body, (err, data) => {
       if (err) throw err;
-      res.sendStatus(201);
+      res.status(201);
+      res.send(data);
     });
   },
   put: (req, res) => {
-    Event.put(req.body.event, err => {
+    Event.put(req.body, (err, data) => {
       if (err) throw err;
-      res.sendStatus(201);
+      res.status(201);
+      res.send(data);
     });
   },
 };

@@ -29,14 +29,14 @@ module.exports = {
   // Create Event
   post: (newEvent, cb) => {
     db.Event.create(newEvent)
-      .then(() => cb())
+      .then((e) => cb(null, e))
       .catch(cb);
   },
   // Update Event
   put: (eventChanges, cb) => {
     db.Event.findOne({ where: { id: eventChanges.id } })
       .then(event => event.update(eventChanges))
-      .then(() => cb())
+      .then((e) => cb(null, e))
       .catch(cb);
   },
 };

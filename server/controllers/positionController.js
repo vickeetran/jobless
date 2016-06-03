@@ -9,15 +9,17 @@ module.exports = {
     });
   },
   post: (req, res) => {
-    Position.post(req.body.position, err => {
+    Position.post(req.body, (err,data) => {
       if (err) throw err;
-      res.sendStatus(201);
+      res.status(201);
+      res.send(data);
     });
   },
   put: (req, res) => {
-    Position.put(req.body.position, err => {
+    Position.put(req.body, (err, data) => {
       if (err) throw err;
-      res.sendStatus(201);
+      res.status(201);
+      res.send(data);
     });
   },
 };
