@@ -1,18 +1,8 @@
 import { USER_GET_RESPONSE, USER_POST_RESPONSE, USER_PUT_RESPONSE } from './actions/user.js';
-import { JOB_GET_RESPONSE, JOB_POST_RESPONSE, JOB_PUT_RESPONSE } from './actions/job.js'
+import { JOB_GET_RESPONSE, JOB_POST_RESPONSE, JOB_PUT_RESPONSE } from './actions/job.js';
+import { JOBLIST_GET_RESPONSE } from './actions/jobList.js';
 import {DEBUG_ON, DEBUG_OFF} from './actions/debug.js';
-import { 
-  GET_JOB,
-  RECEIVE_JOB,
-  POST_JOB,
-  POST_RECEIVE_JOB,
-  RECEIVE_POST_USER,
-  GET_JOBLIST,
-  RECEIVE_JOBLIST,
-  GET_USER,
-  RECEIVE_USER,
-  INVALIDATE_USER,
-  POST_USER } from './actions.js';
+
 
 export const debug = function(state = false, action) {
   switch(action.type) {
@@ -46,6 +36,15 @@ export const job = function(state={}, action) {
     case JOB_POST_RESPONSE:
       return action.data;
     case JOB_PUT_RESPONSE:
+      return action.data;
+    default:
+      return state;
+  }
+}
+
+export const jobList = function(state=[], action) {
+  switch(action.type) {
+    case JOBLIST_GET_RESPONSE:
       return action.data;
     default:
       return state;

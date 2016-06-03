@@ -70,7 +70,7 @@ const putResponse = function(status, data) {
   }
 }
 
-export const put = function(data) {
+export const put = function(data, id) {
   return helper.put({
     request: putRequest,
     response: putResponse,
