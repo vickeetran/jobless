@@ -12,10 +12,9 @@ require('./stylesheets/sass/joblist.scss');
 //require('./stylesheets/sass/jobview.scss');
 
 const initalState =  {
-    user: null,
-    jobList: [],
-    isFetching: false,
-    isInvalidated: false
+    debug: false,
+    user: {},
+    job: {},
   };
 
 let store = configureStore(initalState);

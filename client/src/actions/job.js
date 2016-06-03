@@ -9,6 +9,8 @@ export const JOB_POST_RESPONSE = 'JOB_POST_RESPONSE';
 export const JOB_PUT_REQUEST = 'JOB_PUT_REQUEST';
 export const JOB_PUT_RESPONSE = 'JOB_PUT_RESPONSE';
 
+const ENDPOINT = 'position';
+
 const getRequest = function(status) {
   return {
     type: JOB_GET_REQUEST,
@@ -24,11 +26,11 @@ const getResponse = function(status, data) {
   }
 }
 
-export const get = function() {
+export const get = function(id) {
   return helper.get({
     request: getRequest,
     response: getResponse,
-  }, 'position');
+  }, ENDPOINT + '/' + id.toString());
 }
 
 const postRequest = function(status) {
@@ -50,7 +52,7 @@ export const post = function(data) {
   return helper.post({
     request: postRequest,
     response: postResponse,
-  }, 'position', data);
+  }, ENDPOINT, data);
 }
 
 const putRequest = function(status) {
@@ -72,4 +74,5 @@ export const put = function(data) {
   return helper.put({
     request: putRequest,
     response: putResponse,
-  }, 
+  }, ENDPOINT, data)
+}

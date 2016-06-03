@@ -8,19 +8,22 @@ import JobView from './jobView.jsx';
 import JobList from './jobList.jsx';
 import TestComponent from './TestComponent.jsx'
 import * as User from '../actions/user.js';
+import * as Job from '../actions/job.js'
 import * as Debug from '../actions/debug.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.turnOnDebugMode();
+    //THIS LINE TURNS ON DEBUG MODE WHICH CONSOLE LOGS EVERY ACTION
+    //QUITE USEFUL
+    this.props.methods.debugOn();
     
   }
 
   componentDidMount() {
     //this.result = {hi: 'lynn'}
-    this.props.fetchUser();
+    //this.props.methods.getUser();
 
     //These methods are available to props, you can pass them down
     // this.props.postUser({
@@ -31,14 +34,10 @@ class App extends React.Component {
     // this.props.getJobList();
   }
 
-  turnOnDebugMode() {
-    this.props.debugOn();
-  }
-
   renderTest() {
     return (
       <div>
-        <TestComponent  user={this.props.user}/>
+        <TestComponent  methods={this.props.methods} user={this.props.user} job={this.props.job}/>
       </div>
     )
   }
@@ -56,37 +55,37 @@ class App extends React.Component {
 }
 
 const mapStateToProps = function mapStateToProps(state) {
-  const {user, jobList, isFetching, isInvalidated} = state;
+  const {debug, user, job} = state;
 
   return {
+    debug,
     user,
-    jobList,
-    isFetching,
-    isInvalidated
+    job
   }
 }
 
 const mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    debugOn: () => {
-      dispatch(Debug.on());
+    methods : {
+      debugOn: () => {
+        dispatch(Debug.on());
+      },
+      debugOff: () => {
+        dispatch(Debug.off());
+      },
+      getUser: () => {
+        dispatch(User.get());
+      },
+      postUser: (data) => {
+        dispatch(User.post(data));
+      },
+      getJob: (id) => {
+        dispatch(Job.get(id));
+      }, 
+      postJob: (data) => {
+        dispatch(Job.post(data));
+      }
     },
-    debugOff: () => {
-      dispatch(Debug.off());
-    },
-    fetchUser: () => {
-      dispatch(User.get());
-    },
-    postUser: (data) => {
-      dispatch(actions.postUser());
-    },
-    getJobList: () => {
-      dispatch(actions.getJobList());
-    },
-    postJob: (id, data) => {
-      dispatch(actions.postJob(id, data));
-    }
-
   }
 }
 

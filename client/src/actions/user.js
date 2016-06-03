@@ -9,10 +9,12 @@ export const USER_POST_RESPONSE = 'USER_POST_RESPONSE';
 export const USER_PUT_REQUEST = 'USER_PUT_REQUEST';
 export const USER_PUT_RESPONSE = 'USER_PUT_RESPONSE';
 
-const getRequest = function(status) {
+const ENDPOINT = 'user';
+
+const getRequest = function(id) {
   return {
     type: USER_GET_REQUEST,
-    status
+    id
   }
 }
 
@@ -28,7 +30,7 @@ export const get = function() {
   return helper.get({
     request: getRequest,
     response: getResponse,
-  }, 'user');
+  }, ENDPOINT);
 }
 
 const postRequest = function(status) {
@@ -50,13 +52,13 @@ export const post = function(data) {
   return helper.post({
     request: postRequest,
     response: postResponse,
-  }, 'user', data);
+  }, ENDPOINT, data);
 }
 
-const putRequest = function(status) {
+const putRequest = function(data) {
   return {
     type: USER_POST_RESPONSE,
-    status,
+    data
   }
 }
 
@@ -72,5 +74,5 @@ export const put = function(data) {
   return helper.put({
     request: putRequest,
     response: putResponse,
-  }, 'user', data);
+  }, ENDPOINT, data);
 }

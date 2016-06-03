@@ -25,13 +25,13 @@ module.exports = {
   },
   post: (newUser, cb) => {
     db.User.create(newUser)
-      .then(() => cb())
+      .then((u) => cb(null, u))
       .catch(cb);
   },
   put: (userChanges, cb) => {
     db.User.findOne({ where: { id: userChanges.id } })
       .then(user => user.update(userChanges))
-      .then(() => cb())
+      .then((u) => cb(null, u))
       .catch(cb);
   },
 };

@@ -1,4 +1,5 @@
-import { USER_GET_RESPONSE } from './actions/user.js';
+import { USER_GET_RESPONSE, USER_POST_RESPONSE, USER_PUT_RESPONSE } from './actions/user.js';
+import { JOB_GET_RESPONSE, JOB_POST_RESPONSE, JOB_PUT_RESPONSE } from './actions/job.js'
 import {DEBUG_ON, DEBUG_OFF} from './actions/debug.js';
 import { 
   GET_JOB,
@@ -28,65 +29,26 @@ export const debug = function(state = false, action) {
 export const user = function(state={}, action) {
   switch(action.type) {
     case USER_GET_RESPONSE:
-      return action.data
+      return action.data;
+    case USER_POST_RESPONSE:
+      return action.data;
+    case USER_PUT_RESPONSE:
+      return action.data;
     default:
       return state
   }
 }
 
-export const jobList = function(state=[], action) {
+export const job = function(state={}, action) {
   switch(action.type) {
-    case RECEIVE_JOBLIST:
-      return action.jobListJson
-    default:
-      return state
-  }
-}
-
-export const isFetching = function(state=false, action) {
-  switch(action.type) {
-    case GET_USER:
-      return true;
-    case POST_USER:
-      return true;
-    case GET_JOBLIST:
-      return true;
-    case GET_JOB:
-      return true;
-    case POST_JOB:
-      return true;
-    case RECEIVE_USER:
-      return false;
-    case RECEIVE_POST_USER:
-      return false;
-    case RECEIVE_JOBLIST:
-      return false;
-    case RECEIVE_JOB:
-      return false;
-    case POST_RECEIVE_JOB:
-      return false;
+    case JOB_GET_RESPONSE:
+      return action.data;
+    case JOB_POST_RESPONSE:
+      return action.data;
+    case JOB_PUT_RESPONSE:
+      return action.data;
     default:
       return state;
   }
 }
 
-export const selectedJob = function(state={}, action) {
-  switch(action.type) {
-    //todo, create job
-    case RECEIVE_JOB:
-      return action.jobJson;
-    default:
-      return state;
-  }
-}
-
-export const isInvalidated = function(state=false, action) {//not important yet
-  switch(action.type) {
-    case INVALIDATE_USER:
-      return false;
-    case RECEIVE_USER:
-      return true;
-    default:
-      return state;
-  }
-}
