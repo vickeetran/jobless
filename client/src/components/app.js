@@ -10,7 +10,8 @@ import TestComponent from './TestComponent.jsx'
 import * as User from '../actions/user.js';
 import * as Job from '../actions/job.js';
 import * as JobList from '../actions/joblist.js';
-import * as Debug from '../actions/debug.js'
+import * as Debug from '../actions/debug.js';
+import * as Event from '../actions/event.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends React.Component {
   renderTest() {
     return (
       <div>
-        <TestComponent  methods={this.props.methods} user={this.props.user} job={this.props.job} jobList={this.props.jobList}/>
+        <TestComponent  methods={this.props.methods} user={this.props.user} job={this.props.job} jobList={this.props.jobList} event={this.props.event}/>
       </div>
     )
   }
@@ -47,13 +48,14 @@ class App extends React.Component {
 }
 
 const mapStateToProps = function mapStateToProps(state) {
-  const {debug, user, job, jobList} = state;
+  const {debug, user, job, jobList, event} = state;
 
   return {
     debug,
     user,
     job,
-    jobList
+    jobList,
+    event
   }
 }
 
@@ -81,6 +83,12 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       getJobList: () => {
         dispatch(JobList.get());
       },
+      getEvent: (id) => {
+        dispatch(Event.get(id));
+      },
+      postEvent: (data) => {
+        dispatch(Event.post(data));
+      }
     },
   }
 }

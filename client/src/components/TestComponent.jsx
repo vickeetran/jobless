@@ -13,13 +13,22 @@ const dummyUser = {
   email: 'example@example.com'
 }
 
+const dummyEvent = {
+  company: 'bookface',
+  description: 'practice',
+  isInterview: 'true',
+  interviewers: 'mr t',
+  complete: 'false'
+}
+
 class TestComponent extends React.Component {
   constructor(props) {
     super(props);
 
     this.user = props.user;
     this.job = props.job;
-    this.jobList = props.jobList
+    this.jobList = props.jobList;
+    this.event = props.event;
     this.methods = props.methods;
   }
 
@@ -29,7 +38,9 @@ class TestComponent extends React.Component {
     //this.methods.getUser();
     //this.methods.postUser(dummyUser);
     //this.methods.postJob(dummyJob);
-    this.methods.getJobList();
+    //this.methods.getJobList();
+    //this.methods.getEvent(1);
+    //this.methods.postEvent(dummyEvent);
 
   }
 
@@ -37,6 +48,7 @@ class TestComponent extends React.Component {
     this.jobList = nextProps.jobList;
     this.job = nextProps.job;
     this.user = nextProps.user;
+    this.event = nextProps.event;
     this.render();
   }
 
@@ -46,6 +58,7 @@ class TestComponent extends React.Component {
         <div>User: {JSON.stringify(this.user)}</div>
         <div>Job: {JSON.stringify(this.job)}</div>
         <div>JobList: {JSON.stringify(this.jobList)}</div>
+        <div>Event: {JSON.stringify(this.event)}</div>
       </div>
     )
   }
