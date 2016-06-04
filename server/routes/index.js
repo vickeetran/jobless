@@ -20,4 +20,9 @@ router.get('/position/:id', positionController.get);
 router.post('/position', positionController.post);
 router.put('/position', positionController.put);
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
 module.exports = router;
