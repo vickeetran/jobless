@@ -46,10 +46,10 @@ export const post = function(actions, endpoint, data) {
   }
 }
 
-export const put = function(actions, endpoint, data, id) {
+export const put = function(actions, endpoint, data) {
   return (dispatcher, getState) => {
     dispatcher(actions.request());
-    return fetch('/api/' + endpoint + '/' + id.toString(), {
+    return fetch('/api/' + endpoint, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',

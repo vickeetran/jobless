@@ -57,7 +57,7 @@ export const post = function(data) {
 
 const putRequest = function(data) {
   return {
-    type: USER_POST_RESPONSE,
+    type: USER_PUT_REQUEST,
     data
   }
 }
@@ -70,7 +70,7 @@ const putResponse = function(status, data) {
   }
 }
 
-export const put = function(data, id) {
+export const put = function(data) {
   return helper.put({
     request: putRequest,
     response: putResponse,
