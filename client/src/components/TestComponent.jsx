@@ -1,6 +1,7 @@
 import React from 'react';
 
 const dummyJob = {
+  id: 1,
   title: 'ninja',
   company: 'fire nation',
   description: 'bake pizzas',
@@ -34,6 +35,8 @@ class TestComponent extends React.Component {
 
   componentDidMount() {
     //UNCOMMENT THESE TO TEST
+    //this.methods.getJob(1);
+    //this.methods.putJob(dummyJob,1);
     //this.methods.getJob(17);
     //this.methods.getUser();
     //this.methods.postUser(dummyUser);
