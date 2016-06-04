@@ -16,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.10.1",
+    "express-session": "^1.13.0",
     "fs": "0.0.2",
     "google-auth-library": "^0.9.8",
     "googleapis": "^7.1.0",
@@ -26,6 +28,8 @@
     "mongoose": "^3.8.18",
     "mysql": "^2.10.2",
     "node": "0.0.0",
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-datepicker": "^0.27.0",
