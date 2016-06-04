@@ -1,13 +1,19 @@
 import React from 'react';
 import $ from 'jquery';
 
-
 export default class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+ constructor(props) {
+   super(props);
+   console.log('inside dashboard props', this.props)
 
-  render() {
+ }
+ componentWillReceiveProps(nextProps) {
+   this.result = nextProps.result;
+   this.render()
+ }
+render() {
+   console.log('this dashboard render now', this.result)
+      <div>this.result</div>
     return(
       <div>
         <nav role="navigation" className="navbar navbar-default">
@@ -25,7 +31,7 @@ export default class Dashboard extends React.Component {
                   <h2 className="titular">Job Apps<button type="button" className="btn btn-default btn-xs"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button></h2>
                   <ul className="menu-box-menu">
                       <li>
-                          <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Google<div className="menu-box-number">X</div></a>                            
+                          <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>hi<div className="menu-box-number">X</div></a>                            
                       </li>
                       <li>
                           <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Facebook<div className="menu-box-number">X</div></a>                            
