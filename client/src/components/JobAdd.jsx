@@ -1,4 +1,6 @@
 import React from 'react';
+import Dashboard from './Dashboard.jsx';
+
 export default class JobAdd extends React.Component {
   constructor(props) {
     super(props);
