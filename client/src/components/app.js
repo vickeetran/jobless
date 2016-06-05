@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Route, Link, browserHistory } from 'react-router'//import { createStore } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../actions.js';
 import * as reducers from '../reducer.js';
 import Login from './Login.jsx';
 import JobView from './jobView.jsx';
@@ -60,6 +59,7 @@ const mapStateToProps = function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  //PUTs currently crash server if no id is provided in data object
   return {
     methods : {
       debugOn: () => {
@@ -68,17 +68,23 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       debugOff: () => {
         dispatch(Debug.off());
       },
-      getUser: () => {
+      getUser: () => {          //GETs /api/user/:id and sets user to response
         dispatch(User.get());
       },
-      postUser: (data) => {
+      postUser: (data) => {     //POSTs /api/user and sets user to response
         dispatch(User.post(data));
+      },
+      putUser: (data) => {      //PUTs /api/user and sets user to response
+        dispatch(User.put(data));
       },
       getJob: (id) => {
         dispatch(Job.get(id));
       }, 
       postJob: (data) => {
         dispatch(Job.post(data));
+      },
+      putJob: (data) => {
+        dispatch(Job.put(data));
       },
       getJobList: () => {
         dispatch(JobList.get());
@@ -88,6 +94,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       postEvent: (data) => {
         dispatch(Event.post(data));
+      },
+      putEvent: (data) => {
+        dispatch(Event.put(data));
       }
     },
   }
