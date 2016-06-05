@@ -9,12 +9,11 @@ require('file?name=[name].[ext]!./index.html');
 // Require stylesheets
 require('./stylesheets/sass/style.scss');
 require('./stylesheets/sass/joblist.scss');
+require('./stylesheets/sass/dashboard.scss');
+require('./stylesheets/sass/jobadd.scss');
 require('file?name=[name].[ext]!./index.html');
 require('file?name=[name].[ext]!./front.html');
 
-
-
-//require('./stylesheets/sass/jobview.scss');
 
 const initalState =  {
     debug: false,

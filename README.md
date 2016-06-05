@@ -20,7 +20,14 @@
 
 ## Usage
 
-> Some usage instructions
+Initial Setup
+1. Install dependencies using "npm install" from within the root directory
+2. Log in to the Mysql database 
+3. Drop database job (if exists)
+4. Create database job 
+5. Enter "npm start" at the command line 
+6. Exit the Mysql database
+7. Enter "node server/db/seed.js" at the command line
 
 ## Requirements
 
@@ -31,6 +38,24 @@
 - etc
 
 ## Development
+
+Git Group Workflow
+
+# Set up a group => 
+1. Create a repo for the project
+2. Each team member needs join the group
+3. Each team member needs fork and clone a copy of the repo
+4. Add the master repo as a remote of your local repo using "git remote add upstream master"
+
+# Submitting changes
+1. Git pull --rebase upstream master / Git pull upstream master
+2. Git checkout -b NAME-branch
+3. Git add
+4. Git commit
+5. Git checkout master
+6. Git merge NAME-branch
+7. Git pull --rebase upstream master / Git pull upstream master
+8. Git push origin master
 
 ### Installing Dependencies
 

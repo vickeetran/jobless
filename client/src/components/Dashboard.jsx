@@ -1,79 +1,144 @@
 import React from 'react';
 import $ from 'jquery';
-
+import JobListEntry from './JobListEntry.jsx';
+import TodoListEntry from './TodoListEntry.jsx';
+import Modal from 'react-modal';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    this.jobList = props.jobList;
+    this.event = props.event;
+    this.methods = props.methods;
+    this.openModalAdd = this.openModalAdd.bind(this);
+   this.closeModalAdd = this.closeModalAdd.bind(this);
+   this.state = {
+    open: false
+   }
 
-    this.state = {
-      
+  }
+
+  handleSubmit (event) {
+    event.preventDefault();
+    var formData = {
+      title: this.refs.title.value,
+      company: this.refs.company.value,
+      description: this.refs.description.value
     }
+    this.methods.postJob(formData);
   }
   componentDidMount() {
-    $.ajax({
-      type: 'GET',
-      url: 'http://localhost:3000/api/event',
-      dataType: 'json',
-      success: function(data) {
-        console.log('this is get position data', data);
-        this.setState({data: data});
-      }.bind(this),
-      error: function(data) {
-        console.log('error retrieving data');
-      }.bind(this)
-    });
+    this.methods.getJobList();
+    this.methods.getEvent();
   }
+
+  componentWillReceiveProps(nextProps) {
+   this.jobList = nextProps.jobList;
+   this.event = nextProps.event;
+   this.render()
+  }
+
+  openModalAdd () { console.log(this.props);
+   this.setState({open: true}); }
+
+ closeModalAdd () { this.setState({open: false}); }
 
   render() {
-    return(
-      <div className="row">
-        <div className="col-xs-6 col-md-3">
-          
-          <div className="container job-list">
-            
-            <div className="header">
-              <div className="col-xs-4 vcenter">Company</div>
-              <div className="col-xs-4 hidden-xs vcenter">Status</div>
-            </div>
+     var jobs = this.jobList;
+     var events = this.event;
 
-            <div className="listing">
-              <div className="col-xs-4 company text-uppercase">FaceBook</div>
-              <div className="col-xs-4 hidden-xs status">Not Started</div>
-              <div className="col-xs-4 vcenter"><button className="btn btn-primary">View Application</button></div>
-            </div>
+     if(Array.isArray(this.event)) {
+       events = this.event;
+     } else {
+      events = [];
+     }
 
-            <div className="listing">
-              <div className="col-xs-4 vcenter company text-uppercase">Google</div>
-              <div className="col-xs-4z hidden-xs vcenter status">In Progress</div>
-              <div className="col-xs-4 vcenter"><button className="btn btn-primary">View Application</button></div>
-            </div>
-
-          </div>
-
+     console.log('inside dashboard render', events);
+      return(
+        <div>
+          <nav role="navigation" className="navbar navbar-default">
+            <a href="#" className="navbar-brand">JobAppy</a>
+              <div id="navbarCollapse" className="collapse navbar-collapse">
+                <ul className="nav navbar-nav navbar-right">
+                    <li className="logout"><a href="#">Logout</a></li>
+                </ul>
+              </div>
+          </nav>
+          <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
+               <div id="form-main">
+            <div id="form-div">
+              <form className="form" id="form1" onSubmit={this.handleSubmit.bind(this)}>
+                <p className="inputForm">
+                  <input type="text" ref="company" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Company Name"/>
+                </p>
+                <p className="inputForm">
+                  <input type="text" ref="title" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Position Tile"/>
+                </p>
+                <p className="text">
+                  <textarea name="text" ref="description" className="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Job Description"></textarea>
+                </p>
+                <div className="submit">
+                  <input type="submit" value="ADD NEW POSITION" id="button-blue" onClick={this.closeModalAdd}/>
+                  <div className="ease"></div>
+                </div>
+              </form>
         </div>
-
-        <div className="col-xs-6 col-md-3">
-          
-          <div className="container todo-list">
-            
-            <div className="row">
-              <div className="col-xs-4 vcenter">Todo</div>
-            </div>
-          
-          </div>
-          
-          <div className="container calendar">
-          
-            <div className="row header">
-              <div className="col-xs-4 vcenter">Calendar</div>
-            </div>
-          
-          </div>
-
-        </div>
-
       </div>
-    );
-  }
+         </Modal>
+        <div className="container">
+          <div className="row">
+              <div className="col-xs-5 col-md-5 left-container container">
+                <div className="menu-box block"> 
+                    <h2 className="titular">Active Job Apps
+                      <button type="button" className="btn btn-default btn-xs">
+                        <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
+                      </button>
+                    </h2>
+                    <ul className="menu-box-menu">
+                      {jobs.map(job => <JobListEntry key={job.id} data={job}/>)}
+                    </ul>
+                </div>
+              </div>
+              <div className="col-xs-7 col-md-7 left-container container">
+                <div className="menu-box block"> 
+                  <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs">
+  </button></h2>
+                    <ul className="menu-box-menu">
+                      {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
+                    </ul>
+                </div>
+                <div className="jobPosting-month block"> 
+                  <div className="arrow-btn-container">
+                    <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
+                    <h2 className="titular">Job Depot</h2>
+                    <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
+                  </div>
+                  <table className="jobPosting">
+                    <thead className="days-week">
+                        <tr>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Job Posting</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Yelp</td>
+                            <td>Software Engineer</td>
+                            <td><a href="http://www.yelp.com/careers/job-openings/cdefb0de-1998-4814-b459-c4417ef94efc?description=Software-Engineer-New-Grad_College-Engineering-Product_San-Francisco-CA&lever-source=indeed">Product Development Team</a></td>
+                        </tr>
+                        <tr>
+                            <td>Pinterest</td>
+                            <td>Software Engineer</td>
+                            <td><a href="http://jobs.bvp.com/jobdetail.php?jobid=526487">Community Ops and Trust & Safety Team</a></td>
+                        </tr>
+                      </tbody>
+                  </table>
+                  </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+      );
+    }
 }

@@ -1,0 +1,161 @@
+body {
+  background: #1f253d;
+
+}
+
+.navbar {
+  background: #9099b7;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+.jobPosting {
+  background: #394264;
+}
+
+.menu-box {
+  height: 360px;
+}
+
+.menu-box .titular {
+  background: #11a8ab;
+  border-radius: 5px;
+  height: 60px;
+}
+
+.menu-box-menu .icon {
+  display: inline-block;
+  vertical-align: top;
+  width: 28px;
+  margin-left: 20px;
+  margin-right: 15px;
+}
+
+.menu-box-number {
+  width: 36px;
+  line-height: 22px;
+  background: #50597b;
+  text-align: center;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.menu-box-menu li{
+  height: 60px;
+  position: relative; 
+  list-style-type: none;
+}
+
+.menu-box-menu {
+  padding-left: 0px;
+}
+
+.menu-box-tab {
+  line-height: 60px;
+  display: block;
+  border-bottom: 1px solid #1f253d;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+  background: #394264;
+  border-radius: 5px;
+  padding-left: 0;
+  font-size: 20px;
+}
+
+.menu-box-tab:hover {
+  background: #50597b;
+  border-top: 1px solid #1f253d;
+  text-decoration: none;
+}
+
+.menu-box-tab:hover .icon {
+  color: #fff;
+}
+
+.menu-box-tab:hover .menu-box-number {
+  background: #e64c65;
+}
+
+h2 {
+  padding: 15px;
+  padding-left: 30px;
+  font-size: 25px;
+  color: white;
+}
+
+.jobPosting-day {
+  height: 320px;
+  background: #3468af;
+  font-family: sans-serif;
+}
+
+.jobPosting-day .titular {
+  background: #1a4e95;
+  border-radius: 5px;
+}
+
+.jobPosting-day .arrow-btn:hover {
+  background: #16417E;
+}
+
+.jobPosting-day .the-day {
+  margin: 0;
+  text-align: center;
+  font-size: 146px;
+}
+
+.jobPosting-month {
+  height: 380px;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.jobPosting-month .titular {
+  background: #3468af;
+  border-radius: 5px;
+}
+
+.jobPosting-month .arrow-btn:hover {
+  background: #1a4e95;
+}
+
+.jobPosting {
+  text-align: center;
+}
+
+.jobPosting a {
+  font-size: 15px;
+  font-family: sans-serif;
+}
+
+.jobPosting td, .jobPosting th {
+  width: 300px;
+  height: 38px; 
+  text-align: center;          
+}
+
+.jobPosting .days-week {
+  color: #4fc4f6;
+  width: 300px;
+  padding-left: 15px;
+}
+
+
+.btn {
+  float: right;
+  margin-top: 5px;
+}
