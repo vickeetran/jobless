@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import JobListEntry from './JobListEntry.jsx';
 import TodoListEntry from './TodoListEntry.jsx';
+import Modal from 'react-modal';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -9,8 +10,23 @@ export default class Dashboard extends React.Component {
     this.jobList = props.jobList;
     this.event = props.event;
     this.methods = props.methods;
+    this.openModalAdd = this.openModalAdd.bind(this);
+   this.closeModalAdd = this.closeModalAdd.bind(this);
+   this.state = {
+    open: false
+   }
+
   }
 
+  handleSubmit (event) {
+    event.preventDefault();
+    var formData = {
+      title: this.refs.title.value,
+      company: this.refs.company.value,
+      description: this.refs.description.value
+    }
+    this.methods.postJob(formData);
+  }
   componentDidMount() {
     this.methods.getJobList();
     this.methods.getEvent();
@@ -21,6 +37,12 @@ export default class Dashboard extends React.Component {
    this.event = nextProps.event;
    this.render()
   }
+
+  openModalAdd () { console.log(this.props);
+   this.setState({open: true}); }
+
+ closeModalAdd () { this.setState({open: false}); }
+
   render() {
      var jobs = this.jobList;
      var events = this.event;
@@ -42,11 +64,36 @@ export default class Dashboard extends React.Component {
                 </ul>
               </div>
           </nav>
+          <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
+               <div id="form-main">
+            <div id="form-div">
+              <form className="form" id="form1" onSubmit={this.handleSubmit.bind(this)}>
+                <p className="inputForm">
+                  <input type="text" ref="company" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Company Name"/>
+                </p>
+                <p className="inputForm">
+                  <input type="text" ref="title" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Position Tile"/>
+                </p>
+                <p className="text">
+                  <textarea name="text" ref="description" className="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Job Description"></textarea>
+                </p>
+                <div className="submit">
+                  <input type="submit" value="ADD NEW POSITION" id="button-blue" onClick={this.closeModalAdd}/>
+                  <div className="ease"></div>
+                </div>
+              </form>
+        </div>
+      </div>
+         </Modal>
         <div className="container">
           <div className="row">
               <div className="col-xs-5 col-md-5 left-container container">
                 <div className="menu-box block"> 
-                    <h2 className="titular">Job Apps<button type="button" className="btn btn-default btn-xs"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button></h2>
+                    <h2 className="titular">Job Apps
+                      <button type="button" className="btn btn-default btn-xs">
+                        <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
+                      </button>
+                    </h2>
                     <ul className="menu-box-menu">
                       {jobs.map(job => <JobListEntry key={job.id} data={job}/>)}
                     </ul>
