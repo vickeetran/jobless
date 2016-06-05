@@ -47,6 +47,8 @@ export const jobList = function(state=[], action) {
   switch(action.type) {
     case JOBLIST_GET_RESPONSE:
       return action.data;
+    case JOB_POST_RESPONSE:
+      return state.concat([action.data]);
     default:
       return state;
   }
