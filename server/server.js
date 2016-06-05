@@ -16,17 +16,21 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(`${__dirname}/../client/public`));
-app.engine('html', require('ejs').renderFile);
-app.set('views', `${__dirname}/../client/public`);
 
 app.use('/', staticRoutes);
 app.use('/api', routes);
 app.use('/auth', auth);
+
+app.use(express.static(`${__dirname}/../client/public`));
+app.engine('html', require('ejs').renderFile);
+app.set('views', `${__dirname}/../client/public`);
+
+
 
 app.listen(port);
 /* eslint-disable no-console */
