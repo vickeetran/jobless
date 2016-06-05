@@ -18,7 +18,7 @@ module.exports = {
     const paramStr = params.join('&');
 
     return request(`${calendarAPI}/${calendar}/events?${paramStr}`)
-      .then(response => JSON.parse(response.body));
+      .then(response => JSON.parse(response.body || "{}"));
   },
   extendWithCalendar: (obj, events) => {
     const newObj = obj;
