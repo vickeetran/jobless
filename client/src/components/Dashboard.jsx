@@ -41,7 +41,9 @@ export default class Dashboard extends React.Component {
   openModalAdd () { console.log(this.props);
    this.setState({open: true}); }
 
- closeModalAdd () { this.setState({open: false}); }
+  closeModalAdd () { 
+    this.setState({open: false}); 
+  }
 
   render() {
      var jobs = this.jobList;
@@ -78,7 +80,7 @@ export default class Dashboard extends React.Component {
                   <textarea name="text" ref="description" className="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Job Description"></textarea>
                 </p>
                 <div className="submit">
-                  <input type="submit" value="ADD NEW POSITION" id="button-blue" onClick={this.closeModalAdd}/>
+                  <input type="submit" value="ADD NEW POSITION" id="button-blue" />
                   <div className="ease"></div>
                 </div>
               </form>
