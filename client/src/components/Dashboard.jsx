@@ -7,21 +7,31 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.jobList = props.jobList;
+    this.event = props.event;
     this.methods = props.methods;
   }
 
   componentDidMount() {
     this.methods.getJobList();
+    this.methods.getEvent();
   }
 
   componentWillReceiveProps(nextProps) {
    this.jobList = nextProps.jobList;
-
+   this.event = nextProps.event;
    this.render()
   }
   render() {
      var jobs = this.jobList;
-     console.log('inside dashboard render', jobs);
+     var events = this.event;
+
+     if(Array.isArray(this.event)) {
+       events = this.event;
+     } else {
+      events = [];
+     }
+
+     console.log('inside dashboard render', events);
       return(
         <div>
           <nav role="navigation" className="navbar navbar-default">
@@ -34,7 +44,7 @@ export default class Dashboard extends React.Component {
           </nav>
         <div className="container">
           <div className="row">
-              <div className="col-xs-6 col-md-6 left-container container">
+              <div className="col-xs-5 col-md-5 left-container container">
                 <div className="menu-box block"> 
                     <h2 className="titular">Job Apps<button type="button" className="btn btn-default btn-xs"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span></button></h2>
                     <ul className="menu-box-menu">
@@ -42,26 +52,12 @@ export default class Dashboard extends React.Component {
                     </ul>
                 </div>
               </div>
-              <div className="col-xs-6 col-md-6 left-container container">
+              <div className="col-xs-7 col-md-7 left-container container">
                 <div className="menu-box block"> 
                   <h2 className="titular">Todo<button type="button" className="btn btn-default btn-xs"><span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
   </button></h2>
                     <ul className="menu-box-menu">
-                        <li>
-                            <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>In-person Interview @ 9am</a>                            
-                        </li>
-                        <li>
-                            <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Phone Interview @ 11am</a>                            
-                        </li>
-                        <li>
-                            <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Twitter Assignment @ 2pm</a>                            
-                        </li>
-                        <li>
-                            <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Apply to 3 Jobs</a>
-                        </li>
-                        <li>
-                            <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>Edit LinkedIn Profile</a>
-                        </li>                        
+                      {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
                     </ul>
                 </div>
                 <div className="calendar-month block"> 

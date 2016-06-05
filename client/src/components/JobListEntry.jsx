@@ -12,7 +12,10 @@ export default class JobListEntry extends React.Component {
     return (
       <div>
         <li>
-          <a className="menu-box-tab" href="#"><span className="icon scnd-font-color"></span>{this.companyName} {"("}{this.title} {")"}<div className="menu-box-number">X</div></a>                            
+          <a className="menu-box-tab" href="#">
+            <span className="icon scnd-font-color"></span>
+              {this.companyName} {"("}{this.title} {")"}
+          </a>                            
         </li>
       </div>
     );
