@@ -94,11 +94,11 @@ db.Event.create({
 });
 
 db.Event.create({
-  company: ' ',
+  company: 'Hack Reactor',
   date: Date.now(),
-  description: 'Apply to 3 jobs',
+  description: 'Coffee Interview',
   isInterview: true,
-  interviewers: ' ',
+  interviewers: 'Bill Gates',
   note: 'You got this',
   complete: false,
   image: 'ahhhhhhhh',
