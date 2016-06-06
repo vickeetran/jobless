@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import Datetime from 'react-datetime';
+
 import { connect } from 'react-redux';
 import * as User from '../actions/user.js';
 import * as Job from '../actions/job.js';
@@ -135,19 +137,17 @@ class JobView extends React.Component {
     event.preventDefault();
 
     let eventData = {
-      company: 'Google',
-      date: '2016-05-02T00:27:13.000Z',
-      description: 'blah',
-      isInterview: true,
-      interviewers: this.refs.interviewers.value,
-      note: 'I got dat',
-      complete: true,
-      image: 'ahhhhhhhh',
-      emotion: 'WHO!?!?!?!',
+      description: this.refs.createEventDescription.value,
+      interviewers: this.refs.createEventInterviewers.value,
+      note: this.refs.createEventNote.value,
+      complete: false,
+      emotion: '',
+      start: this.refs.addEventStart.state.inputValue,
+      end: this.refs.addEventEnd.state.inputValue,
+      followup: '',
+      questions: '',
       positionId: 1
     }
-
-    //this.test.push(this.refs);
 
     this.methods.postEvent(eventData);
   }
@@ -155,11 +155,13 @@ class JobView extends React.Component {
   editJob(event) {
    event.preventDefault();
 
+   let completed = false;
+   this.refs.editJobComplete.value === 'true' ? completed = true : completed;
+
     let jobData = {
-      title: this.refs.title.value,
-      company: 'Google',
-      description: 'Best job evah',
-      userId: 1,
+      title: this.refs.editJobTitle.value,
+      notes: this.refs.editJobNotes.value,
+      complete: completed,
       id: 1
     }
 
@@ -171,18 +173,21 @@ class JobView extends React.Component {
   editEvent(event) {
    event.preventDefault();
 
-    let jobData = {
-      company: 'Google',
-      date: "2016-05-02T00:27:13.000Z",
-      description: 'Cool stuff',
-      isInterview: true,
+    let eventData = {
+      description: this.refs.editEventDescription.value,
       interviewers: this.refs.eventinterviewers,
-      note: 'I got dis',
-      complete: true,
-      emotion: 'EXCITED!!!!!!',
+      note: this.refs.editEventNote,
+      complete: this.refs.editEventComplete,
+      emotion: this.emotion,
+      start: this.refs.addEventStart.state.inputValue,
+      end: this.refs.addEventEnd.state.inputValue,
+      questions: this.refs.editEventQuestions,
       positionId: 1,
+      followup: this.refs.followup.state.inputValue,
       id: this.eventId
     }
+
+    console.log(this.eventId)
 
     this.methods.putEvent(eventData);
   }
@@ -195,18 +200,19 @@ class JobView extends React.Component {
     };
     this.complete ? this.status = 'Completed' : this.status = 'In Progress';
     if(this.events) {
+    const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
+    const compLogo = `https://logo.clearbit.com/${company}`;
       return( 
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
           <h2 className="col-xs-12 vcenter">{this.company}</h2>
-          <h4 className="col-xs-12 vcenter">{this.title}</h4>
-          <div className="col-xs-12 vcenter link"><a href=''>{this.jobURL}</a></div>
+          <h4 className="col-xs-12 vcenter" ><a href={this.jobURL}>{this.title}</a></h4>
           <div className="col-xs-12 vcenter"><h5>{this.status}</h5></div>
           <div className="col-xs-12 vcenter"><h5>Note:</h5></div>
           <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>
         </div>
         <div className='col-xs-2'>
-          <img className='logo' src="https://logo.clearbit.com/google.com" data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
+          <img className='logo' src={compLogo} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
         </div>
         <div className="col-xs-2">
           <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal()}}>
@@ -222,20 +228,20 @@ class JobView extends React.Component {
             <h2>Add Event</h2>
             <button onClick={this.closeModal}>Close</button>
             <button onClick={this.createEvent.bind(this)}>Submit</button>
-            <p>Date:</p>
-            <input ref='date'/>
-            <p>Time:</p>
-            <input ref='time'/>
-            <p>Type:</p>
-            <input ref='type'/>
+            <p>Start Time:</p>
+            <Datetime ref="addEventStart" />
+            <p>End Time:</p>
+            <Datetime ref="addEventEnd" />
+            <p>Description:</p>
+            <input className='form-control' ref='createEventDescription' defaultValue='In Person or Phone'/>
             <p>Interviewers:</p>
-            <input ref='interviewers'/>
+            <input className='form-control' ref='createEventInterviewers'/>
             <p>Follow Up:</p>
-            <input ref='followup'/>
+            <input className='form-control' ref='followup'/>
             <p>Status:</p>
-            <input ref='status'/>
+            <input className='form-control' ref='status'/>
             <p>Note:</p>
-            <input ref='note'/> 
+            <input className='form-control' ref='createEventNote'/> 
           </form>
           
           <form className='edit-modal' hidden={this.editJobFlag}>
@@ -243,29 +249,35 @@ class JobView extends React.Component {
             <button onClick={this.closeModal}>Close</button>
             <button onClick={this.editJob.bind(this)}>Submit</button>
             <p>Title:</p>
-            <input ref='title' defaultValue={this.title}/>
+            <input className='form-control' ref='editJobTitle' defaultValue={this.title}/>
+            <p>Notes:</p>
+            <input className='form-control' ref='editJobNotes' defaultValue={this.notes}/>
             <p>Completed?</p>
-            <input/>
+            <input className='form-control' ref='editJobComplete' defaultValue={this.complete}/>
           </form>
 
           <form className='edit-modal' hidden={this.editEventFlag}>
             <h2>Edit Event</h2>
             <button onClick={this.closeModal}>Close</button>
             <button onClick={this.editEvent.bind(this)}>Submit</button>
-            <p>Date:</p>
-            <input ref='date' defaultValue={this.eventHolder[this.eventId].date}/>
-            <p>Time:</p>
-            <input ref='time'/>
-            <p>Type:</p>
-            <input ref='type'/>
+            <p>Start Time:</p>
+            <Datetime ref="editEventStart" defaultValue={this.eventHolder[this.eventId].start}/>
+            <p>End Time:</p>
+            <Datetime ref="editEventEnd" defaultValue={this.eventHolder[this.eventId].end}/>
+            <p>Description:</p>
+            <input className='form-control' ref='type'/>
             <p>Interviewers:</p>
-            <input ref='interviewers' defaultValue={this.eventHolder[this.eventId].interviewers}/>
+            <input className='form-control' ref='interviewers' defaultValue={this.eventHolder[this.eventId].interviewers}/>
             <p>Follow Up:</p>
-            <input ref='followup'/>
-            <p>Status:</p>
-            <input ref='status'/>
+             <Datetime ref="editFollowUp" defaultValue={this.eventHolder[this.eventId].followup}/>
+            <p>Questions:</p>
+            <input className='form-control' ref='editEventQuestions' defaultValue={this.eventHolder[this.eventId].questions}/>
+            <p>Description:</p>
+            <input className='form-control' ref='editEventDescription' defaultValue={this.eventHolder[this.eventId].description}/>
+            <p>Completed?</p>
+            <input className='form-control' ref='editEventComplete' defaultValue={this.eventHolder[this.eventId].complete}/>
             <p>Note:</p>
-            <input ref='note'/> 
+            <input className='form-control' ref='editEventNote' defaultValue={this.eventHolder[this.eventId].note}/> 
             <p>Emotion:</p>
               <button type='button' className='emojibtn' onClick={() => {this.emotion = 'happy'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.happy}/></button>
               <button type='button' className='emojibtn' onClick={() => {this.emotion = 'delighted'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.delighted}/></button>
@@ -282,8 +294,8 @@ class JobView extends React.Component {
 
         <div className="container event-list timeline col-xs-12">
           {this.events.map((event) => {
-            event.questions === '' ? this.noQuestions = true : this.noQuestions = false;
-            event.note === '' ? this.noNotes = true : this.noNotes = false;
+            event.questions === null ? this.noQuestions = true : this.noQuestions = false;
+            event.note === null ? this.noNotes = true : this.noNotes = false;
             this.eventHolder[event.id] = event;
             return (
               <div className='event col-xs-11 vcenter'>
