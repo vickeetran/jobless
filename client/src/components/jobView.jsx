@@ -14,6 +14,7 @@ class JobView extends React.Component {
     let company = '';
     let title = '';
     this.methods = props.methods;
+    console.log('t')
 
     //object to hold all the events being rendered
     //key 0 is a dummy so that we won't run into 'undefined' errors
@@ -106,7 +107,9 @@ class JobView extends React.Component {
 
 
   componentWillMount() {
-    this.props.methods.getJob(1)
+    // var { id } = this.context.router.getCurrentQuery();
+    var id = this.props.location.query.id;
+    this.props.methods.getJob(id);
   }
 
   componentWillReceiveProps(nextProps) {
