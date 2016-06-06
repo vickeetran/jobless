@@ -119,7 +119,7 @@ export default class JobView extends React.Component {
    console.log('test', this.test);
 
    this.render();
-  }
+  }  
 
   createEvent(event) {
     event.preventDefault();
