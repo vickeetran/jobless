@@ -9,7 +9,9 @@ import * as Job from '../actions/job.js';
 import * as JobList from '../actions/joblist.js';
 import * as Debug from '../actions/debug.js';
 import * as Event from '../actions/event.js';
+import * as Session from '../actions/session.js';
 import Dashboard from './Dashboard.jsx';
+import Calendar from './calendar.jsx';
 import JobAdd from './JobAdd.jsx';
 
 
@@ -29,7 +31,7 @@ class App extends React.Component {
   renderTest() {
     return (
       <div>
-        <TestComponent  methods={this.props.methods} user={this.props.user} job={this.props.job} jobList={this.props.jobList} event={this.props.event}/>
+        <Calendar methods={this.props.methods} session={this.props.session}/>
       </div>
     )
   }
@@ -37,7 +39,7 @@ class App extends React.Component {
   render() {
 
     //UNCOMMENT THIS TO RENDER TEST COMPONENT
-    // return this.renderTest();
+    return this.renderTest();
     
     return (
      <div>
@@ -48,14 +50,15 @@ class App extends React.Component {
 }
 
 const mapStateToProps = function mapStateToProps(state) {
-  const {debug, user, job, jobList, event} = state;
+  const {debug, user, job, jobList, event, session} = state;
 
   return {
     debug,
     user,
     job,
     jobList,
-    event
+    event,
+    session,
   }
 }
 
@@ -98,7 +101,10 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       putEvent: (data) => {
         dispatch(Event.put(data));
-      }
+      },
+      getSession: () => {
+        dispatch(Session.get());
+      },
     },
   }
 }

@@ -25,13 +25,14 @@ passport.serializeUser((profile, done) => {
 
 // used to deserialize the user
 passport.deserializeUser((profile, done) => {
+  // console.log(JSON.stringify(profile, null, 2));
   db.User.findOrCreate({ where: {
     googleID: profile.id,
     email: profile.emails[0].value,
     firstName: profile.name.givenName,
     lastName: profile.name.familyName,
   } })
-    .then(user => calendar.extendWithCalendar(user, profile.calendarEvents))
+    .then(user => calendar.extendWithCalendar(user[0].dataValues, profile.calendarEvents))
     .then(user => done(null, user))
     .catch(err => done(err));
 });
