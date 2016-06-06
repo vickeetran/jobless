@@ -8,7 +8,7 @@ const passport = require('./config/passport');
 
 const routes = require('./routes');
 const auth = require('./routes/auth');
-const staticRoutes =require('./routes/static');
+const staticRoutes = require('./routes/static');
 
 app.use(cookieParser());
 app.use(session({
@@ -27,6 +27,7 @@ app.use('/api', routes);
 app.use('/auth', auth);
 
 app.use(express.static(`${__dirname}/../client/public`));
+app.use(express.static('node_modules'));
 app.engine('html', require('ejs').renderFile);
 app.set('views', `${__dirname}/../client/public`);
 
