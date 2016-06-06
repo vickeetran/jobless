@@ -1,0 +1,38 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #eeeeee;
+}
+
+#content {
+  position: relative;
+}
+
+.splash-img {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: -1;
+  float: left;
+}
+
+.login-btn {
+  display: block;
+  z-index: 100;
+  width: 170px;
+  height: 35px;
+  background-color: #3468AF;
+  color: white;
+  margin: 26px auto;
+}
+
+.header {
+  text-align: center;
+  color: #11A8AB;
+  font-size: 120px;
+  margin-top: 0px;
+  padding-top: 37px;
+}
+
