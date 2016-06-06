@@ -6,7 +6,7 @@ const positionController = require('../controllers/positionController');
 const sessionController = require('../controllers/sessionController');
 const isLoggedIn = require('../helpers/auth');
 
-router.get('/user', isLoggedIn, userController.get);
+router.get('/user', userController.get);
 router.get('/user/:id', userController.get);
 router.post('/user', userController.post);
 router.put('/user', userController.put);

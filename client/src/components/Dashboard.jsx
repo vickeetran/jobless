@@ -59,7 +59,7 @@ export default class Dashboard extends React.Component {
       return(
         <div>
           <nav role="navigation" className="navbar navbar-default">
-            <a href="#" className="navbar-brand">JobAppy</a>
+            <a href="#" className="navbar-brand">JobAppily</a>
               <div id="navbarCollapse" className="collapse navbar-collapse">
                 <ul className="nav navbar-nav navbar-right">
                     <li className="logout"><a href="#">Logout</a></li>

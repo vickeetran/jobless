@@ -22,10 +22,14 @@ class App extends React.Component {
     //THIS LINE TURNS ON DEBUG MODE WHICH CONSOLE LOGS EVERY ACTION
     //QUITE USEFUL
     this.props.methods.debugOn();
-    
+    this.showJobView = false;
   }
 
   componentDidMount() {
+  }
+
+  clickJobView() {
+    this.showJobView = true;
   }
 
   renderTest() {

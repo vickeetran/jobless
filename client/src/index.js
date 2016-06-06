@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import configureStore from './configureStore.js';
 import App from './components/app';
 import { Provider } from 'react-redux';
+import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import jobView from './components/jobView.jsx';
+
 
 require('file?name=[name].[ext]!./index.html');
 
@@ -11,6 +15,7 @@ require('./stylesheets/sass/style.scss');
 require('./stylesheets/sass/joblist.scss');
 require('./stylesheets/sass/dashboard.scss');
 require('./stylesheets/sass/jobadd.scss');
+require('./stylesheets/sass/jobview.scss');
 require('file?name=[name].[ext]!./stylesheets/front.css');
 require('file?name=[name].[ext]!./index.html');
 require('file?name=[name].[ext]!./front.html');
@@ -25,4 +30,12 @@ const initalState =  {
 
 let store = configureStore(initalState);
 
-ReactDOM.render((<Provider store={store}><App /></Provider>), document.getElementById('app'));
+const history = syncHistoryWithStore(browserHistory, store);
+
+ReactDOM.render((
+  <Provider store={store}>
+  <Router history={history}>
+    <Route path='/' component={App} />
+    <Route path='/jobview' component={jobView}/>
+  </Router>
+  </Provider>), document.getElementById('app'));
