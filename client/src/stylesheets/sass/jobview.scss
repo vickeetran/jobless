@@ -1,0 +1,164 @@
+.job-body {
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+body {
+  background-color: #f6f6f6;
+}
+
+.job-details {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 100px;
+}
+
+h5 {
+  margin-bottom: 0px;
+}
+
+.note {
+  margin-top: 5px;
+}
+
+.timeline {
+  border-style: solid;
+  border-top: thick solid #f0f0f0;
+  border-bottom: transparent;
+  border-right: transparent;
+  border-left: transparent;
+  padding-top: 20px; 
+  padding-bottom: 40px;
+}
+
+/*.timeline:before {
+  content:"";
+  width: 3px;
+  height: 100%;
+  background: grey;
+  left: 60px;
+  top: 0;
+  position: absolute;
+}*/
+
+.emojibtn > img {
+  width: 25px;
+}
+
+.emojibtn {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.event {
+  overflow: hidden;
+  min-height: 90px;
+}
+
+.clearfix:after {
+  overflow: auto;
+}
+
+.edit {
+  display: none;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.event:hover > div >.edit {
+  display: block;
+}
+
+.options {
+  padding: 5px 5px;
+  width: 40px;
+}
+
+.btnoption {
+  border: 0 0;
+  padding: 0 0;
+  margin-top: 50px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+
+
+.event-icon {
+  border-style: solid;
+  border-color: green;
+  border-radius: 50%;
+  padding-top: 8px;
+  padding-left: 7px;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  /*background-image: url('meeting (3).png');
+  background-size: cover;*/
+}
+
+.event-icon > img {
+  width: 40px;
+}
+
+.event > div > h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*.event {
+  margin-bottom: 30px;
+}*/
+
+.line {
+  width: 33px;
+  height: 100%;
+  margin-top: 60px;
+  border-right: thick solid #a0a0a0;
+  position: absolute;
+}
+
+.timeline:before {
+  width: 48px;
+  height: 15px;
+  border-right: thick solid #a0a0a0;
+}
+
+
+.emoji {
+  margin-top: 5px;
+  width: 30px;
+}
+
+.h5-no-pad {
+  margin-top: 0px;
+  padding-left: 0px;
+}
+
+img.editimg {
+  width: 20px;
+}
+
+.h5-no-pad > p {
+  margin-bottom: 5px;
+}
+
+.event-body {
+  margin-bottom: 10px;
+}
+
+.h5-no-pad > p {
+  border-bottom: thin solid #a0a0a0;
+}
+
+
+
+
