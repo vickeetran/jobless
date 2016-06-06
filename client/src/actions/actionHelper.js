@@ -13,7 +13,7 @@ export const get = function(actions, endpoint) {
   return dispatcher => {
     dispatcher(actions.request());
     let status;
-    return fetch('/api/' + endpoint)
+    return fetch('/api/' + endpoint, { credentials: 'same-origin' })
       .then(response => {
         status = response.status;
         return response.json() 
@@ -33,6 +33,7 @@ export const post = function(actions, endpoint, data) {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'same-origin',
       body: JSON.stringify(data)
     })
     .then(response => { 
@@ -55,6 +56,7 @@ export const put = function(actions, endpoint, data) {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin',
       body: JSON.stringify(data)
     })
     .then(response => { return dispatcher(actions.response(response.status, data))})
