@@ -10,16 +10,12 @@ const sequelize = new Sequelize(
 
 const Event = sequelize.define('event', {
   company: Sequelize.STRING,
-  date: Sequelize.DATE,
   description: Sequelize.STRING,
-  isInterview: Sequelize.BOOLEAN,
   interviewers: Sequelize.STRING,
   note: Sequelize.STRING,
   complete: Sequelize.BOOLEAN,
-  image: Sequelize.STRING,
   emotion: Sequelize.STRING,
   dateEvent: Sequelize.DATE,
-  type: Sequelize.STRING,
   questions: Sequelize.STRING,
 }, {
   freezeTableName: true,
@@ -41,6 +37,7 @@ const Position = sequelize.define('position', {
   complete: Sequelize.BOOLEAN,
   endDate: Sequelize.DATE,
   jobURL: Sequelize.STRING,
+  apply: Sequelize.BOOLEAN,
   notes: Sequelize.STRING,
 }, {
   freezeTableName: true,

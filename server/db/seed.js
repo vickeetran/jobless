@@ -109,6 +109,7 @@ db.Position.create({
 });
 
 db.Event.create({
+  company: 'Google',
   description: 'Phone Interview',
   interviewers: 'Beyonce',
   note: 'Build a fullstack app before the interview.',
@@ -120,6 +121,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'Facebook',
   description: 'In-person Interview',
   interviewers: 'Bernie Sanders',
   note: 'Help Bernie save the world!',
@@ -131,6 +133,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'NASA',
   description: 'Phone Interview',
   interviewers: 'Mini Blue Bird',
   note: 'Practice toy problems and tweet a million times before interview day.',
@@ -142,6 +145,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'Gordon Ramsey',
   description: 'Coffee Interview',
   interviewers: 'Bill Gates',
   note: 'Give a talk on how to succeed at Hack Reactor!',
@@ -153,6 +157,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'Google',
   description: 'Social night',
   interviewers: 'Taylor Swift',
   note: 'Practice toy problems and tweet a million times before interview day.',
@@ -164,6 +169,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'Google',
   description: 'Hackathon',
   interviewers: 'Elon Musk',
   note: 'Give a talk on how to succeed at Hack Reactor!',
@@ -175,6 +181,7 @@ db.Event.create({
 });
 
 db.Event.create({
+  company: 'Google',
   description: 'meeting',
   interviewers: 'Mark Zuck',
   note: 'Give a talk on how to succeed at Hack Reactor!',
