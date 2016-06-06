@@ -62,14 +62,14 @@ db.Position.create({
   description: 'Eat-sleep-hack-eat-repeat',
   complete: false,
   endDate: Date.now(),
-  jobURL: 'http://jobs.study.com/apply/dWF8Ku/Java-Software-Engineer-Front-End?source=INDE',
+  jobURL: 'http://www.hackreactor.com/careers/',
   notes: 'You can do it!',
   userId: 1,
 });
 
 db.Position.create({
-  title: 'Amazing Senior',
-  company: 'Hack Reactor',
+  title: 'Software Engineer',
+  company: 'Amazon',
   description: 'Eat-sleep-hack-eat-shower-repeat',
   complete: false,
   endDate: Date.now(),
@@ -84,7 +84,7 @@ db.Event.create({
   description: 'Phone Interview',
   isInterview: true,
   interviewers: 'Beyonce',
-  note: 'Building a fullstack app before the interview.',
+  note: 'Build a fullstack app before the interview.',
   complete: false,
   image: 'ahhhhhhhh',
   emotion: 'Hot!!',
