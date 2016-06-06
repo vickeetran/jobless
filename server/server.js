@@ -37,4 +37,3 @@ app.listen(port);
 /* eslint-disable no-console */
 console.log(`listening to port: ${port}`);
 module.exports = app;
-
