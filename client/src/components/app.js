@@ -3,14 +3,15 @@ import { Router, Route, Link, browserHistory } from 'react-router'//import { cre
 import { connect } from 'react-redux';
 import * as reducers from '../reducer.js';
 import Login from './Login.jsx';
-import JobView from './jobView.jsx';
-import JobListView from './jobList.jsx';
 import TestComponent from './TestComponent.jsx'
 import * as User from '../actions/user.js';
 import * as Job from '../actions/job.js';
 import * as JobList from '../actions/joblist.js';
 import * as Debug from '../actions/debug.js';
 import * as Event from '../actions/event.js';
+import Dashboard from './Dashboard.jsx';
+import JobAdd from './JobAdd.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -36,11 +37,11 @@ class App extends React.Component {
   render() {
 
     //UNCOMMENT THIS TO RENDER TEST COMPONENT
-    return this.renderTest();
+    // return this.renderTest();
     
     return (
      <div>
-       <JobView newsomething={this.props}/>
+        <Dashboard methods={this.props.methods} user={this.props.user} job={this.props.job} jobList={this.props.jobList} event={this.props.event}/>
      </div>
     );
   }
@@ -89,8 +90,8 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       getJobList: () => {
         dispatch(JobList.get());
       },
-      getEvent: (id) => {
-        dispatch(Event.get(id));
+      getEvent: () => {
+        dispatch(Event.get());
       },
       postEvent: (data) => {
         dispatch(Event.post(data));

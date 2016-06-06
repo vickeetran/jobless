@@ -26,11 +26,11 @@ const getResponse = function(status, data) {
   }
 }
 
-export const get = function(id) {
+export const get = function() {
   return helper.get({
     request: getRequest,
     response: getResponse,
-  }, ENDPOINT + '/' + id.toString());
+  }, ENDPOINT);
 }
 
 const postRequest = function(status) {

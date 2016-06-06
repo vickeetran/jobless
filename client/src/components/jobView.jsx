@@ -5,9 +5,9 @@ export default class JobView extends React.Component {
   constructor(props) {
     super(props);
 
-    let company = '';
+    let company = '';   
     let title = '';
-    let events = ['something'];
+  
 
     this.icons = {
       //from flaticon and noun project
@@ -66,6 +66,7 @@ export default class JobView extends React.Component {
 
    this.render();
   }
+
 
 
   render() {

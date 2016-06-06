@@ -40,13 +40,66 @@ db.Position.create({
   userId: 1,
 });
 
+db.Position.create({
+  title: 'Chief Morale Officer',
+  company: 'Hack Reactor',
+  description: 'Eat-sleep-hack-eat-repeat',
+  userId: 1,
+});
+
+db.Position.create({
+  title: 'Amazing Senior',
+  company: 'Hack Reactor',
+  description: 'Eat-sleep-hack-eat-shower-repeat',
+  userId: 1,
+});
+
 db.Event.create({
-  company: 'Goooooogle',
+  company: 'Talent Co.',
   date: Date.now(),
-  description: 'Cool stuff',
+  description: 'Phone Interview',
   isInterview: true,
-  interviewers: 'Lots of people',
+  interviewers: 'Beyonce',
   note: 'I got dis',
+  complete: false,
+  image: 'ahhhhhhhh',
+  emotion: 'Hot!!',
+  positionId: 1,
+});
+
+db.Event.create({
+  company: 'Save the Planet',
+  date: Date.now(),
+  description: 'In-person Interview',
+  isInterview: true,
+  interviewers: 'Bernie Sanders',
+  note: 'I got dis',
+  complete: false,
+  image: 'ahhhhhhhh',
+  emotion: 'delighted!!!',
+  positionId: 1,
+});
+
+db.Event.create({
+  company: 'Twitter',
+  date: Date.now(),
+  description: 'Twitter Interview',
+  isInterview: true,
+  interviewers: 'Mini Blue Bird',
+  note: 'I got dis',
+  complete: false,
+  image: 'ahhhhhhhh',
+  emotion: 'chirpy',
+  positionId: 1,
+});
+
+db.Event.create({
+  company: 'Hack Reactor',
+  date: Date.now(),
+  description: 'Coffee Interview',
+  isInterview: true,
+  interviewers: 'Bill Gates',
+  note: 'You got this',
   complete: false,
   image: 'ahhhhhhhh',
   emotion: 'EXCITED!!!!!!',
