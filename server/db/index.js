@@ -18,7 +18,9 @@ const Event = sequelize.define('event', {
   complete: Sequelize.BOOLEAN,
   image: Sequelize.STRING,
   emotion: Sequelize.STRING,
-  dateEvent: Sequelize.DATE,
+  start: Sequelize.DATE,
+  end: Sequelize.DATE,
+  followup: Sequelize.DATE,
   type: Sequelize.STRING,
   questions: Sequelize.STRING,
 }, {
