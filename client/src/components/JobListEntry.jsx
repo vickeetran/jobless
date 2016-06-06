@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class JobListEntry extends React.Component {
   constructor(props) {
@@ -12,10 +13,12 @@ export default class JobListEntry extends React.Component {
     return (
       <div>
         <li>
-          <a className="menu-box-tab" href="#">
+          <Link to='/jobView'>
+          <a className="menu-box-tab">
             <span className="icon scnd-font-color"></span>
               {this.companyName} {"("}{this.title} {")"}
-          </a>                            
+          </a>
+          </Link>                          
         </li>
       </div>
     );
