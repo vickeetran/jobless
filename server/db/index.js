@@ -18,6 +18,9 @@ const Event = sequelize.define('event', {
   complete: Sequelize.BOOLEAN,
   image: Sequelize.STRING,
   emotion: Sequelize.STRING,
+  dateEvent: Sequelize.DATE,
+  type: Sequelize.STRING,
+  questions: Sequelize.STRING,
 }, {
   freezeTableName: true,
 });
@@ -35,6 +38,10 @@ const Position = sequelize.define('position', {
   title: Sequelize.STRING,
   company: Sequelize.STRING,
   description: Sequelize.STRING,
+  complete: Sequelize.BOOLEAN,
+  endDate: Sequelize.DATE,
+  jobURL: Sequelize.STRING,
+  notes: Sequelize.STRING,
 }, {
   freezeTableName: true,
 });
