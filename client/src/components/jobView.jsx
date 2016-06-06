@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import $ from 'jquery';
 
 export default class JobView extends React.Component {
   constructor(props) {
@@ -53,8 +54,6 @@ export default class JobView extends React.Component {
       'wtf': 'http://bit.ly/1U3qgVY',
       'angry': 'http://bit.ly/1Y2ARTv' 
     }
-
-    this.emotion = '';
 
     //modal business
     this.state = {
@@ -113,6 +112,9 @@ export default class JobView extends React.Component {
    this.company = this.job.company;
    this.title = this.job.title;
    this.events = this.job.events;
+   this.notes = this.job.notes;
+   this.jobURL = this.job.jobURL;
+   this.complete = this.job.complete;
 
    console.log('next', nextProps);
    console.log('events', this.job.events);
@@ -179,16 +181,21 @@ export default class JobView extends React.Component {
 
 
   render() {
+    this.emotion = '';
+    this.renderEmo = () => {
+      return this.emotion;
+    };
+    this.complete ? this.status = 'Completed' : this.status = 'In Progress';
     if(this.events) {
       return( 
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
           <h2 className="col-xs-12 vcenter">{this.company}</h2>
           <h4 className="col-xs-12 vcenter">{this.title}</h4>
-          <div className="col-xs-12 vcenter link"><a href=''>[HARD CODE.. if this.complete then return Complete otherwise in progress] https://www.google.com/about/careers/jobs#!t=jo&jid=/google/software-engineer-image-based-rendering-1600-amphitheatre-parkway-mountain-view-1510001&</a></div>
-          <div className="col-xs-12 vcenter"><h5>[HARD CODE] In Progress</h5></div>
+          <div className="col-xs-12 vcenter link"><a href=''>{this.jobURL}</a></div>
+          <div className="col-xs-12 vcenter"><h5>{this.status}</h5></div>
           <div className="col-xs-12 vcenter"><h5>Note:</h5></div>
-          <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>[HARD CODE] referred by Sergey Brin </li><li>[HARD CODE] remember to crack an Apple joke</li></ul></div></div>
+          <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>
         </div>
         <div className='col-xs-2'>
           <img className='logo' src="https://logo.clearbit.com/google.com" data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
@@ -252,23 +259,23 @@ export default class JobView extends React.Component {
             <p>Note:</p>
             <input ref='note'/> 
             <p>Emotion:</p>
-              <button className='emojibtn' onClick={this.emotion = 'happy'}><img src={this.emoji.happy}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'delighted'}><img src={this.emoji.delighted}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'sunglasses'}><img src={this.emoji.sunglasses}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'money'}><img src={this.emoji.money}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'smirk'}><img src={this.emoji.smirk}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'soso'}><img src={this.emoji.soso}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'notsure'}><img src={this.emoji.notsure}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'crying'}><img src={this.emoji.crying}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'wtf'}><img src={this.emoji.wtf}/></button>
-              <button className='emojibtn' onClick={this.emotion = 'angry'}><img src={this.emoji.angry}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'happy'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.happy}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'delighted'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.delighted}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'sunglasses'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.sunglasses}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'money'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.money}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'smirk'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.smirk}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'soso'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.soso}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'notsure'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.notsure}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'crying'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.crying}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'wtf'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.wtf}/></button>
+              <button type='button' className='emojibtn' onClick={() => {this.emotion = 'angry'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.angry}/></button>
           </form>
         </Modal>
 
         <div className="container event-list timeline col-xs-12">
           {this.events.map((event) => {
-            this.haveQuestions = false;
-            this.haveNotes = false;
+            event.questions === '' ? this.noQuestions = true : this.noQuestions = false;
+            event.note === '' ? this.noNotes = true : this.noNotes = false;
             this.eventHolder[event.id] = event;
             return (
               <div className='event col-xs-11 vcenter'>
@@ -284,16 +291,14 @@ export default class JobView extends React.Component {
                   <div className='col-xs-10 h5-no-pad'><h5 className=''>Interviewer: {event.interviewers}</h5></div>
                   <div className='col-xs-2'><img className="emoji" src={this.emoji.wtf}/></div>
 
-                  <div className='col-xs-10 h5-no-pad' hidden={this.haveQuestions}>
+                  <div className='col-xs-10 h5-no-pad' hidden={this.noQuestions}>
                     <p><b>Questions asked:</b></p>
                     <ol>
-                    <li>Why Google?</li>
-                    <li>Do you hate Apple?</li>
-                    <li>Do you use Google+? Don't Lie.</li>
+                    <li>{event.questions}</li>
                     </ol>
                   </div>
 
-                  <div className='col-xs-10 h5-no-pad' hidden={this.haveNotes}>
+                  <div className='col-xs-10 h5-no-pad' hidden={this.noNotes}>
                     <p><b>Note:</b></p>
                     <ul>
                     <li>{event.note}</li>
