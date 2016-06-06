@@ -2,13 +2,21 @@ import React from 'react';
 import Modal from 'react-modal';
 import Datetime from 'react-datetime';
 
-export default class JobView extends React.Component {
+import { connect } from 'react-redux';
+import * as User from '../actions/user.js';
+import * as Job from '../actions/job.js';
+import * as JobList from '../actions/joblist.js';
+import * as Debug from '../actions/debug.js';
+import * as Event from '../actions/event.js';
+
+class JobView extends React.Component {
   constructor(props) {
     super(props);
 
     let company = '';
     let title = '';
     this.methods = props.methods;
+    console.log('t')
 
     //object to hold all the events being rendered
     //key 0 is a dummy so that we won't run into 'undefined' errors
@@ -99,7 +107,9 @@ export default class JobView extends React.Component {
 
 
   componentWillMount() {
-    this.props.methods.getJob(1)
+    // var { id } = this.context.router.getCurrentQuery();
+    var id = this.props.location.query.id;
+    this.props.methods.getJob(id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -342,3 +352,61 @@ export default class JobView extends React.Component {
  }
 }
 
+
+const mapStateToProps = function mapStateToProps(state) {
+  const {debug, user, job, jobList, event} = state;
+
+  return {
+    debug,
+    user,
+    job,
+    jobList,
+    event
+  }
+}
+
+const mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  //PUTs currently crash server if no id is provided in data object
+  return {
+    methods : {
+      debugOn: () => {
+        dispatch(Debug.on());
+      },
+      debugOff: () => {
+        dispatch(Debug.off());
+      },
+      getUser: () => {          //GETs /api/user/:id and sets user to response
+        dispatch(User.get());
+      },
+      postUser: (data) => {     //POSTs /api/user and sets user to response
+        dispatch(User.post(data));
+      },
+      putUser: (data) => {      //PUTs /api/user and sets user to response
+        dispatch(User.put(data));
+      },
+      getJob: (id) => {
+        dispatch(Job.get(id));
+      }, 
+      postJob: (data) => {
+        dispatch(Job.post(data));
+      },
+      putJob: (data) => {
+        dispatch(Job.put(data));
+      },
+      getJobList: () => {
+        dispatch(JobList.get());
+      },
+      getEvent: () => {
+        dispatch(Event.get());
+      },
+      postEvent: (data) => {
+        dispatch(Event.post(data));
+      },
+      putEvent: (data) => {
+        dispatch(Event.put(data));
+      }
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (JobView);

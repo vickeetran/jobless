@@ -6,6 +6,7 @@ import { EVENT_GET_RESPONSE, EVENT_POST_RESPONSE, EVENT_PUT_RESPONSE } from './a
 import {DEBUG_ON, DEBUG_OFF} from './actions/debug.js';
 
 
+
 export const debug = function(state = false, action) {
   switch(action.type) {
     case DEBUG_ON:
