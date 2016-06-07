@@ -2,6 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import JobListEntry from './JobListEntry.jsx';
 import TodoListEntry from './TodoListEntry.jsx';
+import Calendar from './calendar.jsx';
+import { Link } from 'react-router';
 import Modal from 'react-modal';
 
 export default class Dashboard extends React.Component {
@@ -58,7 +60,7 @@ export default class Dashboard extends React.Component {
      console.log('inside dashboard render', events);
       return(
         <div className="dashboard">
-
+          <Link to='/calendar' ><button>Calendar</button></Link>
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
                <div id="form-main">
             <div id="form-div">

@@ -35,7 +35,7 @@ export default class Calendar extends React.Component {
       <div className="calendar">
         <BigCalendar
           events={this.session}
-          defaultDate={new Date(2015, 3, 1)}
+          defaultDate={new Date()}
         />
       </div>
     )

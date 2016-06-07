@@ -12,4 +12,8 @@ router.get('/jobView', isLoggedIn, function(req, res) {
   res.render('index.html');
 });
 
+router.get('/calendar', isLoggedIn, function(req, res) {
+  res.render('index.html');
+});
+
 module.exports = router;
