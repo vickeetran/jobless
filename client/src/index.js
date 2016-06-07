@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import jobView from './components/jobView.jsx';
+import Calendar from './components/calendar.jsx';
 
 
 require('file?name=[name].[ext]!./index.html');
@@ -34,8 +35,9 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render((
   <Provider store={store}>
-  <Router history={history}>
-    <Route path='/' component={App} />
-    <Route path='/jobview' component={jobView}/>
-  </Router>
+    <Router history={history}>
+      <Route path='/' component={App} />
+      <Route path='/jobview' component={jobView}/>
+      <Route path='/calendar' component={Calendar}/>
+    </Router>
   </Provider>), document.getElementById('app'));
