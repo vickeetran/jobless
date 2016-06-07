@@ -57,15 +57,8 @@ export default class Dashboard extends React.Component {
 
      console.log('inside dashboard render', events);
       return(
-        <div>
-          <nav role="navigation" className="navbar navbar-default">
-            <a href="#" className="navbar-brand">JobAppily</a>
-              <div id="navbarCollapse" className="collapse navbar-collapse">
-                <ul className="nav navbar-nav navbar-right">
-                    <li className="logout"><a href="#">Logout</a></li>
-                </ul>
-              </div>
-          </nav>
+        <div className="dashboard">
+
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
                <div id="form-main">
             <div id="form-div">

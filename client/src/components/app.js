@@ -43,7 +43,7 @@ class App extends React.Component {
   render() {
 
     //UNCOMMENT THIS TO RENDER TEST COMPONENT
-    return this.renderTest();
+    // return this.renderTest();
     
     return (
      <div>

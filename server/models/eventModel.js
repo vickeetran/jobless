@@ -21,7 +21,7 @@ module.exports = {
         .then(event => cb(null, event))
         .catch(cb);
     } else {
-      db.Event.findAll()
+      db.Event.findAll({ order: [['createdAt', 'DESC']] })
         .then(events => cb(null, events))
         .catch(cb);
     }

@@ -12,7 +12,7 @@ import * as Event from '../actions/event.js';
 class JobView extends React.Component {
   constructor(props) {
     super(props);
-
+    this.id = this.props.location.query.id;
     let company = '';
     let title = '';
     this.methods = props.methods;
@@ -108,8 +108,7 @@ class JobView extends React.Component {
 
   componentWillMount() {
     // var { id } = this.context.router.getCurrentQuery();
-    var id = this.props.location.query.id;
-    this.props.methods.getJob(id);
+    this.props.methods.getJob(this.id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -144,10 +143,12 @@ class JobView extends React.Component {
       emotion: '',
       start: this.refs.addEventStart.state.inputValue,
       end: this.refs.addEventEnd.state.inputValue,
-      followup: '',
+      followup: Date.now(),
       questions: '',
-      positionId: 1
+      positionId: this.id
     }
+
+    console.log(eventData)
 
     this.methods.postEvent(eventData);
   }
@@ -162,7 +163,7 @@ class JobView extends React.Component {
       title: this.refs.editJobTitle.value,
       notes: this.refs.editJobNotes.value,
       complete: completed,
-      id: 1
+      id: this.id
     }
 
     //this.test.push(this.refs);
@@ -179,11 +180,11 @@ class JobView extends React.Component {
       note: this.refs.editEventNote,
       complete: this.refs.editEventComplete,
       emotion: this.emotion,
-      start: this.refs.addEventStart.state.inputValue,
-      end: this.refs.addEventEnd.state.inputValue,
+      start: this.refs.editEventStart.state.inputValue,
+      end: this.refs.editEventEnd.state.inputValue,
       questions: this.refs.editEventQuestions,
-      positionId: 1,
-      followup: this.refs.followup.state.inputValue,
+      positionId: this.id,
+      followup: this.refs.editFollowUp.state.inputValue,
       id: this.eventId
     }
 
@@ -300,13 +301,13 @@ class JobView extends React.Component {
             return (
               <div className='event col-xs-11 vcenter'>
                 <div className='event-icon col-xs-1'><img src={this.icons.person}/></div>
-                <div className='col-xs-9'><h4>{event.description}</h4></div>
+                <div className='col-xs-9'><h4>{new Date(event.start).toString()}</h4></div>
                 <div className='col-xs-1'>
                   <button className='edit' onClick={() => { this.eventId = JSON.stringify(event.id); this.updateEvent(); this.openModal()}}>
                     <img className='editimg' src={this.icons.edit}/>
                   </button>
                 </div>
-                <div className='col-xs-10'><h4>1st Round In Person Interview</h4></div>
+                <div className='col-xs-10'><h4>{event.description}</h4></div>
                 <div className='col-xs-10 event-body'>
                   <div className='col-xs-10 h5-no-pad'><h5 className=''>Interviewer: {event.interviewers}</h5></div>
                   <div className='col-xs-2'><img className="emoji" src={this.emoji.wtf}/></div>
