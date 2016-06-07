@@ -1,14 +1,15 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+const express      = require('express');
+const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const port = process.env.PORT || 3000;
-const passport = require('./config/passport');
+const session      = require('express-session');
 
-const routes = require('./routes');
-const auth = require('./routes/auth');
+const passport     = require('./config/passport');
+const routes       = require('./routes');
+const auth         = require('./routes/auth');
 const staticRoutes = require('./routes/static');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(session({
