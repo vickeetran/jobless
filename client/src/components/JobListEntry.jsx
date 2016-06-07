@@ -17,7 +17,7 @@ export default class JobListEntry extends React.Component {
       <div>
         <li>
           <Link to={link}>
-        
+          <jobView jobId=this.jobId />
           <a className="menu-box-tab">
             <span className="icon scnd-font-color"></span>
               {this.companyName} {"("}{this.title} {")"}

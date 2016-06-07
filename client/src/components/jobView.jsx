@@ -298,6 +298,7 @@ class JobView extends React.Component {
             event.questions === null ? this.noQuestions = true : this.noQuestions = false;
             event.note === null ? this.noNotes = true : this.noNotes = false;
             this.eventHolder[event.id] = event;
+            let emo = event.emotion || 'wtf'
             return (
               <div className='event col-xs-11 vcenter'>
                 <div className='event-icon col-xs-1'><img src={this.icons.person}/></div>
@@ -310,7 +311,7 @@ class JobView extends React.Component {
                 <div className='col-xs-10'><h4>{event.description}</h4></div>
                 <div className='col-xs-10 event-body'>
                   <div className='col-xs-10 h5-no-pad'><h5 className=''>Interviewer: {event.interviewers}</h5></div>
-                  <div className='col-xs-2'><img className="emoji" src={this.emoji.wtf}/></div>
+                  <div className='col-xs-2'><img className="emoji" src={this.emoji[emo]}/></div>
 
                   <div className='col-xs-10 h5-no-pad' hidden={this.noQuestions}>
                     <p><b>Questions asked:</b></p>
