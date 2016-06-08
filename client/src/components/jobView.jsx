@@ -174,12 +174,12 @@ class JobView extends React.Component {
     let eventData = {
       description: this.refs.editEventDescription.value,
       interviewers: this.refs.eventinterviewers,
-      note: this.refs.editEventNote,
-      complete: this.refs.editEventComplete,
+      note: this.refs.editEventNote.value,
+      complete: this.refs.editEventComplete.value,
       emotion: this.emotion,
       start: this.refs.editEventStart.state.inputValue,
       end: this.refs.editEventEnd.state.inputValue,
-      questions: this.refs.editEventQuestions,
+      questions: this.refs.editEventQuestions.value,
       positionId: this.id,
       followup: this.refs.editFollowUp.state.inputValue,
       id: this.eventId

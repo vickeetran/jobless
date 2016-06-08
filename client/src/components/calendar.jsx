@@ -2,6 +2,14 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 
+
+import { Router, Route, Link, browserHistory } from 'react-router'//import { createStore } from 'redux';
+import { connect } from 'react-redux';
+import * as reducers from '../reducer.js';
+import * as Session from '../actions/session.js';
+
+
+
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +23,8 @@ export default class Calendar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log("PROPS RECEIVED")
+
     const events = [];
     const calendarEvents = nextProps.session.calendarEvents.items;
     for(let i=0;i<calendarEvents.length;i++){
@@ -41,3 +51,24 @@ export default class Calendar extends React.Component {
     )
   }
 }
+
+const mapStateToProps = function mapStateToProps(state) {
+  const {session} = state;
+
+  return {
+    session
+  }
+}
+
+const mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  //PUTs currently crash server if no id is provided in data object
+  return {
+    methods : {
+      getSession: () => {
+        dispatch(Session.get());
+      },
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Calendar)

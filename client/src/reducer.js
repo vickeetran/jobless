@@ -70,6 +70,7 @@ export const event = function(state={}, action) {
 }
 
 export const session = function(state={}, action) {
+  console.log('session get response invoked')
   switch(action.type) {
     case SESSION_GET_RESPONSE:
       return action.data;

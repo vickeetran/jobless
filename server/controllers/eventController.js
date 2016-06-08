@@ -32,6 +32,13 @@ module.exports = {
       res.send(data);
     });
   },
+  delete: (req, res) => {
+    Event.delete(req.body, (err, data) => {
+      if (err) throw err;
+      res.status(201);
+      res.send(data);
+    });
+  }
 };
 
 
