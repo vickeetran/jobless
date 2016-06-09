@@ -16,7 +16,11 @@ export const get = function(actions, endpoint) {
     return fetch('/api/' + endpoint, { credentials: 'same-origin' })
       .then(response => {
         status = response.status;
+<<<<<<< c403d45f4e4c3f897547d56012c5118e66bcb502
         return response.json() 
+=======
+        return response.json()
+>>>>>>> fixed minor syntax errors
       })
       .then(json => { return dispatcher(actions.response(status, json))});
       //.catch(err => { return dispatcher(error(err))});
@@ -105,7 +109,7 @@ export const put = function(actions, endpoint, data) {
       }
 
       return dispatcher(actions.response(response.status, data))
-    });
+    })
     // .catch(err => { return dispatcher(error(err))});
   }
 }
@@ -124,8 +128,9 @@ export const remove = function(actions, endpoint, data) {
       credentials: 'same-origin',
       body: JSON.stringify(data)
     })
-    .then(response => { return dispatcher(actions.response(response.status, data))})
-      return dispatcher(actions.response(response.status, data))})
+    .then(response => { 
+      return dispatcher(actions.response(response.status, data))
+    })
     .catch(err => { return dispatcher(error(err))});
   }
 }
