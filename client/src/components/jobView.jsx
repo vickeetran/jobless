@@ -137,8 +137,11 @@ class JobView extends React.Component {
 
   createEvent(event) {
     event.preventDefault();
+    console.log(this.company);
+    console.log(this.job.company);
 
     let eventData = {
+      company: this.job.company,
       description: this.refs.createEventDescription.value,
       interviewers: this.refs.createEventInterviewers.value,
       note: this.refs.createEventNote.value,
@@ -152,6 +155,12 @@ class JobView extends React.Component {
     };
 
     this.methods.postEvent(eventData);
+    
+    setTimeout( () => {
+      console.log('time in!')
+      this.methods.getEvent();
+    }, 2000)
+
   }
 
   editJob(event) {
@@ -170,6 +179,8 @@ class JobView extends React.Component {
     //this.test.push(this.refs);
     console.log(jobData)
     this.methods.putJob(jobData);
+
+    this.methods.getJob();
   }
 
   editEvent(event) {
@@ -192,6 +203,7 @@ class JobView extends React.Component {
     console.log(this.eventId);
 
     this.methods.putEvent(eventData);
+    this.methods.getEvent();
   }
 
   deleteEvent(event) {

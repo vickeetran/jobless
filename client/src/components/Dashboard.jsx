@@ -31,6 +31,9 @@ export default class Dashboard extends React.Component {
       description: this.refs.description.value
     };
     this.methods.postJob(formData);
+
+    this.methods.getJobList();
+    // this.methods.getEvent();
   }
   componentDidMount() {
     this.methods.getJobList();
