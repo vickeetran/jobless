@@ -40,7 +40,7 @@ app.get('/gitjobs', function(req, res) {
         return console.log('Error: ', err);
       }
 
-      console.log('Found ' + results.length + ' jobs.');
+      console.log('Found ==========' + results.length + ' jobs.');
       var positions = [];
       results.forEach(function(job){
         jobs.findById(job.id, function(err, result){
