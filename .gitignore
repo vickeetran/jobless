@@ -29,6 +29,8 @@ bower_components
 
 #db configuration
 server/db/config.js
+server/config/pusher_secret.js
+server/config/client_secret.js
 
 # Floobits
 .floo

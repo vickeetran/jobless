@@ -18,25 +18,25 @@ module.exports = {
   get: (id, cb) => {
     if (id) {
       db.Event.findOne({ where: { id } })
-        .then(event => cb(null, event))
+        .then( event => cb(null, event))
         .catch(cb);
     } else {
       db.Event.findAll({ order: [['createdAt', 'DESC']] })
-        .then(events => cb(null, events))
+        .then( events => cb(null, events))
         .catch(cb);
     }
   },
   // Create Event
   post: (newEvent, cb) => {
     db.Event.create(newEvent)
-      .then((e) => cb(null, e))
+      .then( e => cb(null, e))
       .catch(cb);
   },
   // Update Event
   put: (eventChanges, cb) => {
     db.Event.findOne({ where: { id: eventChanges.id } })
       .then(event => event.update(eventChanges))
-      .then((e) => cb(null, e))
+      .then( e => cb(null, e))
       .catch(cb);
   },
 };

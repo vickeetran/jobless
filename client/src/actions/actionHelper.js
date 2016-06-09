@@ -16,7 +16,7 @@ export const get = function(actions, endpoint) {
     return fetch('/api/' + endpoint, { credentials: 'same-origin' })
       .then(response => {
         status = response.status;
-        return response.json() 
+        return response.json()
       })
       .then(json => { return dispatcher(actions.response(status, json))});
       //.catch(err => { return dispatcher(error(err))});
@@ -36,8 +36,21 @@ export const post = function(actions, endpoint, data) {
       credentials: 'same-origin',
       body: JSON.stringify(data)
     })
-    .then(response => { 
-      status= response.status;
+    .then(response => {
+      status = response.status;
+      // display notification that endpoint action was successful
+      noty({
+        layout: 'topCenter',
+        theme: 'relax',
+        type: 'success',
+        text: `${endpoint.split('')[0].toUpperCase().concat(endpoint.slice(1))} successfully added.`,
+        dismissQueue: true,
+        animation: {
+          open: 'animated bounceInDown',
+          close: 'animated bounceOutUp'
+          },
+        timeout: 3000
+      });
       return response.json()
     })
     .then(json => {
@@ -59,7 +72,21 @@ export const put = function(actions, endpoint, data) {
       credentials: 'same-origin',
       body: JSON.stringify(data)
     })
-    .then(response => { return dispatcher(actions.response(response.status, data))})
+    .then(response => {
+      // display notification that endpoint action was successful
+      noty({
+        layout: 'topCenter',
+        theme: 'relax',
+        type: 'success',
+        text: `${endpoint.split('')[0].toUpperCase().concat(endpoint.slice(1))} successfully edited.`,
+        dismissQueue: true,
+        animation: {
+          open: 'animated bounceInDown',
+          close: 'animated bounceOutUp'
+          },
+        timeout: 3000
+      });
+      return dispatcher(actions.response(response.status, data))})
     .catch(err => { return dispatcher(error(err))});
   }
 }

@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, session} from 'redux';
 import {debug, user, job, jobList, event} from './reducer.js';
 import thunkMiddleware from 'redux-thunk';
-import { routerReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux';
 
 export default function configureStore(initalState) {
   return createStore(
@@ -9,4 +9,4 @@ export default function configureStore(initalState) {
     initalState,
     applyMiddleware(thunkMiddleware)
   );
-} 
+}

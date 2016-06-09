@@ -1,4 +1,6 @@
-const Event = require('../models/eventModel');
+const schedule = require('node-schedule');
+// const moment   = require('moment');
+const Event    = require('../models/eventModel');
 
 module.exports = {
   get: (req, res) => {
@@ -11,6 +13,14 @@ module.exports = {
   post: (req, res) => {
     Event.post(req.body, (err, data) => {
       if (err) throw err;
+      // schedule email reminder for user
+      let eventStart = data.dataValues.start;
+
+      let notify = schedule.scheduleJob(eventStart, () => {
+        // send notification to client
+        console.log('I scheduled an email and all I got was this crummy message.');
+      });
+
       res.status(201);
       res.send(data);
     });
@@ -23,3 +33,13 @@ module.exports = {
     });
   },
 };
+
+
+
+
+// var date1 = new Date(2016, 5, 8, 17, 29, 0);
+// var date2 = new Date( moment('06/08/2016 5:29 PM', 'MM-DD-YYYY hh:mm a') );
+
+// schedule.scheduleJob(date2, () => {
+//   console.log('Using moment date schedule!');
+// });

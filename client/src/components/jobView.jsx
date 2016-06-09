@@ -16,7 +16,6 @@ class JobView extends React.Component {
     let company = '';
     let title = '';
     this.methods = props.methods;
-    console.log('t')
 
     //object to hold all the events being rendered
     //key 0 is a dummy so that we won't run into 'undefined' errors
@@ -47,26 +46,26 @@ class JobView extends React.Component {
       apply: 'http://bit.ly/1XTFqj9',
       start: 'http://bit.ly/1qvVKtM',
       stop: 'http://bit.ly/1r4nbuq'
-    }
+    };
 
     this.emoji = {
       //from twitter emoji
       'happy': 'http://bit.ly/1VHa8Mi',
       'delighted': 'http://bit.ly/1X6sFT0',
-      'sunglasses': 'http://bit.ly/1WBDs7V', 
+      'sunglasses': 'http://bit.ly/1WBDs7V',
       'money': 'http://bit.ly/1RV7qeY',
       'smirk': 'http://bit.ly/1PzbOWS',
       'soso': 'http://bit.ly/1UlPigr',
       'notsure': 'http://bit.ly/1tbv2s5',
       'crying': 'http://bit.ly/1UCvB6w',
       'wtf': 'http://bit.ly/1U3qgVY',
-      'angry': 'http://bit.ly/1Y2ARTv' 
-    }
+      'angry': 'http://bit.ly/1Y2ARTv'
+    };
 
     //modal business
     this.state = {
       open: false
-    }
+    };
 
     this.closeModal = this.closeModal.bind(this);
 
@@ -146,9 +145,7 @@ class JobView extends React.Component {
       followup: Date.now(),
       questions: '',
       positionId: this.id
-    }
-
-    console.log(eventData)
+    };
 
     this.methods.postEvent(eventData);
   }
@@ -164,7 +161,7 @@ class JobView extends React.Component {
       notes: this.refs.editJobNotes.value,
       complete: completed,
       id: this.id
-    }
+    };
 
     //this.test.push(this.refs);
 
@@ -186,9 +183,9 @@ class JobView extends React.Component {
       positionId: this.id,
       followup: this.refs.editFollowUp.state.inputValue,
       id: this.eventId
-    }
+    };
 
-    console.log(this.eventId)
+    console.log(this.eventId);
 
     this.methods.putEvent(eventData);
   }
@@ -203,7 +200,7 @@ class JobView extends React.Component {
     if(this.events) {
     const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
     const compLogo = `https://logo.clearbit.com/${company}`;
-      return( 
+      return (
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
           <h2 className="col-xs-12 vcenter">{this.company}</h2>
@@ -216,14 +213,15 @@ class JobView extends React.Component {
           <img className='logo' src={compLogo} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
         </div>
         <div className="col-xs-2">
-          <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal()}}>
+          <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal() }}>
             <img className='options' src={this.icons.add}/>
           </button>
           <button className='btnoption' onClick={() => { this.updateJob(); this.openModal()}}>
             <img className='options' src={this.icons.edit}/>
           </button>
         </div>
-    
+
+      {/* ADD EVENT SECTION */}
         <Modal isOpen={this.state.open} onRequestClose={this.closeModal}>
           <form className='add-modal' hidden={this.addFlag}>
             <h2>Add Event</h2>
@@ -242,9 +240,10 @@ class JobView extends React.Component {
             <p>Status:</p>
             <input className='form-control' ref='status'/>
             <p>Note:</p>
-            <input className='form-control' ref='createEventNote'/> 
+            <input className='form-control' ref='createEventNote'/>
           </form>
-          
+
+        {/* EDIT JOB SECTION */}
           <form className='edit-modal' hidden={this.editJobFlag}>
             <h2>Edit Job</h2>
             <button onClick={this.closeModal}>Close</button>
@@ -257,6 +256,7 @@ class JobView extends React.Component {
             <input className='form-control' ref='editJobComplete' defaultValue={this.complete}/>
           </form>
 
+        {/* EDIT EVENT SECTION */}
           <form className='edit-modal' hidden={this.editEventFlag}>
             <h2>Edit Event</h2>
             <button onClick={this.closeModal}>Close</button>
@@ -278,7 +278,7 @@ class JobView extends React.Component {
             <p>Completed?</p>
             <input className='form-control' ref='editEventComplete' defaultValue={this.eventHolder[this.eventId].complete}/>
             <p>Note:</p>
-            <input className='form-control' ref='editEventNote' defaultValue={this.eventHolder[this.eventId].note}/> 
+            <input className='form-control' ref='editEventNote' defaultValue={this.eventHolder[this.eventId].note}/>
             <p>Emotion:</p>
               <button type='button' className='emojibtn' onClick={() => {this.emotion = 'happy'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.happy}/></button>
               <button type='button' className='emojibtn' onClick={() => {this.emotion = 'delighted'; console.log(this.emotion); this.renderEmo()}}><img src={this.emoji.delighted}/></button>
@@ -327,7 +327,7 @@ class JobView extends React.Component {
                     </ul>
                     </div>
                   </div>
-           
+
                   <div className='line'></div>
               </div>
             )
@@ -338,10 +338,10 @@ class JobView extends React.Component {
           <div className='col-xs-10'><h4>1 May 2016</h4></div>
           <div className='col-xs-10'><h4>Show of Interest</h4></div>
         </div>
-    
+
       </div>
-  
-    </div>  
+
+    </div>
 
     );
 
@@ -388,7 +388,7 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       getJob: (id) => {
         dispatch(Job.get(id));
-      }, 
+      },
       postJob: (data) => {
         dispatch(Job.post(data));
       },
