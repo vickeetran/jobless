@@ -201,16 +201,28 @@ class JobView extends React.Component {
   }
 
   deleteEvent(event) {
-    if (confirm('Are you absolutely determined to blow off this event?')) {
-      this.methods.removeEvent(event);
+    //remove event from the database
+    this.methods.removeEvent(event);
 
-      this.events.forEach( (e, index, events) => {
-        if (e.id === event.id) {
-          events.splice(index, 1);
-        }
-      })
-      this.render();
-    }
+    this.events.forEach( (e, index, events) => {
+      if (e.id === event.id) {
+        events.splice(index, 1);
+      }
+    })
+
+    this.render();
+  }
+
+  deleteJob() {
+    let events = this.job.events.slice()
+    console.log(events.length);
+    events.forEach( event => {
+      this.deleteEvent(event);
+    });
+
+    this.methods.removeJob(this.job)
+    
+    this.props.history.pushState(null, '/')
   }
 
   render() {
@@ -240,6 +252,9 @@ class JobView extends React.Component {
           </button>
           <button className='btnoption' onClick={() => { this.updateJob(); this.openModal()}}>
             <img className='options' src={this.icons.edit}/>
+          </button>
+          <button className='btnoption' onClick={this.deleteJob.bind(this)}>
+            <img className='options' src={this.icons.delete}/>
           </button>
         </div>
 
@@ -433,6 +448,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       putJob: (data) => {
         dispatch(Job.put(data));
       },
+      removeJob: (data) => {
+        dispatch(Job.remove(data));
+      },      
       getJobList: () => {
         dispatch(JobList.get());
       },

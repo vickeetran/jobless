@@ -29,4 +29,10 @@ module.exports = {
       .then((pos) => cb(null, pos))
       .catch(cb);
   },
+  remove: (oldPosition, cb) => {
+    db.Position.findOne({ where: { id: oldPosition.id } })
+      .then(position => position.destroy())
+      .then((pos) => cb(null, pos))
+      .catch(cb);
+  }
 };

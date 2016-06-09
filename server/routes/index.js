@@ -21,6 +21,7 @@ router.get('/position', positionController.get);
 router.get('/position/:id', positionController.get);
 router.post('/position', positionController.post);
 router.put('/position', positionController.put);
+router.delete('/position', positionController.remove);
 
 router.get('/session', sessionController.get);
 

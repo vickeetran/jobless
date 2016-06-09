@@ -22,4 +22,11 @@ module.exports = {
       res.send(data);
     });
   },
+  remove: (req, res) => {
+    Position.remove(req.body, (err, data) => {
+      if (err) throw err;
+      res.status(201);
+      res.send(data);
+    });
+  }
 };

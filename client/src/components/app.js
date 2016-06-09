@@ -94,6 +94,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       putJob: (data) => {
         dispatch(Job.put(data));
       },
+      removeJob: (data) => {
+        dispatch(Job.remove(data));
+      },
       getJobList: () => {
         dispatch(JobList.get());
       },
