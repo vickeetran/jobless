@@ -16,7 +16,6 @@ class JobView extends React.Component {
     let company = '';
     let title = '';
     this.methods = props.methods;
-    console.log('t');
 
     //object to hold all the events being rendered
     //key 0 is a dummy so that we won't run into 'undefined' errors
@@ -148,8 +147,6 @@ class JobView extends React.Component {
       positionId: this.id
     };
 
-    console.log(eventData);
-
     this.methods.postEvent(eventData);
   }
 
@@ -203,7 +200,7 @@ class JobView extends React.Component {
     if(this.events) {
     const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
     const compLogo = `https://logo.clearbit.com/${company}`;
-      return(
+      return (
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
           <h2 className="col-xs-12 vcenter">{this.company}</h2>
@@ -216,7 +213,7 @@ class JobView extends React.Component {
           <img className='logo' src={compLogo} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
         </div>
         <div className="col-xs-2">
-          <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal()}}>
+          <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal() }}>
             <img className='options' src={this.icons.add}/>
           </button>
           <button className='btnoption' onClick={() => { this.updateJob(); this.openModal()}}>
@@ -224,6 +221,7 @@ class JobView extends React.Component {
           </button>
         </div>
 
+      {/* ADD EVENT SECTION */}
         <Modal isOpen={this.state.open} onRequestClose={this.closeModal}>
           <form className='add-modal' hidden={this.addFlag}>
             <h2>Add Event</h2>
@@ -245,6 +243,7 @@ class JobView extends React.Component {
             <input className='form-control' ref='createEventNote'/>
           </form>
 
+        {/* EDIT JOB SECTION */}
           <form className='edit-modal' hidden={this.editJobFlag}>
             <h2>Edit Job</h2>
             <button onClick={this.closeModal}>Close</button>
@@ -257,6 +256,7 @@ class JobView extends React.Component {
             <input className='form-control' ref='editJobComplete' defaultValue={this.complete}/>
           </form>
 
+        {/* EDIT EVENT SECTION */}
           <form className='edit-modal' hidden={this.editEventFlag}>
             <h2>Edit Event</h2>
             <button onClick={this.closeModal}>Close</button>
