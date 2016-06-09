@@ -20,24 +20,15 @@ export default class GitJobs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // const events = [];
-    // const calendarEvents = nextProps.session.calendarEvents.items;
-    // for(let i=0;i<calendarEvents.length;i++){
-    //   let event = calendarEvents[i];
-    //   console.log(Date.parse(event.start.dateTime));
-    //   events.push({
-    //     title: event.summary,
-    //     start: new Date(event.start.dateTime),
-    //     end: new Date(event.end.dateTime),
-    //   });
-    // }
-    // this.session = events;
-    // this.render();
+    
   }
 
   render() {
     return (
-      <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
+      <form className="search-container">
+        <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
+        <a href=""><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
+      </form>
     )
   }
 }
