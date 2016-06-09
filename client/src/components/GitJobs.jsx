@@ -37,7 +37,13 @@ export default class GitJobs extends React.Component {
 
   render() {
     return (
-      <div>Hello</div>
+      <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
     )
   }
 }
+
+
+
+
+
+
