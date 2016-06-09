@@ -13,7 +13,7 @@ import * as Session from '../actions/session.js';
 import Dashboard from './Dashboard.jsx';
 import Calendar from './calendar.jsx';
 import JobAdd from './JobAdd.jsx';
-import GitJobs from './GitJobs.jsx';
+// import GitJobs from './GitJobs.jsx';
 
 
 class App extends React.Component {
