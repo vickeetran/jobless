@@ -9,6 +9,9 @@ export const JOB_POST_RESPONSE = 'JOB_POST_RESPONSE';
 export const JOB_PUT_REQUEST = 'JOB_PUT_REQUEST';
 export const JOB_PUT_RESPONSE = 'JOB_PUT_RESPONSE';
 
+export const JOB_REMOVE_REQUEST = 'JOB_REMOVE_REQUEST';
+export const JOB_REMOVE_RESPONSE = 'JOB_REMOVE_RESPONSE';
+
 const ENDPOINT = 'position';
 
 const getRequest = function(status) {
@@ -74,5 +77,28 @@ export const put = function(data) {
   return helper.put({
     request: putRequest,
     response: putResponse,
+  }, ENDPOINT, data)
+}
+
+const removeRequest = function(status) {
+  return {
+    type: JOB_REMOVE_REQUEST,
+    status,
+  }
+}
+
+const removeResponse = function(status, data) {
+  return {
+    type: JOB_REMOVE_RESPONSE,
+    status,
+    data
+  }
+}
+
+export const remove = function(data) {
+  console.log('REMOVE JOB: ', data)
+  return helper.remove({
+    request: removeRequest,
+    response: removeResponse,
   }, ENDPOINT, data)
 }

@@ -43,8 +43,9 @@ export default class Dashboard extends React.Component {
    this.render()
   }
 
-  openModalAdd () { console.log(this.props);
-   this.setState({open: true}); }
+  openModalAdd () { 
+    console.log(this.props);
+    this.setState({open: true}); }
 
   closeModalAdd () { 
     this.setState({open: false}); 
@@ -82,7 +83,7 @@ export default class Dashboard extends React.Component {
                   <input type="text" ref="company" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Company Name"/>
                 </p>
                 <p className="inputForm">
-                  <input type="text" ref="title" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Position Tile"/>
+                  <input type="text" ref="title" className="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Position Title"/>
                 </p>
                 <p className="text">
                   <textarea name="text" ref="description" className="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Job Description"></textarea>

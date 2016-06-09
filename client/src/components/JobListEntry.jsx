@@ -5,9 +5,9 @@ export default class JobListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.data = this.props;
-    this.companyName = JSON.stringify(this.data["data"]["company"]).slice(1,-1);
-    this.title = JSON.stringify(this.data["data"]["title"]).slice(1,-1);
-    this.jobId = JSON.stringify(this.data["data"]["id"]);
+    this.companyName = this.data["data"]["company"];
+    this.title = this.data["data"]["title"];
+    this.jobId = this.data["data"]["id"].toString();
     console.log('THIS IS JOBID', this.jobId);
   }
 

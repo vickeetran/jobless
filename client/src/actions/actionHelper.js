@@ -16,7 +16,7 @@ export const get = function(actions, endpoint) {
     return fetch('/api/' + endpoint, { credentials: 'same-origin' })
       .then(response => {
         status = response.status;
-        return response.json()
+        return response.json() 
       })
       .then(json => { return dispatcher(actions.response(status, json))});
       //.catch(err => { return dispatcher(error(err))});
@@ -61,6 +61,7 @@ export const post = function(actions, endpoint, data) {
 }
 
 export const put = function(actions, endpoint, data) {
+  console.log(data);
   return (dispatcher, getState) => {
     dispatcher(actions.request());
     return fetch('/api/' + endpoint, {
@@ -87,7 +88,27 @@ export const put = function(actions, endpoint, data) {
         timeout: 3000
       });
       return dispatcher(actions.response(response.status, data))})
-    .catch(err => { return dispatcher(error(err))});
+    })
+    // .catch(err => { return dispatcher(error(err))});
+  }
+}
+
+export const remove = function(actions, endpoint, data) {
+  console.log(data);
+  console.log('action helper called!')
+  return (dispatcher, getState) => {
+    dispatcher(actions.request());
+    return fetch('/api/' + endpoint, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(data)
+    })
+    .then(response => { return dispatcher(actions.response(response.status, data))})
+    // .catch(err => { return dispatcher(error(err))});
   }
 }
 

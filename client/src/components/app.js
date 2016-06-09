@@ -96,6 +96,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       putJob: (data) => {
         dispatch(Job.put(data));
       },
+      removeJob: (data) => {
+        dispatch(Job.remove(data));
+      },
       getJobList: () => {
         dispatch(JobList.get());
       },
@@ -107,6 +110,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       putEvent: (data) => {
         dispatch(Event.put(data));
+      },
+      removeEvent: (data) => {
+        dispatch(Event.remove(data));
       },
       getSession: () => {
         dispatch(Session.get());

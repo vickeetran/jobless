@@ -9,6 +9,9 @@ export const EVENT_POST_RESPONSE = 'EVENT_POST_RESPONSE';
 export const EVENT_PUT_REQUEST = 'EVENT_PUT_REQUEST';
 export const EVENT_PUT_RESPONSE = 'EVENT_PUT_RESPONSE';
 
+export const EVENT_REMOVE_REQUEST = 'EVENT_REMOVE_REQUEST';
+export const EVENT_REMOVE_RESPONSE = 'EVENT_REMOVE_RESPONSE';
+
 const ENDPOINT = 'event';
 
 const getRequest = function(status) {
@@ -74,5 +77,27 @@ export const put = function(data) {
   return helper.put({
     request: putRequest,
     response: putResponse,
+  }, ENDPOINT, data)
+}
+
+const removeRequest = function(status) {
+  return {
+    type: EVENT_REMOVE_REQUEST,
+    status,
+  }
+}
+
+const removeResponse = function(status, data) {
+  return {
+    type: EVENT_REMOVE_RESPONSE,
+    status,
+    data
+  }
+}
+
+export const remove = function(data) {
+  return helper.remove({
+    request: removeRequest,
+    response: removeResponse,
   }, ENDPOINT, data)
 }
