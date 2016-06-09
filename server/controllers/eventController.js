@@ -1,6 +1,7 @@
 const schedule = require('node-schedule');
 // const moment   = require('moment');
 const Event    = require('../models/eventModel');
+const sendEmail    = require('../helpers/email');
 
 module.exports = {
   get: (req, res) => {
@@ -15,11 +16,12 @@ module.exports = {
       if (err) throw err;
       // schedule email reminder for user
       let eventStart = data.dataValues.start;
-
-      let notify = schedule.scheduleJob(eventStart, () => {
-        // send notification to client
-        console.log('I scheduled an email and all I got was this crummy message.');
-      });
+      let userEmail = req.user.email;
+      // sendEmail(userEmail, data);
+      schedule.scheduleJob(eventStart, ((userEmail, data) => {
+          sendEmail(userEmail, data.dataValues);
+        }).bind(null, userEmail, data)
+      );
 
       res.status(201);
       res.send(data);
