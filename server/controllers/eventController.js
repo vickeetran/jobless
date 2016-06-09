@@ -24,6 +24,10 @@ module.exports = {
         }).bind(null, userEmail, message)
       );
 
+<<<<<<< 2219caaa745677d47017ec529e088597c76b8693
+=======
+      //schedule the notification from helpers
+>>>>>>> rebase merge with upstream repo
       res.status(201);
       res.send(data);
     });
