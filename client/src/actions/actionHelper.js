@@ -87,8 +87,8 @@ export const put = function(actions, endpoint, data) {
           },
         timeout: 3000
       });
-      return dispatcher(actions.response(response.status, data))})
-    })
+      return dispatcher(actions.response(response.status, data))
+    });
     // .catch(err => { return dispatcher(error(err))});
   }
 }
