@@ -21,7 +21,6 @@ require('./stylesheets/sass/jobview.scss');
 require('file?name=[name].[ext]!./stylesheets/front.css');
 require('file?name=[name].[ext]!./index.html');
 require('file?name=[name].[ext]!./front.html');
-require('file?name=[name].[ext]!./search.html');
 require('file?name=[name].[ext]!./assets/woman-typing-writing-windows.jpg');
 
 

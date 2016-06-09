@@ -19,7 +19,7 @@ router.get('/calendar', isLoggedIn, function(req, res) {
 });
 
 router.get('/search', isLoggedIn, function(req, res) {
-  res.render('search.html');
+  res.render('index.html');
 });
 
 module.exports = router;
