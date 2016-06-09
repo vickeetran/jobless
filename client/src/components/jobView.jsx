@@ -100,17 +100,14 @@ class JobView extends React.Component {
 
   }
 
-  openModal() {
-    // console.log(this.props);
-    console.log('********** modal state:', this.state.open);
-    this.setState({open: true});
-    console.log('********** modal state:', this.state.open);
+  openModal() { 
+    this.setState({open: true}); 
   }
 
-  closeModal() {
-    this.setState({open: false});
+  closeModal(e) { 
+    e.preventDefault()
+    this.setState({open: false}); 
   }
-
 
   componentWillMount() {
     // var { id } = this.context.router.getCurrentQuery();
@@ -171,7 +168,7 @@ class JobView extends React.Component {
     };
 
     //this.test.push(this.refs);
-    console.log(this.methods);
+    console.log(jobData)
     this.methods.putJob(jobData);
   }
 
