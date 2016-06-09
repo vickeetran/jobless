@@ -106,6 +106,9 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       putEvent: (data) => {
         dispatch(Event.put(data));
       },
+      removeEvent: (data) => {
+        dispatch(Event.remove(data));
+      },
       getSession: () => {
         dispatch(Session.get());
       },

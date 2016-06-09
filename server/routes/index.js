@@ -15,6 +15,7 @@ router.get('/event', isLoggedIn, eventController.get);
 router.get('/event/:id', eventController.get);
 router.post('/event', eventController.post);
 router.put('/event', eventController.put);
+router.delete('/event', eventController.remove);
 
 router.get('/position', positionController.get);
 router.get('/position/:id', positionController.get);

@@ -40,10 +40,10 @@ module.exports = {
       .catch(cb);
   },
 
-  delete: (oldEvent, cb) => {
+  remove: (oldEvent, cb) => {
     db.Event.findOne({ where: { id: oldEvent.id } })
       .then(event => event.destroy())
       .then((e) => cb(null, e))
       .catch(cb);
-  },
+  }
 };

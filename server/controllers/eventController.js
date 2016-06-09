@@ -13,6 +13,7 @@ module.exports = {
   post: (req, res) => {
     Event.post(req.body, (err, data) => {
       if (err) throw err;
+<<<<<<< 740e555782288910ef3376124b24e9055337c802
       // schedule email reminder for user
       let eventStart = data.dataValues.start;
 
@@ -21,6 +22,9 @@ module.exports = {
         console.log('I scheduled an email and all I got was this crummy message.');
       });
 
+=======
+      //schedule the notification from helpers
+>>>>>>> working calendar and page now renders correctly on event deletion
       res.status(201);
       res.send(data);
     });
@@ -32,8 +36,8 @@ module.exports = {
       res.send(data);
     });
   },
-  delete: (req, res) => {
-    Event.delete(req.body, (err, data) => {
+  remove: (req, res) => {
+    Event.remove(req.body, (err, data) => {
       if (err) throw err;
       res.status(201);
       res.send(data);

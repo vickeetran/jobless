@@ -45,8 +45,14 @@ class JobView extends React.Component {
       test: 'http://bit.ly/1RRIDJ1',
       apply: 'http://bit.ly/1XTFqj9',
       start: 'http://bit.ly/1qvVKtM',
+<<<<<<< 740e555782288910ef3376124b24e9055337c802
       stop: 'http://bit.ly/1r4nbuq'
     };
+=======
+      stop: 'http://bit.ly/1r4nbuq',
+      delete: 'http://bit.ly/1XFAL6c'
+    }
+>>>>>>> working calendar and page now renders correctly on event deletion
 
     this.emoji = {
       //from twitter emoji
@@ -99,10 +105,14 @@ class JobView extends React.Component {
 
   }
 
-  openModal() { console.log(this.props);
-    this.setState({open: true}); }
+  openModal() { 
+    console.log(this.props);
+    this.setState({open: true}); 
+  }
 
-  closeModal() { this.setState({open: false}); }
+  closeModal() { 
+    this.setState({open: false}); 
+  }
 
 
   componentWillMount() {
@@ -111,24 +121,24 @@ class JobView extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-   // this.user = nextProps.user;
-   this.methods = nextProps.methods;
-   this.job = nextProps.job;
-   // this.jobList = nextProps.jobList;
-   // this.event = nextProps.event;
+    console.log('componentWillReceiveProps');
+    // this.user = nextProps.user;
+    this.methods = nextProps.methods;
+    this.job = nextProps.job;
+    // this.jobList = nextProps.jobList;
+    // this.event = nextProps.event;
 
-   this.company = this.job.company;
-   this.title = this.job.title;
-   this.events = this.job.events;
-   this.notes = this.job.notes;
-   this.jobURL = this.job.jobURL;
-   this.complete = this.job.complete;
+    this.company = this.job.company;
+    this.title = this.job.title;
+    this.events = this.job.events;
+    this.notes = this.job.notes;
+    this.jobURL = this.job.jobURL;
+    this.complete = this.job.complete;
 
-   console.log('next', nextProps);
-   console.log('events', this.job.events);
-   console.log('test', this.test);
+    console.log('next', nextProps);
+    console.log('events', this.job.events);
 
-   this.render();
+    this.render();
   }
 
   createEvent(event) {
@@ -164,7 +174,7 @@ class JobView extends React.Component {
     };
 
     //this.test.push(this.refs);
-
+    console.log(this.methods);
     this.methods.putJob(jobData);
   }
 
@@ -190,6 +200,18 @@ class JobView extends React.Component {
     this.methods.putEvent(eventData);
   }
 
+  deleteEvent(event) {
+    if (confirm('Are you absolutely determined to blow off this event?')) {
+      this.methods.removeEvent(event);
+
+      this.events.forEach( (e, index, events) => {
+        if (e.id === event.id) {
+          events.splice(index, 1);
+        }
+      })
+      this.render();
+    }
+  }
 
   render() {
     this.emotion = '';
@@ -294,6 +316,9 @@ class JobView extends React.Component {
         </Modal>
 
         <div className="container event-list timeline col-xs-12">
+
+          
+
           {this.events.map((event) => {
             event.questions === null ? this.noQuestions = true : this.noQuestions = false;
             event.note === null ? this.noNotes = true : this.noNotes = false;
@@ -307,6 +332,19 @@ class JobView extends React.Component {
                   <button className='edit' onClick={() => { this.eventId = JSON.stringify(event.id); this.updateEvent(); this.openModal()}}>
                     <img className='editimg' src={this.icons.edit}/>
                   </button>
+
+
+
+
+
+                <button className='edit' onClick={this.deleteEvent.bind(this, event)}>
+                  <img className='editimg' src={this.icons.delete}/>
+                </button>
+
+
+
+
+
                 </div>
                 <div className='col-xs-10'><h4>{event.description}</h4></div>
                 <div className='col-xs-10 event-body'>
@@ -406,8 +444,11 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       putEvent: (data) => {
         dispatch(Event.put(data));
+      },
+      removeEvent: (data) => {
+        dispatch(Event.remove(data));
       }
-    },
+    }
   }
 }
 
