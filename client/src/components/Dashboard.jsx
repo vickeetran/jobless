@@ -14,8 +14,11 @@ export default class Dashboard extends React.Component {
     this.methods = props.methods;
     this.openModalAdd = this.openModalAdd.bind(this);
    this.closeModalAdd = this.closeModalAdd.bind(this);
+   // this.openJobSearchForm = this.openJobSearchForm(this);
+   // this.closeJobSearchForm = this.closeJobSearchForm(this);
    this.state = {
     open: false
+    // formOpen: false
    }
 
   }
@@ -47,6 +50,14 @@ export default class Dashboard extends React.Component {
     this.setState({open: false}); 
   }
 
+  // openJobSearchForm () {
+  //   this.setState({formOpen: true});
+  // }
+
+  // closeJobSearchForm () {
+  //   this.setState({formOpen: false});
+  // }
+
   render() {
      var jobs = this.jobList;
      var events = this.event;
@@ -60,7 +71,9 @@ export default class Dashboard extends React.Component {
      console.log('inside dashboard render', events);
       return(
         <div className="dashboard">
+          <Link to='/gitjobs' ><button>Search For Jobs</button></Link>
           <Link to='/calendar' ><button>Calendar</button></Link>
+
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
                <div id="form-main">
             <div id="form-div">
@@ -82,6 +95,9 @@ export default class Dashboard extends React.Component {
         </div>
       </div>
          </Modal>
+
+
+
         <div className="container">
           <div className="row">
               <div className="col-xs-5 col-md-5 left-container container">
