@@ -47,7 +47,7 @@ class JobView extends React.Component {
       start: 'http://bit.ly/1qvVKtM',
       stop: 'http://bit.ly/1r4nbuq',
       delete: 'http://bit.ly/1XFAL6c'
-    }
+    };
 
     this.emoji = {
       //from twitter emoji
@@ -100,13 +100,15 @@ class JobView extends React.Component {
 
   }
 
-  openModal() { 
-    console.log(this.props);
-    this.setState({open: true}); 
+  openModal() {
+    // console.log(this.props);
+    console.log('********** modal state:', this.state.open);
+    this.setState({open: true});
+    console.log('********** modal state:', this.state.open);
   }
 
-  closeModal() { 
-    this.setState({open: false}); 
+  closeModal() {
+    this.setState({open: false});
   }
 
 
@@ -216,7 +218,7 @@ class JobView extends React.Component {
     });
 
     this.methods.removeJob(this.job)
-    
+
     this.props.history.pushState(null, '/')
   }
 
@@ -327,7 +329,7 @@ class JobView extends React.Component {
 
         <div className="container event-list timeline col-xs-12">
 
-          
+
 
           {this.events.map((event) => {
             event.questions === null ? this.noQuestions = true : this.noQuestions = false;
@@ -445,7 +447,7 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       removeJob: (data) => {
         dispatch(Job.remove(data));
-      },      
+      },
       getJobList: () => {
         dispatch(JobList.get());
       },
