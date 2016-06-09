@@ -65,13 +65,7 @@ export default class Dashboard extends React.Component {
 
   render() {
      var jobs = this.jobList;
-     var events = this.event;
-
-     if(Array.isArray(this.event)) {
-       events = this.event;
-     } else {
-      events = [];
-     }
+     var events = this.event || [];
 
      console.log('inside dashboard render', events);
       return(
