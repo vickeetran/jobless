@@ -45,14 +45,9 @@ class JobView extends React.Component {
       test: 'http://bit.ly/1RRIDJ1',
       apply: 'http://bit.ly/1XTFqj9',
       start: 'http://bit.ly/1qvVKtM',
-<<<<<<< 740e555782288910ef3376124b24e9055337c802
-      stop: 'http://bit.ly/1r4nbuq'
-    };
-=======
       stop: 'http://bit.ly/1r4nbuq',
       delete: 'http://bit.ly/1XFAL6c'
     }
->>>>>>> working calendar and page now renders correctly on event deletion
 
     this.emoji = {
       //from twitter emoji
