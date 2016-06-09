@@ -33,8 +33,9 @@ app.set('views', `${__dirname}/../client/public`);
 
 
 app.get('/gitjobs', function(req, res) {
+  console.log('QUERY IS', req.query);
   jobs.find({
-      term : 'Node.js'
+      term : req.query.term
   }, function(err, results){
       if(err){
         return console.log('Error: ', err);
