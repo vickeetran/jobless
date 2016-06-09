@@ -72,7 +72,7 @@ export default class Dashboard extends React.Component {
      console.log('inside dashboard render', events);
       return(
         <div className="dashboard">
-          <Link to='/gitjobs' ><button>Search For Jobs</button></Link>
+          <Link to='/search' ><button>Search For Jobs</button></Link>
           <Link to='/calendar' ><button>Calendar</button></Link>
 
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>

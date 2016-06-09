@@ -41,6 +41,6 @@ ReactDOM.render((
       <Route path='/' component={App} />
       <Route path='/jobview' component={jobView}/>
       <Route path='/calendar' component={Calendar}/>
-      <Route path='/gitjobs' component={GitJobs}/>
+      <Route path='/search' component={GitJobs}/>
     </Router>
   </Provider>), document.getElementById('app'));

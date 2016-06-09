@@ -18,7 +18,7 @@ router.get('/calendar', isLoggedIn, function(req, res) {
   res.render('index.html');
 });
 
-router.get('/gitjobs', isLoggedIn, function(req, res) {
+router.get('/search', isLoggedIn, function(req, res) {
   res.render('search.html');
 });
 
