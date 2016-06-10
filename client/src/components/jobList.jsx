@@ -6,9 +6,6 @@ export default class JobList extends React.Component {
     super(props);
 
     this.jobs = [];
-    // this.state = {
-    //   jobs: []
-    // }
   }
 
   componentDidMount() {
@@ -17,11 +14,7 @@ export default class JobList extends React.Component {
   }
 
   componentWillReceiveProps() {
-    console.log(this.props.jobs);
     this.jobs = this.props.jobs
-    // this.setState({
-      // jobs: this.props.jobs
-    // })
   }
 
   render() {
