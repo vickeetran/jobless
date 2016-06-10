@@ -87,6 +87,22 @@ export const put = function(actions, endpoint, data) {
           },
         timeout: 3000
       });
+
+      if (data.complete) {
+        noty({
+          layout: 'topCenter',
+          theme: 'relax',
+          type: 'information',
+          text: 'Remember to send a thank you note!',
+          dismissQueue: true,
+          animation: {
+            open: 'animated bounceInDown',
+            close: 'animated bounceOutUp'
+            },
+          timeout: 3000
+        });
+      }
+
       return dispatcher(actions.response(response.status, data))
     });
     // .catch(err => { return dispatcher(error(err))});

@@ -8,7 +8,7 @@ export default class JobListEntry extends React.Component {
     this.companyName = this.data["data"]["company"];
     this.title = this.data["data"]["title"];
     this.jobId = this.data["data"]["id"].toString();
-    console.log('THIS IS JOBID', this.jobId);
+    this.complete = this.data.data.complete;
   }
 
   render() {
@@ -18,10 +18,22 @@ export default class JobListEntry extends React.Component {
         <li>
           <Link to={link}>
           <jobView jobId={this.jobId} />
-          <a className="menu-box-tab">
-            <span className="icon scnd-font-color"></span>
-              {this.companyName} {"("}{this.title} {")"}
-          </a>
+          { (() => {
+              if (this.complete) {
+                return (
+                  <a className="menu-box-tab complete">
+                    <span className="icon scnd-font-color"></span>
+                      {this.companyName} {"("}{this.title} {")"}
+                  </a> )
+              } else {
+                return (
+                  <a className="menu-box-tab">
+                    <span className="icon scnd-font-color"></span>
+                      {this.companyName} {"("}{this.title} {")"}
+                  </a> )
+              }
+            })()
+          }
           </Link>
         </li>
       </div>
