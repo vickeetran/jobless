@@ -14,13 +14,14 @@ module.exports = {
   post: (req, res) => {
     Event.post(req.body, (err, data) => {
       if (err) throw err;
+
       // schedule email reminder for user
       let eventStart = data.dataValues.start;
       let userEmail = req.user.email;
-      // sendEmail(userEmail, data);
-      schedule.scheduleJob(eventStart, ((userEmail, data) => {
-          sendEmail(userEmail, data.dataValues);
-        }).bind(null, userEmail, data)
+      let message = `Here's a friendly reminder about your scheduled event on ${data.dataValues.start}.`
+      schedule.scheduleJob(eventStart, ((userEmail, message) => {
+          sendEmail(userEmail, message);
+        }).bind(null, userEmail, message)
       );
 
       res.status(201);

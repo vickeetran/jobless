@@ -75,18 +75,35 @@ export const put = function(actions, endpoint, data) {
     })
     .then(response => {
       // display notification that endpoint action was successful
-      noty({
-        layout: 'topCenter',
-        theme: 'relax',
-        type: 'success',
-        text: `${endpoint.split('')[0].toUpperCase().concat(endpoint.slice(1))} successfully edited.`,
-        dismissQueue: true,
-        animation: {
-          open: 'animated bounceInDown',
-          close: 'animated bounceOutUp'
-          },
-        timeout: 3000
-      });
+
+      if (data.complete) {
+        noty({
+          layout: 'topCenter',
+          theme: 'relax',
+          type: 'information',
+          text: 'Remember to send a thank you note!',
+          dismissQueue: true,
+          animation: {
+            open: 'animated bounceInDown',
+            close: 'animated bounceOutUp'
+            },
+          timeout: 3000
+        });
+      } else {
+        noty({
+          layout: 'topCenter',
+          theme: 'relax',
+          type: 'success',
+          text: `${endpoint.split('')[0].toUpperCase().concat(endpoint.slice(1))} successfully edited.`,
+          dismissQueue: true,
+          animation: {
+            open: 'animated bounceInDown',
+            close: 'animated bounceOutUp'
+            },
+          timeout: 3000
+        });
+      }
+
       return dispatcher(actions.response(response.status, data))
     });
     // .catch(err => { return dispatcher(error(err))});
