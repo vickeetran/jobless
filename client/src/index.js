@@ -22,6 +22,7 @@ require('file?name=[name].[ext]!./stylesheets/front.css');
 require('file?name=[name].[ext]!./index.html');
 require('file?name=[name].[ext]!./front.html');
 require('file?name=[name].[ext]!./assets/woman-typing-writing-windows.jpg');
+require('file?name=[name].[ext]!./assets/ripple.gif');
 
 
 const initalState =  {

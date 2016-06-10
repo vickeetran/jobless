@@ -42,8 +42,9 @@ app.get('/gitjobs', function(req, res) {
 
       console.log('Found ==========' + results.length + ' jobs.');
       var positions = [];
-      results.forEach(function(job){
-        jobs.findById(job.id, function(err, result){
+      if (results.length) {
+        results.forEach(function(job){
+          jobs.findById(job.id, function(err, result){
             if(err){
               return console.log('Error: ', err);
             }
@@ -54,12 +55,15 @@ app.get('/gitjobs', function(req, res) {
               description: result.description,
               howToApply: result.how_to_apply.match(/href="([^\'\"]+)/g)[0].slice(6)
               // companyLogo: result.company_logo
-            })
+            });
             if (results.length === positions.length) {
               res.send(positions);
             }
+          });
         });
-      });
+      } else {
+        res.send(positions);
+      }
   });
 })
 

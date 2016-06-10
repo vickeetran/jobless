@@ -19,10 +19,10 @@ export default class GitJobsEntry extends React.Component {
       apply: false
     });
   }
-  
+
   render() {
     return (
-      <div>
+      <div className="col-xs-12">
         <li>
           <a className="menu-box-tab" onClick={this.addToDB}>
             <span className="icon scnd-font-color"></span>
@@ -34,4 +34,3 @@ export default class GitJobsEntry extends React.Component {
     );
   }
 }
-
