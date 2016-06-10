@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 // const router = require('express').Router();
 
-module.exports = (userEmail, eventDetails) => {
+module.exports = (userEmail, message) => {
 
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -15,7 +15,7 @@ module.exports = (userEmail, eventDetails) => {
     from: 'JobAppily<jobappilyservices@gmail.com>', // sender address
     to: userEmail, // list of receivers
     subject: 'Event Reminder', // Subject line
-    text: `Here's a friendly reminder about your scheduled event on ${eventDetails.start}.` //, // plaintext body
+    text: message //, // plaintext body
     // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
   };
 

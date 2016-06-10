@@ -1,3 +1,5 @@
+const schedule = require('node-schedule');
+const sendEmail    = require('../helpers/email');
 const Position = require('../models/positionModel');
 
 module.exports = {
@@ -19,6 +21,17 @@ module.exports = {
   put: (req, res) => {
     Position.put(req.body, (err, data) => {
       if (err) throw err;
+
+      // schedule email reminder for user
+      let userEmail = req.user.email;
+      let tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      let message = `Don\'t forget to send a thank you message to ${data.dataValues.company}!`;
+      schedule.scheduleJob(tomorrow, ((userEmail, message) => {
+          sendEmail(userEmail, message);
+        }).bind(null, userEmail, message)
+      );
+
       res.status(201);
       res.send(data);
     });
