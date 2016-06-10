@@ -15,27 +15,31 @@ export default class GitJobs extends React.Component {
     this.retrieveQuery = this.retrieveQuery.bind(this);
 
     this.state = {
-      gitJobs: null
-    }
+      gitJobs: null,
+      fetching: false
+    };
   }
 
   componentDidMount() {
-  
+
   }
 
   retrieveQuery() {
+    this.setState({fetching: true});
+
     var query = document.getElementById('search-bar').value;
     console.log(query);
+
     fetch(`/gitjobs?term=${query}`, {credentials: 'same-origin'})
     .then( res => res.json() )
     .then( jobs => {
-      this.setState({gitJobs: jobs});
+      this.setState({gitJobs: jobs, fetching: false});
       console.log('yobs', jobs);
-    })    
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-    
+
   }
 
   render() {
@@ -45,7 +49,11 @@ export default class GitJobs extends React.Component {
           <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
           <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
         </form>
-        {(() => {
+        {( () => {
+          if (this.state.fecthing) {
+            console.log('we be fetchin');
+            return ( <img src="../assets/ripple.gif"> );
+          }
           if (this.state.gitJobs) {
             return (
             <ul className="menu-box-menu">
