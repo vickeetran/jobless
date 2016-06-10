@@ -16,7 +16,7 @@ export default class GitJobsEntry extends React.Component {
       location: this.props.data.location
     });
   }
-
+  
   render() {
     return (
       <div>
@@ -31,3 +31,4 @@ export default class GitJobsEntry extends React.Component {
     );
   }
 }
+

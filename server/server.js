@@ -47,6 +47,7 @@ app.get('/gitjobs', function(req, res) {
             if(err){
               return console.log('Error: ', err);
             }
+            console.log('DESSSSSCCCC', result.description);
             positions.push({
               company: result.company,
               jobTitle: result.title,
