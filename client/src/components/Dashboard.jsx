@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import JobListEntry from './JobListEntry.jsx';
+import JobList from './JobList.jsx';
 import TodoListEntry from './TodoListEntry.jsx';
 import Calendar from './calendar.jsx';
 import { Link } from 'react-router';
@@ -14,8 +15,13 @@ export default class Dashboard extends React.Component {
     this.methods = props.methods;
     this.openModalAdd = this.openModalAdd.bind(this);
    this.closeModalAdd = this.closeModalAdd.bind(this);
+   this.activeApplications = [];
+   this.toDoApplications = [];
+   // this.openJobSearchForm = this.openJobSearchForm(this);
+   // this.closeJobSearchForm = this.closeJobSearchForm(this);
    this.state = {
     open: false
+    // formOpen: false
    }
 
   }
@@ -25,19 +31,25 @@ export default class Dashboard extends React.Component {
     var formData = {
       title: this.refs.title.value,
       company: this.refs.company.value,
-      description: this.refs.description.value
+      description: this.refs.description.value,
+      complete: false,
+      apply: true
     }
     this.methods.postJob(formData);
+    this.methods.getJobList();
   }
+
   componentDidMount() {
     this.methods.getJobList();
     this.methods.getEvent();
   }
 
   componentWillReceiveProps(nextProps) {
-   this.jobList = nextProps.jobList;
-   this.event = nextProps.event;
-   this.render()
+    console.log(nextProps);
+    this.jobList = nextProps.jobList;
+    this.event = nextProps.event;
+
+    this.categorizeJobs()
   }
 
   openModalAdd () { 
@@ -48,20 +60,37 @@ export default class Dashboard extends React.Component {
     this.setState({open: false}); 
   }
 
+  categorizeJobs() {
+    // console.log(this.jobList)
+    this.activeApplications = this.jobList.filter( job => {
+      return job.apply;
+    });
+    this.toDoApplications = this.jobList.filter( job => {
+      return !job.apply;
+    })
+
+    this.render();
+  }
+
+  // openJobSearchForm () {
+  //   this.setState({formOpen: true});
+  // }
+
+  // closeJobSearchForm () {
+  //   this.setState({formOpen: false});
+  // }
+
   render() {
      var jobs = this.jobList;
-     var events = this.event;
+     var events = Array.isArray(this.event) ? this.event : [];
+     console.log('WILL THIS UPDATE?: ', this.activeApplications)
+     // console.log('inside dashboard render', this.toDoApplications);
 
-     if(Array.isArray(this.event)) {
-       events = this.event;
-     } else {
-      events = [];
-     }
-
-     console.log('inside dashboard render', events);
       return(
         <div className="dashboard">
-          <Link to='/calendar' ><button>Calendar</button></Link>
+          <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
+          <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
+
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
                <div id="form-main">
             <div id="form-div">
@@ -83,6 +112,9 @@ export default class Dashboard extends React.Component {
         </div>
       </div>
          </Modal>
+
+
+
         <div className="container">
           <div className="row">
               <div className="col-xs-5 col-md-5 left-container container">
@@ -92,15 +124,16 @@ export default class Dashboard extends React.Component {
                         <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
                       </button>
                     </h2>
-                    <ul className="menu-box-menu">
-                      {jobs.map(job => <JobListEntry key={job.id} data={job}/>)}
-                    </ul>
+
+                    <JobList jobs={this.activeApplications} />
+                    {/*<ul className="menu-box-menu">
+                                          {this.activeApplications.map(job => <JobListEntry key={job.id} data={job}/>)}
+                                        </ul>*/}
                 </div>
               </div>
               <div className="col-xs-7 col-md-7 left-container container">
                 <div className="menu-box block"> 
-                  <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs">
-  </button></h2>
+                  <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
                     <ul className="menu-box-menu">
                       {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
                     </ul>
@@ -111,28 +144,9 @@ export default class Dashboard extends React.Component {
                     <h2 className="titular">Job Depot</h2>
                     <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
                   </div>
-                  <table className="jobPosting">
-                    <thead className="days-week">
-                        <tr>
-                            <th>Company</th>
-                            <th>Position</th>
-                            <th>Job Posting</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Yelp</td>
-                            <td>Software Engineer</td>
-                            <td><a href="http://www.yelp.com/careers/job-openings/cdefb0de-1998-4814-b459-c4417ef94efc?description=Software-Engineer-New-Grad_College-Engineering-Product_San-Francisco-CA&lever-source=indeed">Product Development Team</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pinterest</td>
-                            <td>Software Engineer</td>
-                            <td><a href="http://jobs.bvp.com/jobdetail.php?jobid=526487">Community Ops and Trust & Safety Team</a></td>
-                        </tr>
-                      </tbody>
-                  </table>
-                  </div> 
+                  
+                  <JobList jobs={this.toDoApplications}/>
+                </div> 
               </div>
           </div>
         </div>

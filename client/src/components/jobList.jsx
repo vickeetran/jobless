@@ -1,33 +1,48 @@
 import React from 'react';
+import JobListEntry from './JobListEntry.jsx';
 
 export default class JobList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      
-    }
+    this.jobs = [];
+    // this.state = {
+    //   jobs: []
+    // }
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    this.jobs = this.props.jobs
+  }
+
+  componentWillReceiveProps() {
+    console.log(this.props.jobs);
+    this.jobs = this.props.jobs
+    // this.setState({
+      // jobs: this.props.jobs
+    // })
   }
 
   render() {
-    return( 
-      <div className="container job-list">
-        <div className="row header">
-          <div className="col-xs-4 vcenter">Company</div>
-          <div className="col-md-4 hidden-xs vcenter">Status</div>
-        </div>
-        <div className="row listing">
-          <div className="col-xs-4 vcenter company text-uppercase">FaceBook</div>
-          <div className="col-xs-4 hidden-xs vcenter status">Not Started</div>
-          <div className="col-xs-4 vcenter"><button className="btn btn-primary">View Application</button></div>
-        </div>
-        <div className="row listing">
-          <div className="col-xs-4 vcenter company text-uppercase">Google</div>
-          <div className="col-xs-4 hidden-xs vcenter status">In Progress</div>
-          <div className="col-xs-4 vcenter"><button className="btn btn-primary">View Application</button></div>
-        </div>
-
-      </div>
-    );
+    return (
+      <table className="jobPosting">
+        <thead className="days-week">
+            <tr>
+                <th>Company</th>
+                <th>Job Posting</th>
+            </tr>
+        </thead>
+        <tbody>
+          {
+            this.jobs.map( job => {
+              return <JobListEntry job={job} />   
+            })
+          }
+           
+        </tbody>
+      </table>
+    )
   }
 }
+
