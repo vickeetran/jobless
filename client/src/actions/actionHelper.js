@@ -105,7 +105,7 @@ export const put = function(actions, endpoint, data) {
       }
 
       return dispatcher(actions.response(response.status, data))
-    });
+    })
     // .catch(err => { return dispatcher(error(err))});
   }
 }
@@ -124,7 +124,9 @@ export const remove = function(actions, endpoint, data) {
       credentials: 'same-origin',
       body: JSON.stringify(data)
     })
-    .then(response => { return dispatcher(actions.response(response.status, data))})
+    .then(response => { 
+      return dispatcher(actions.response(response.status, data))
+    })
     // .catch(err => { return dispatcher(error(err))});
   }
 }

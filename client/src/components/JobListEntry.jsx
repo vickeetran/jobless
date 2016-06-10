@@ -1,42 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 export default class JobListEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.data = this.props;
-    this.companyName = this.data["data"]["company"];
-    this.title = this.data["data"]["title"];
-    this.jobId = this.data["data"]["id"].toString();
-    this.complete = this.data.data.complete;
+    this.job = props.job;
+    // this.data = this.props;
+    // this.companyName = this.data["data"]["company"];
+    // this.title = this.data["data"]["title"];
+    // this.jobId = this.data["data"]["id"].toString();
+    // console.log('THIS IS JOBID', this.jobId);
+  }
+
+  componentDidMount() {
+    console.log(this.props)
+  }
+
+  goToJobView() {
+    console.log('clicked!')
+    browserHistory.push(`/jobView?id=${this.job.id}`);
   }
 
   render() {
-    const link = `/jobView?id=${this.jobId}`;
-    return (
-      <div>
-        <li>
-          <Link to={link}>
-          <jobView jobId={this.jobId} />
-          { (() => {
-              if (this.complete) {
-                return (
-                  <a className="menu-box-tab complete">
-                    <span className="icon scnd-font-color"></span>
-                      {this.companyName} {"("}{this.title} {")"}
-                  </a> )
-              } else {
-                return (
-                  <a className="menu-box-tab">
-                    <span className="icon scnd-font-color"></span>
-                      {this.companyName} {"("}{this.title} {")"}
-                  </a> )
-              }
-            })()
-          }
-          </Link>
-        </li>
-      </div>
-    );
+    if (this.job.complete) {
+      return (
+        <tr className='tr-job complete' onClick={this.goToJobView.bind(this)}>
+          <td className='td-company'>{this.job.company}</td>
+          <td className='td-position'><a href={this.job.jobURL}>{this.job.title}</a></td>
+        </tr>
+      )
+    } else {
+      return (
+        <tr className='tr-job' onClick={this.goToJobView.bind(this)}>
+          <td className='td-company'>{this.job.company}</td>
+          <td className='td-position'><a href={this.job.jobURL}>{this.job.title}</a></td>
+        </tr>
+      )
+    }
   }
 }
+  
+  
+        // <li>
+        //   <a className="menu-box-tab">
+        //     <span className="icon scnd-font-color"></span>
+        //       {this.companyName} {"("}{this.title} {")"}
+        //   </a>
+        // </li>

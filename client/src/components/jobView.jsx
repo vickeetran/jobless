@@ -28,6 +28,7 @@ class JobView extends React.Component {
         interviewers: '',
         note: '',
         complete: '',
+        apply: '',
         emotion: '',
         positionId: ''
       }
@@ -100,17 +101,14 @@ class JobView extends React.Component {
 
   }
 
-  openModal() {
-    // console.log(this.props);
-    console.log('********** modal state:', this.state.open);
-    this.setState({open: true});
-    console.log('********** modal state:', this.state.open);
+  openModal() { 
+    this.setState({open: true}); 
   }
 
-  closeModal() {
-    this.setState({open: false});
+  closeModal(e) { 
+    e.preventDefault()
+    this.setState({open: false}); 
   }
-
 
   componentWillMount() {
     // var { id } = this.context.router.getCurrentQuery();
@@ -131,6 +129,7 @@ class JobView extends React.Component {
     this.notes = this.job.notes;
     this.jobURL = this.job.jobURL;
     this.complete = this.job.complete;
+    this.apply = this.job.apply;
 
     console.log('next', nextProps);
     console.log('events', this.job.events);
@@ -140,8 +139,11 @@ class JobView extends React.Component {
 
   createEvent(event) {
     event.preventDefault();
+    console.log(this.company);
+    console.log(this.job.company);
 
     let eventData = {
+      company: this.job.company,
       description: this.refs.createEventDescription.value,
       interviewers: this.refs.createEventInterviewers.value,
       note: this.refs.createEventNote.value,
@@ -155,6 +157,12 @@ class JobView extends React.Component {
     };
 
     this.methods.postEvent(eventData);
+    
+    setTimeout( () => {
+      console.log('time in!')
+      this.methods.getEvent();
+    }, 2000)
+
   }
 
   editJob(event) {
@@ -171,8 +179,10 @@ class JobView extends React.Component {
     };
 
     //this.test.push(this.refs);
-    console.log(this.methods);
+    console.log(jobData)
     this.methods.putJob(jobData);
+
+    this.methods.getJob();
   }
 
   editEvent(event) {
@@ -195,6 +205,7 @@ class JobView extends React.Component {
     console.log(this.eventId);
 
     this.methods.putEvent(eventData);
+    this.methods.getEvent();
   }
 
   deleteEvent(event) {
@@ -227,10 +238,21 @@ class JobView extends React.Component {
     this.renderEmo = () => {
       return this.emotion;
     };
-    this.complete ? this.status = 'Completed' : this.status = 'In Progress';
-    if(this.events) {
-    const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
-    const compLogo = `https://logo.clearbit.com/${company}`;
+
+    if (this.apply) {
+      this.status = this.complete ? 'Completed' : 'In Progress';
+    } else {
+      this.status = 'Not Started';
+    }
+
+    if (this.events) {
+      if (this.jobURL) {
+        const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
+        var compLogo = `https://logo.clearbit.com/${company}`;
+      } else {
+        var compLogo = `https://logo.clearbit.com/jobapplicationmatch.org`;
+      }
+
       return (
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
@@ -241,7 +263,7 @@ class JobView extends React.Component {
           <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>
         </div>
         <div className='col-xs-2'>
-          <img className='logo' src={compLogo} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
+          <img className='logo' src={compLogo || ''} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
         </div>
         <div className="col-xs-2">
           <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal() }}>
