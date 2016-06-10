@@ -3,10 +3,6 @@ const nodemailer = require('nodemailer');
 
 module.exports = (userEmail, eventDetails) => {
 
-  // app.use('/sayHello', router);
-  // router.post('/', handleSayHello); // handle the route at yourdomain.com/sayHello
-  // console.log('INSIDE EMAIL EXPORT:', userEmail, eventDetails);
-
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -14,8 +10,6 @@ module.exports = (userEmail, eventDetails) => {
       pass: 'applytoallofthethings' // Your password
     }
   });
-
-  var text = 'Hello world';
 
   const mailOptions = {
     from: 'JobAppily<jobappilyservices@gmail.com>', // sender address
@@ -28,10 +22,8 @@ module.exports = (userEmail, eventDetails) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error){
       console.log(error);
-      // res.json({yo: 'error'});
     } else {
       console.log('Message sent: ' + info.response);
-      // res.json({yo: info.response});
     }
   });
 };

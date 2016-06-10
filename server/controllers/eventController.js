@@ -17,7 +17,6 @@ module.exports = {
       // schedule email reminder for user
       let eventStart = data.dataValues.start;
       let userEmail = req.user.email;
-      // sendEmail(userEmail, data);
       schedule.scheduleJob(eventStart, ((userEmail, data) => {
           sendEmail(userEmail, data.dataValues);
         }).bind(null, userEmail, data)
