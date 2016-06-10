@@ -28,6 +28,7 @@ class JobView extends React.Component {
         interviewers: '',
         note: '',
         complete: '',
+        apply: '',
         emotion: '',
         positionId: ''
       }
@@ -128,6 +129,7 @@ class JobView extends React.Component {
     this.notes = this.job.notes;
     this.jobURL = this.job.jobURL;
     this.complete = this.job.complete;
+    this.apply = this.job.apply;
 
     console.log('next', nextProps);
     console.log('events', this.job.events);
@@ -236,10 +238,21 @@ class JobView extends React.Component {
     this.renderEmo = () => {
       return this.emotion;
     };
-    this.complete ? this.status = 'Completed' : this.status = 'In Progress';
-    if(this.events) {
-    const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
-    const compLogo = `https://logo.clearbit.com/${company}`;
+
+    if (this.apply) {
+      this.status = this.complete ? 'Completed' : 'In Progress';
+    } else {
+      this.status = 'Not Started';
+    }
+
+    if (this.events) {
+      if (this.jobURL) {
+        const company = this.jobURL.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n]+)/im)[1];
+        var compLogo = `https://logo.clearbit.com/${company}`;
+      } else {
+        var compLogo = `https://logo.clearbit.com/jobapplicationmatch.org`;
+      }
+
       return (
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
@@ -250,7 +263,7 @@ class JobView extends React.Component {
           <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>
         </div>
         <div className='col-xs-2'>
-          <img className='logo' src={compLogo} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
+          <img className='logo' src={compLogo || ''} data-default-src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Example_image.png"/>
         </div>
         <div className="col-xs-2">
           <button className='btnoption' id='addbtn' onClick={() => { this.addEvent(); this.openModal() }}>
