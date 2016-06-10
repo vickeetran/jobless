@@ -47,15 +47,14 @@ app.get('/gitjobs', function(req, res) {
             if(err){
               return console.log('Error: ', err);
             }
-            console.log('DESSSSSCCCC', result.description);
             positions.push({
               company: result.company,
               jobTitle: result.title,
               location: result.location,
               description: result.description,
-              howToApply: result.how_to_apply
+              howToApply: result.how_to_apply.match(/href="([^\'\"]+)/g)[0].slice(6)
+              // companyLogo: result.company_logo
             })
-            //console.log(positions);
             if (results.length === positions.length) {
               res.send(positions);
             }

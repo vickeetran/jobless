@@ -13,7 +13,10 @@ export default class GitJobsEntry extends React.Component {
       title: this.props.data.jobTitle,
       company: this.props.data.company,
       description: this.props.data.description,
-      location: this.props.data.location
+      location: this.props.data.location,
+      jobURL: this.props.data.howToApply,
+      complete: false,
+      apply: false
     });
   }
   

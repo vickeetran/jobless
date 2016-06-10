@@ -130,6 +130,8 @@ class JobView extends React.Component {
     this.jobURL = this.job.jobURL;
     this.complete = this.job.complete;
     this.apply = this.job.apply;
+    this.description = this.job.description;
+    this.location = this.job.location;
 
     console.log('next', nextProps);
     console.log('events', this.job.events);
@@ -257,7 +259,10 @@ class JobView extends React.Component {
       <div className='container job-body'>
         <div className="container col-xs-10 job-details">
           <h2 className="col-xs-12 vcenter">{this.company}</h2>
-          <h4 className="col-xs-12 vcenter" ><a href={this.jobURL}>{this.title}</a></h4>
+          <h4 className="col-xs-12 vcenter"><a href={this.jobURL}>{this.title}</a></h4>
+          <h4 className="col-xs-12 vcenter">Location: {this.location}</h4> 
+          <div className="col-xs-12 vcenter" dangerouslySetInnerHTML={{__html: this.description}}></div>
+
           <div className="col-xs-12 vcenter"><h5>{this.status}</h5></div>
           <div className="col-xs-12 vcenter"><h5>Note:</h5></div>
           <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>
