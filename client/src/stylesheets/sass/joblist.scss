@@ -18,3 +18,20 @@
   }
 }
 
+thead {
+  background: black;
+  color: white;
+}
+
+tr {
+  .td-company {
+    color: white;
+  }
+}
+
+.tr-job:hover {
+  background: #50597b;
+  border-top: 1px solid #1f253d;
+}
+
+

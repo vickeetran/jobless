@@ -127,25 +127,7 @@ export const remove = function(actions, endpoint, data) {
     .then(response => { 
       return dispatcher(actions.response(response.status, data))
     })
-    .catch(err => { return dispatcher(error(err))});
-  }
-}
-
-export const remove = function(actions, endpoint, data) {
-  console.log(data);
-  console.log('action helper called!')
-  return (dispatcher, getState) => {
-    dispatcher(actions.request());
-    return fetch('/api/' + endpoint, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin',
-      body: JSON.stringify(data)
-    })
-    .then(response => { return dispatcher(actions.response(response.status, data))})
     // .catch(err => { return dispatcher(error(err))});
   }
 }
+
