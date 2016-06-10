@@ -9,6 +9,7 @@ module.exports = {
     });
   },
   post: (req, res) => {
+    console.log('data?', req.body);
     Position.post(req.body, (err,data) => {
       if (err) throw err;
       res.status(201);
