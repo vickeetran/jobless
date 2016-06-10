@@ -1,4 +1,5 @@
 import React from 'react';
+import JobListEntry from './JobListEntry.jsx';
 
 export default class JobList extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class JobList extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.jobs);
+    console.log(this.props);
     this.jobs = this.props.jobs
   }
 
@@ -35,12 +36,7 @@ export default class JobList extends React.Component {
         <tbody>
           {
             this.jobs.map( job => {
-              return (
-                <tr>
-                  <td>{job.company}</td>
-                  <td><a href={job.jobURL}>{job.title}</a></td>
-                </tr>
-              )   
+              return <JobListEntry job={job} />   
             })
           }
            
