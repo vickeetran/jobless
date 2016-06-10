@@ -36,12 +36,13 @@ const User = sequelize.define('user', {
 const Position = sequelize.define('position', {
   title: Sequelize.STRING,
   company: Sequelize.STRING,
-  description: Sequelize.STRING,
+  description: Sequelize.TEXT,
   complete: Sequelize.BOOLEAN,
   endDate: Sequelize.DATE,
   jobURL: Sequelize.STRING,
   apply: Sequelize.BOOLEAN,
   notes: Sequelize.STRING,
+  location: Sequelize.STRING,
 }, {
   freezeTableName: true,
 });

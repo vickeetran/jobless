@@ -38,6 +38,7 @@ export default class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+   console.log('NEXXXTTTT', nextProps);
    this.jobList = nextProps.jobList;
    this.event = nextProps.event;
    this.render()

@@ -5,6 +5,8 @@ import { Router, Route, Link, browserHistory } from 'react-router'//import { cre
 import { connect } from 'react-redux';
 import * as reducers from '../reducer.js';
 import GitJobsEntry from './GitJobsEntry.jsx';
+import * as Job from '../actions/job.js';
+
 
 export default class GitJobs extends React.Component {
   constructor(props) {
@@ -27,9 +29,8 @@ export default class GitJobs extends React.Component {
     fetch(`/gitjobs?term=${query}`, {credentials: 'same-origin'})
     .then( res => res.json() )
     .then( jobs => {
-      //console.log('JOBSSSZ', jobs);
       this.setState({gitJobs: jobs});
-      console.log('!!!!!!!!!', this.state.gitJobs);
+      console.log('yobs', jobs);
     })    
   }
 
@@ -48,7 +49,7 @@ export default class GitJobs extends React.Component {
           if (this.state.gitJobs) {
             return (
             <ul className="menu-box-menu">
-              {this.state.gitJobs.map(job => <GitJobsEntry data={job}/>)}
+              {this.state.gitJobs.map(job => <GitJobsEntry data={job} methods={this.props.methods}/>)}
             </ul>
             )
           }
@@ -59,7 +60,23 @@ export default class GitJobs extends React.Component {
 }
 
 
+const mapStateToProps = function mapStateToProps(state) {
+  const {job} = state;
+
+  return {
+    job
+  }
+}
 
 
+const mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    methods : {
+      postJob: (data) => {
+        dispatch(Job.post(data));
+      }
+    }
+  }
+}
 
-
+export default connect(mapStateToProps, mapDispatchToProps) (GitJobs)

@@ -33,7 +33,6 @@ app.set('views', `${__dirname}/../client/public`);
 
 
 app.get('/gitjobs', function(req, res) {
-  console.log('QUERY IS', req.query);
   jobs.find({
       term : req.query.term
   }, function(err, results){
@@ -50,12 +49,13 @@ app.get('/gitjobs', function(req, res) {
             }
             positions.push({
               company: result.company,
-              jobTitle: result.title
-
+              jobTitle: result.title,
+              location: result.location,
+              description: result.description,
+              howToApply: result.how_to_apply
             })
             //console.log(positions);
             if (results.length === positions.length) {
-              console.log(positions);
               res.send(positions);
             }
         });
