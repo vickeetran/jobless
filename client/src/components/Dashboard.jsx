@@ -73,8 +73,8 @@ export default class Dashboard extends React.Component {
      console.log('inside dashboard render', events);
       return(
         <div className="dashboard">
-          <Link to='/search' ><button>Search For Jobs</button></Link>
-          <Link to='/calendar' ><button>Calendar</button></Link>
+          <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
+          <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
 
           <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
             <div id="form-main">
