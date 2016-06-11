@@ -14,15 +14,15 @@ export default class Dashboard extends React.Component {
     this.event = props.event;
     this.methods = props.methods;
     this.openModalAdd = this.openModalAdd.bind(this);
-   this.closeModalAdd = this.closeModalAdd.bind(this);
-   this.activeApplications = [];
-   this.toDoApplications = [];
-   // this.openJobSearchForm = this.openJobSearchForm(this);
-   // this.closeJobSearchForm = this.closeJobSearchForm(this);
-   this.state = {
-    open: false
-    // formOpen: false
-   };
+    this.closeModalAdd = this.closeModalAdd.bind(this);
+    this.activeApplications = [];
+    this.toDoApplications = [];
+    // this.openJobSearchForm = this.openJobSearchForm(this);
+    // this.closeJobSearchForm = this.closeJobSearchForm(this);
+    this.state = {
+     open: false
+     // formOpen: false
+    };
 
   }
 
@@ -35,9 +35,11 @@ export default class Dashboard extends React.Component {
       complete: false,
       apply: true
     };
-    document.getElementById('form1').reset();
+    // document.getElementById('form1').reset();
     this.methods.postJob(formData);
     this.methods.getJobList();
+    // need to modify so modal closes only upon successful position save
+    this.setState({open: false});
   }
 
   componentDidMount() {
@@ -49,7 +51,6 @@ export default class Dashboard extends React.Component {
     // console.log(nextProps);
     this.jobList = nextProps.jobList;
     this.event = nextProps.event;
-
     this.categorizeJobs();
   }
 
