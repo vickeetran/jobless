@@ -35,6 +35,7 @@ export default class Dashboard extends React.Component {
       complete: false,
       apply: true
     };
+    document.getElementById('form1').reset();
     this.methods.postJob(formData);
     this.methods.getJobList();
   }
