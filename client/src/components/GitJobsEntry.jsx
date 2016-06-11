@@ -32,7 +32,7 @@ export default class GitJobsEntry extends React.Component {
 
 
   changeHoverTrue() {
-    this.setState({hover: true}); 
+    this.setState({hover: true});
   }
 
   changeHoverFalse() {
@@ -41,8 +41,8 @@ export default class GitJobsEntry extends React.Component {
 
 
    render() {
-      return ( 
-        <li onMouseEnter={this.changeHoverTrue} onMouseLeave={this.changeHoverFalse} className='gitJobs'>
+      return (
+        <li onMouseEnter={this.changeHoverTrue} onMouseLeave={this.changeHoverFalse} className="col-xs-6 gitJobs">
         {(() => {
           if (this.state.hover) {
             if (!this.state.clicked) { 
@@ -57,7 +57,7 @@ export default class GitJobsEntry extends React.Component {
             )
           }
         })()}
-          <p className='center company'>{this.props.data.company}</p> 
+          <p className='center company'>{this.props.data.company}</p>
           <p className='center'>{this.props.data.jobTitle}</p>
           <p className='center location'>{this.props.data.location}</p>
         </li>
