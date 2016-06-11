@@ -13,6 +13,8 @@ import * as Session from '../actions/session.js';
 import Dashboard from './Dashboard.jsx';
 import Calendar from './calendar.jsx';
 import JobAdd from './JobAdd.jsx';
+import SortableComponent from './TestList.jsx';
+
 // import GitJobs from './GitJobs.jsx';
 
 
@@ -37,7 +39,7 @@ class App extends React.Component {
   renderTest() {
     return (
       <div>
-        <Calendar methods={this.props.methods} session={this.props.session}/>
+        <SortableComponent />
       </div>
     )
   }

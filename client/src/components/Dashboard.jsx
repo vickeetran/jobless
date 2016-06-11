@@ -121,7 +121,7 @@ export default class Dashboard extends React.Component {
                     <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
                   </button>
                 </h2>
-                <JobList jobs={this.activeApplications} />
+                <JobList activeJobs={this.activeApplications} toDoJobs={this.toDoApplications}/>
               </div>
             </div>
       
@@ -141,7 +141,10 @@ export default class Dashboard extends React.Component {
                   <h2 className="titular">Job Depot</h2>
                   <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
                 </div>
-                <JobList jobs={this.toDoApplications}/>
+
+
+                {/*<JobList jobs={this.toDoApplications} />*/}              
+
               </div> 
             </div>
           </div>
