@@ -124,6 +124,10 @@ input#search-bar{
   padding: 0px;
 }
 
+.jobList:first-child {
+  margin-top: 74.5px;
+}
+
 .gitJobs:hover {
   background-color: #e7e7e7;
 }
