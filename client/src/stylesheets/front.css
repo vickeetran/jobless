@@ -38,8 +38,9 @@ body {
 
 
 .search-container{
-  width: 490px;
-  display: block;
+  /*width: 490px;*/
+  max-width: 660px;
+  /*display: block;*/
   margin: 0 auto;
 }
 
@@ -79,10 +80,53 @@ input#search-bar{
   right: -17px;
 }
 
+
 .fetching {
   margin: 0 auto;
 }
 
 .logout {
   padding-right: 1em;
+}
+
+
+.gitJobs {
+  padding:20px;
+  width: 100%;
+}
+
+.center {
+  color: #19334d;
+  margin: 0;
+  padding: 0;
+}
+
+.jobs {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.company {
+  font-weight: bold;
+}
+
+.location {
+  font-style: italic;
+  color: black;
+}
+
+
+.jobList {
+  list-style: none;
+  padding: 0px;
+}
+
+.gitJobs:hover {
+  background-color: #e7e7e7;
+}
+
+.add-icon {
+  height: 50px;
+  width: 50px;
+  float: right;
 }
