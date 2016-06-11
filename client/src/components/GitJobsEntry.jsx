@@ -8,9 +8,11 @@ export default class GitJobsEntry extends React.Component {
     this.addToDB = this.addToDB.bind(this);
     this.changeHoverTrue = this.changeHoverTrue.bind(this);
     this.changeHoverFalse = this.changeHoverFalse.bind(this);
+    
 
     this.state = {
-      hover: false
+      hover: false,
+      clicked: false
     }
   }
 
@@ -24,6 +26,8 @@ export default class GitJobsEntry extends React.Component {
       complete: false,
       apply: false
     });
+
+    this.setState({clicked: true});
   }
 
 
@@ -35,14 +39,21 @@ export default class GitJobsEntry extends React.Component {
     this.setState({hover: false});
   }
 
+
    render() {
       return ( 
         <li onMouseEnter={this.changeHoverTrue} onMouseLeave={this.changeHoverFalse} className='gitJobs'>
         {(() => {
           if (this.state.hover) {
-            console.log(this.state.hover);
+            if (!this.state.clicked) { 
+              return (
+                <img onClick={this.addToDB} className="add-icon" src="http://image000.flaticon.com/icons/svg/109/109691.svg"/>
+              )
+            } 
+          }
+          if (this.state.clicked) {
             return (
-            <img onClick={this.addToDB} className="add-icon" src="http://image000.flaticon.com/icons/svg/109/109691.svg"/>
+              <img onClick={this.addToDB} className="add-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/131578-200.png"/>
             )
           }
         })()}
