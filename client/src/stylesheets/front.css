@@ -56,17 +56,17 @@ input#search-bar{
     transition: 0.35s ease;
     color: #008ABF;
     &::-webkit-input-placeholder{
-      transition: opacity 0.45s ease; 
+      transition: opacity 0.45s ease;
       opacity: 0;
      }
     &::-moz-placeholder {
-      transition: opacity 0.45s ease; 
+      transition: opacity 0.45s ease;
       opacity: 0;
      }
     &:-ms-placeholder {
-     transition: opacity 0.45s ease; 
+     transition: opacity 0.45s ease;
      opacity: 0;
-     }    
+     }
    }
  }
 
@@ -77,4 +77,12 @@ input#search-bar{
   height: 75px;
   top: -62px;
   right: -17px;
+}
+
+.fetching {
+  margin: 0 auto;
+}
+
+.logout {
+  padding-right: 1em;
 }
