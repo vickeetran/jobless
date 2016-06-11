@@ -29,7 +29,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
       <ul>
         {
           activeJobs.map( (job, index) => {
-            return (<SortableItem key={`job-${index}`} index={index} job={job} />) 
+            return (<SortableItem key={`job-${index}`} index={index} job={job} />)
             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
           })
         }
@@ -38,7 +38,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
       <ul>
         {
           toDoJobs.map( (job, index) => {
-            return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job} />) 
+            return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job} />)
             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
           })
         }
@@ -57,7 +57,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
   //       <tbody>
   //         {
   //           activeJobs.map( (job, index) => {
-  //             return (<SortableItem key={`job-${index}`} index={index} job={job} />) 
+  //             return (<SortableItem key={`job-${index}`} index={index} job={job} />)
   //             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
   //           })
   //         }
@@ -74,7 +74,7 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
   //       <tbody>
   //         {
   //           toDoJobs.map( (job, index) => {
-  //             return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job}  />) 
+  //             return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job}  />)
   //             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
   //           })
   //         }
@@ -154,7 +154,6 @@ export default class JobList extends React.Component {
 
     // console.log('active: ', newActiveJobs.map(job => job.company))
     // console.log('toDo: ', newToDoJobs.map(job => job.company))
-
   }
 
   render() {
