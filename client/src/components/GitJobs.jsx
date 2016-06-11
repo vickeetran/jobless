@@ -35,6 +35,20 @@ export default class GitJobs extends React.Component {
           gitJobs: jobs,
           fetching: false
         });
+
+        noty({
+          layout: 'topRight',
+          theme: 'relax',
+          type: 'warning',
+          text: `${jobs.length} jobs found!`,
+          dismissQueue: true,
+          animation: {
+            open: 'animated bounceInRight',
+            close: 'animated rollOut'
+            },
+          timeout: 5000
+        });
+
         // console.log('gitJobs state:', this.state.gitJobs);
         console.log('yobs', jobs);
       });
@@ -45,28 +59,33 @@ export default class GitJobs extends React.Component {
 
   render() {
     return (
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12">
+            <form className="search-container">
+              <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
+              <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
+            </form>
 
-      <div>
-        <form className="search-container">
-          <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
-          <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
-        </form>
-        <div className='jobs'>
-        {(() => {
-          if (this.state.fetching) {
-
-            return <img className="image-responsive center-block" src="ripple.gif"></img>;
-          }
-          if (this.state.gitJobs) {
-            return (
-            <ul className='jobList'>
-              <h4>{this.state.gitJobs.length} jobs found.</h4>
-              {this.state.gitJobs.map(job => <GitJobsEntry data={job} methods={this.props.methods}/>)}
-            </ul>
-            )
-          }
-        })()}
-
+            <div className="row jobs">
+            {(() => {
+              if (this.state.fetching) {
+                return (
+                  <div className="col-xs-12">
+                    <img className="image-responsive center-block" src="ripple.gif"></img>
+                  </div>
+                )
+              }
+              if (this.state.gitJobs) {
+                return (
+                <ul className="jobList">
+                  {this.state.gitJobs.map(job => <GitJobsEntry data={job} methods={this.props.methods}/>)}
+                </ul>
+                )
+              }
+            })()}
+            </div>
+          </div>
         </div>
       </div>
     )
