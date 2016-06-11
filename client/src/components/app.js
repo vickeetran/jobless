@@ -21,7 +21,7 @@ import SortableComponent from './TestList.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log('THE PROPS AREEE', props);
+    // console.log('THE PROPS AREEE', props);
 
     //THIS LINE TURNS ON DEBUG MODE WHICH CONSOLE LOGS EVERY ACTION
     //QUITE USEFUL
@@ -48,7 +48,7 @@ class App extends React.Component {
 
     //UNCOMMENT THIS TO RENDER TEST COMPONENT
     // return this.renderTest();
-    
+
     return (
      <div>
         <Dashboard methods={this.props.methods} user={this.props.user} job={this.props.job} jobList={this.props.jobList} event={this.props.event}/>
@@ -91,7 +91,7 @@ const mapDispatchToProps = function mapDispatchToProps(dispatch) {
       },
       getJob: (id) => {
         dispatch(Job.get(id));
-      }, 
+      },
       postJob: (data) => {
         dispatch(Job.post(data));
       },

@@ -24,6 +24,7 @@ export default class GitJobs extends React.Component {
   retrieveQuery() {
     this.setState({ fetching: true }, () => {
       let query = document.getElementById('search-bar').value;
+      document.getElementById('search-bar').value = '';
       console.log(query);
       fetch(`/gitjobs?term=${query}`, {credentials: 'same-origin'})
       .then( res => res.json() )
@@ -53,9 +54,8 @@ export default class GitJobs extends React.Component {
   }
 
   componentDidMount() {
-    document.getElementById('search-bar').onkeypress = (e) => {
+    document.getElementById('search-bar').onkeypress = e => {
       if(e.keyCode == 13) {
-        console.log('PRESSED ENTER!!!!!!!!!!!!!!!!!!!');
         this.retrieveQuery();
       }
     };
@@ -85,7 +85,7 @@ export default class GitJobs extends React.Component {
               if (this.state.gitJobs) {
                 return (
                 <ul className="jobList">
-                  {this.state.gitJobs.map(job => <GitJobsEntry data={job} methods={this.props.methods}/>)}
+                  {this.state.gitJobs.map( (job, idx) => <GitJobsEntry data={job} methods={this.props.methods} key={idx} />)}
                 </ul>
                 )
               }

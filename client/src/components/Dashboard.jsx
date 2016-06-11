@@ -14,15 +14,15 @@ export default class Dashboard extends React.Component {
     this.event = props.event;
     this.methods = props.methods;
     this.openModalAdd = this.openModalAdd.bind(this);
-   this.closeModalAdd = this.closeModalAdd.bind(this);
-   this.activeApplications = [];
-   this.toDoApplications = [];
-   // this.openJobSearchForm = this.openJobSearchForm(this);
-   // this.closeJobSearchForm = this.closeJobSearchForm(this);
-   this.state = {
-    open: false
-    // formOpen: false
-   }
+    this.closeModalAdd = this.closeModalAdd.bind(this);
+    this.activeApplications = [];
+    this.toDoApplications = [];
+    // this.openJobSearchForm = this.openJobSearchForm(this);
+    // this.closeJobSearchForm = this.closeJobSearchForm(this);
+    this.state = {
+     open: false
+     // formOpen: false
+    };
 
   }
 
@@ -34,9 +34,12 @@ export default class Dashboard extends React.Component {
       description: this.refs.description.value,
       complete: false,
       apply: true
-    }
+    };
+    // document.getElementById('form1').reset();
     this.methods.postJob(formData);
     this.methods.getJobList();
+    // need to modify so modal closes only upon successful position save
+    this.setState({open: false});
   }
 
   componentDidMount() {
@@ -45,19 +48,18 @@ export default class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    // console.log(nextProps);
     this.jobList = nextProps.jobList;
     this.event = nextProps.event;
-
-    this.categorizeJobs()
+    this.categorizeJobs();
   }
 
-  openModalAdd () { 
+  openModalAdd () {
     console.log(this.props);
     this.setState({open: true}); }
 
-  closeModalAdd () { 
-    this.setState({open: false}); 
+  closeModalAdd () {
+    this.setState({open: false});
   }
 
   categorizeJobs() {
@@ -67,7 +69,9 @@ export default class Dashboard extends React.Component {
     });
     this.toDoApplications = this.jobList.filter( job => {
       return !job.apply;
-    })
+    });
+
+    this.render();
   }
 
   // openJobSearchForm () {
@@ -115,7 +119,7 @@ export default class Dashboard extends React.Component {
 
             {/*------------Active Applications-----------------*/}
             <div className="col-xs-12 col-md-8 left-container container">
-              <div className="menu-box block"> 
+              <div className="menu-box block">
                 <h2 className="titular">Active Job Apps
                   <button type="button" className="btn btn-default btn-xs">
                     <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
@@ -124,10 +128,10 @@ export default class Dashboard extends React.Component {
                 <JobList activeJobs={this.activeApplications} toDoJobs={this.toDoApplications}/>
               </div>
             </div>
-      
+
             {/*------------Today's Appointments-----------------*/}
             <div className="col-xs-6 col-md-4 left-container container">
-              <div className="menu-box block"> 
+              <div className="menu-box block">
                 <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
                   <ul className="menu-box-menu">
                     {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
@@ -135,7 +139,7 @@ export default class Dashboard extends React.Component {
               </div>
 
             {/*------------Job Depot (Interests)-----------------*/}
-              <div className="jobPosting-month block"> 
+              <div className="jobPosting-month block">
                 <div className="arrow-btn-container">
                   <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
                   <h2 className="titular">Job Depot</h2>
@@ -143,9 +147,9 @@ export default class Dashboard extends React.Component {
                 </div>
 
 
-                {/*<JobList jobs={this.toDoApplications} />*/}              
+                {/*<JobList jobs={this.toDoApplications} />*/}
 
-              </div> 
+              </div>
             </div>
           </div>
         </div>
