@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const dbConfig = require('./sampleconfig');
+const dbConfig = require('./config');
 // Establish database connection
 const sequelize = new Sequelize(
   dbConfig.database,

@@ -111,6 +111,7 @@ class JobView extends React.Component {
   }
 
   componentWillMount() {
+    console.log(this.props);
     // var { id } = this.context.router.getCurrentQuery();
     this.props.methods.getJob(this.id);
   }
@@ -127,6 +128,7 @@ class JobView extends React.Component {
     this.title = this.job.title;
     this.events = this.job.events;
     this.notes = this.job.notes;
+    this.description = this.job.description;
     this.jobURL = this.job.jobURL;
     this.complete = this.job.complete;
     this.apply = this.job.apply;
@@ -262,7 +264,6 @@ class JobView extends React.Component {
           <h4 className="col-xs-12 vcenter"><a href={this.jobURL}>{this.title}</a></h4>
           <h4 className="col-xs-12 vcenter">Location: {this.location}</h4> 
           <div className="col-xs-12 vcenter" dangerouslySetInnerHTML={{__html: this.description}}></div>
-
           <div className="col-xs-12 vcenter"><h5>{this.status}</h5></div>
           <div className="col-xs-12 vcenter"><h5>Note:</h5></div>
           <div className="col-xs-8 vcenter"><div className='note'contenteditable><ul><li>{this.notes}</li></ul></div></div>

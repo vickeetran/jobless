@@ -68,8 +68,6 @@ export default class Dashboard extends React.Component {
     this.toDoApplications = this.jobList.filter( job => {
       return !job.apply;
     })
-
-    this.render();
   }
 
   // openJobSearchForm () {
@@ -81,18 +79,17 @@ export default class Dashboard extends React.Component {
   // }
 
   render() {
-     var jobs = this.jobList;
-     var events = Array.isArray(this.event) ? this.event : [];
-     console.log('WILL THIS UPDATE?: ', this.activeApplications)
-     // console.log('inside dashboard render', this.toDoApplications);
+    var jobs = this.jobList;
+    var events = Array.isArray(this.event) ? this.event : [];
 
-      return(
-        <div className="dashboard">
-          <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
-          <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
+    return (
+      <div className="dashboard">
+        <Link to='/search' ><button className="top-btn">Search For Jobs</button></Link>
+        <Link to='/calendar' ><button className="top-btn">Calendar</button></Link>
 
-          <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
-               <div id="form-main">
+      {/*------------Add New Position Modal-----------------*/}
+        <Modal isOpen={this.state.open} onRequestClose={this.closeModalAdd}>
+          <div id="form-main">
             <div id="form-div">
               <form className="form" id="form1" onSubmit={this.handleSubmit.bind(this)}>
                 <p className="inputForm">
@@ -109,48 +106,47 @@ export default class Dashboard extends React.Component {
                   <div className="ease"></div>
                 </div>
               </form>
-        </div>
-      </div>
-         </Modal>
-
-
+            </div>
+          </div>
+        </Modal>
 
         <div className="container">
           <div className="row">
-              <div className="col-xs-5 col-md-5 left-container container">
-                <div className="menu-box block"> 
-                    <h2 className="titular">Active Job Apps
-                      <button type="button" className="btn btn-default btn-xs">
-                        <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
-                      </button>
-                    </h2>
 
-                    <JobList jobs={this.activeApplications} />
-                    {/*<ul className="menu-box-menu">
-                                          {this.activeApplications.map(job => <JobListEntry key={job.id} data={job}/>)}
-                                        </ul>*/}
-                </div>
+            {/*------------Active Applications-----------------*/}
+            <div className="col-xs-5 col-md-5 left-container container">
+              <div className="menu-box block"> 
+                <h2 className="titular">Active Job Apps
+                  <button type="button" className="btn btn-default btn-xs">
+                    <span className="glyphicon glyphicon-plus" aria-hidden="true" onClick={this.openModalAdd}></span>
+                  </button>
+                </h2>
+                <JobList jobs={this.activeApplications} />
               </div>
-              <div className="col-xs-7 col-md-7 left-container container">
-                <div className="menu-box block"> 
-                  <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
-                    <ul className="menu-box-menu">
-                      {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
-                    </ul>
-                </div>
-                <div className="jobPosting-month block"> 
-                  <div className="arrow-btn-container">
-                    <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
-                    <h2 className="titular">Job Depot</h2>
-                    <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
-                  </div>
-                  
-                  <JobList jobs={this.toDoApplications}/>
-                </div> 
+            </div>
+      
+            {/*------------Today's Appointments-----------------*/}
+            <div className="col-xs-7 col-md-7 left-container container">
+              <div className="menu-box block"> 
+                <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
+                  <ul className="menu-box-menu">
+                    {events.map(event => <TodoListEntry key={event.id} data={event}/>)}
+                  </ul>
               </div>
+
+            {/*------------Job Depot (Interests)-----------------*/}
+              <div className="jobPosting-month block"> 
+                <div className="arrow-btn-container">
+                  <a className="arrow-btn left" href="#202"><span className="icon fontawesome-angle-left"></span></a>
+                  <h2 className="titular">Job Depot</h2>
+                  <a className="arrow-btn right" href="#203"><span className="icon fontawesome-angle-right"></span></a>
+                </div>
+                <JobList jobs={this.toDoApplications}/>
+              </div> 
+            </div>
           </div>
         </div>
       </div>
-      );
-    }
+    );
+  }
 }
