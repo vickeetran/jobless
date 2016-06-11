@@ -114,7 +114,7 @@ export default class Dashboard extends React.Component {
           <div className="row">
 
             {/*------------Active Applications-----------------*/}
-            <div className="col-xs-5 col-md-5 left-container container">
+            <div className="col-xs-12 col-md-8 left-container container">
               <div className="menu-box block"> 
                 <h2 className="titular">Active Job Apps
                   <button type="button" className="btn btn-default btn-xs">
@@ -126,7 +126,7 @@ export default class Dashboard extends React.Component {
             </div>
       
             {/*------------Today's Appointments-----------------*/}
-            <div className="col-xs-7 col-md-7 left-container container">
+            <div className="col-xs-6 col-md-4 left-container container">
               <div className="menu-box block"> 
                 <h2 className="titular">Today's Appointments<button type="button" className="btn btn-default btn-xs"></button></h2>
                   <ul className="menu-box-menu">
