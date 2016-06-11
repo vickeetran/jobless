@@ -20,9 +20,6 @@ export default class GitJobs extends React.Component {
     };
   }
 
-  componentDidMount() {
-
-  }
 
   retrieveQuery() {
     this.setState({ fetching: true }, () => {
@@ -55,6 +52,15 @@ export default class GitJobs extends React.Component {
     });
   }
 
+  componentDidMount() {
+    document.getElementById('search-bar').onkeypress = (e) => {
+      if(e.keyCode == 13) {
+        console.log('PRESSED ENTER!!!!!!!!!!!!!!!!!!!');
+        this.retrieveQuery();
+      }
+    };
+  }
+
   componentWillReceiveProps(nextProps) {}
 
   render() {
@@ -62,10 +68,10 @@ export default class GitJobs extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            <form className="search-container">
+            <div className="search-container">
               <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
               <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
-            </form>
+            </div>
 
             <div className="row jobs">
             {(() => {
