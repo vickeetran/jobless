@@ -18,7 +18,7 @@
   }
 }
 
-thead {
+/*thead {
   background: black;
   color: white;
 }
@@ -32,6 +32,12 @@ tr {
 .tr-job:hover {
   background: #50597b;
   border-top: 1px solid #1f253d;
-}
+}*/
 
+.li-job {
+  list-style: none;
+  border: 1px;
+  border-radius: 5px;
+  margin: 5px;
+}
 
