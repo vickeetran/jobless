@@ -25,7 +25,6 @@ export default class GitJobs extends React.Component {
   }
 
   retrieveQuery() {
-    console.log('INSIDE THE RUDDY KEY PRESS CALL');
     this.setState({ fetching: true }, () => {
       let query = document.getElementById('search-bar').value;
       console.log(query);
@@ -40,38 +39,34 @@ export default class GitJobs extends React.Component {
         console.log('yobs', jobs);
       });
     });
-
   }
 
   componentWillReceiveProps(nextProps) {}
 
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <form className="search-container">
-            <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
-            <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
-          </form>
-        </div>
-        <div className="row">
-          { (() => {
-            console.log('inside render');
-              if (this.state.fetching) {
-                console.log('we be fetchin');
-                return <img className="image-responsive center-block" src="ripple.gif"></img>;
-              }
-              else if (this.state.gitJobs) {
-                console.log('delivering jobs')
-                return (
-                  <ul className="menu-box-menu">
-                    <h4>{this.state.gitJobs.length} jobs found.</h4>
-                    {this.state.gitJobs.map( (job, idx) => <GitJobsEntry data={job} methods={this.props.methods} key={idx}/>)}
-                  </ul>
-                )
-              }
-            })()
+
+      <div>
+        <form className="search-container">
+          <input type="text" id="search-bar" placeholder="Seach by company, job title, or location..."/>
+          <a onClick={this.retrieveQuery}><img className="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"/></a>
+        </form>
+        <div className='jobs'>
+        {(() => {
+          if (this.state.fetching) {
+
+            return <img className="image-responsive center-block" src="ripple.gif"></img>;
           }
+          if (this.state.gitJobs) {
+            return (
+            <ul className='jobList'>
+              <h4>{this.state.gitJobs.length} jobs found.</h4>
+              {this.state.gitJobs.map(job => <GitJobsEntry data={job} methods={this.props.methods}/>)}
+            </ul>
+            )
+          }
+        })()}
+
         </div>
       </div>
     )

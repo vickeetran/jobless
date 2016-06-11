@@ -6,6 +6,12 @@ export default class GitJobsEntry extends React.Component {
     super(props);
 
     this.addToDB = this.addToDB.bind(this);
+    this.changeHoverTrue = this.changeHoverTrue.bind(this);
+    this.changeHoverFalse = this.changeHoverFalse.bind(this);
+
+    this.state = {
+      hover: false
+    }
   }
 
   addToDB() {
@@ -20,17 +26,31 @@ export default class GitJobsEntry extends React.Component {
     });
   }
 
-  render() {
-    return (
-      <div className="col-xs-12">
-        <li>
-          <a className="menu-box-tab" onClick={this.addToDB}>
-            <span className="icon scnd-font-color"></span>
-              {this.props.data.company} {"("}{this.props.data.jobTitle} {")"}
-              {" Location: "} {this.props.data.location}
-          </a>
-        </li>
-      </div>
-    );
+
+  changeHoverTrue() {
+    this.setState({hover: true}); 
   }
-}
+
+  changeHoverFalse() {
+    this.setState({hover: false});
+  }
+
+   render() {
+      return ( 
+        <li onMouseEnter={this.changeHoverTrue} onMouseLeave={this.changeHoverFalse} className='gitJobs'>
+        {(() => {
+          if (this.state.hover) {
+            console.log(this.state.hover);
+            return (
+            <img onClick={this.addToDB} className="add-icon" src="http://image000.flaticon.com/icons/svg/109/109691.svg"/>
+            )
+          }
+        })()}
+          <p className='center company'>{this.props.data.company}</p> 
+          <p className='center'>{this.props.data.jobTitle}</p>
+          <p className='center location'>{this.props.data.location}</p>
+        </li>
+      );
+    }
+  }
+
