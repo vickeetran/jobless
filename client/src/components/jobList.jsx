@@ -6,17 +6,17 @@ const SortableItem = SortableElement(({job, index}) => {
   // return (<JobListEntry key={job.id} job={job} />)
  if (job.complete) {
    return (
-     <tr className='tr-job complete'>
-       <td className='td-company'>{job.company}</td>
-       <td className='td-position'><a href={job.jobURL}>{job.title}</a></td>
-     </tr>
+     <li className='li-job complete'>
+       <p className='li-company'>{job.company}</p>
+       <p className='li-position'><a href={job.jobURL}>{job.title}</a></p>
+     </li>
    )
  } else {
    return (
-     <tr className='tr-job'>
-       <td className='td-company'>{job.company}</td>
-       <td className='td-position'><a href={job.jobURL}>{job.title}</a></td>
-     </tr>
+     <li className='li-job'>
+       <p className='li-company'>{job.company}</p>
+       <p className='li-position'><a href={job.jobURL}>{job.title}</a></p>
+     </li>
    )
  }
 });
@@ -26,45 +26,62 @@ const SortableList = SortableContainer(({activeJobs, toDoJobs}) => {
   let adjustment = activeJobs.length;
   return (
     <div>
-      <table className="jobPosting activeApps">
-        <thead className="days-week">
-            <tr>
-                <th>Company</th>
-                <th>Job Posting</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr><td></td><td></td></tr> 
-          {
-            activeJobs.map( (job, index) => {
-              return (<SortableItem key={`job-${index}`} index={index} job={job} />) 
-              // return <JobListEntry key={`job-${index}`} job={job} index={index} />
-            })
-          }
-          <tr><td></td><td></td></tr> 
-        </tbody>
-      </table>
-
-      <table className="jobPosting toDoApps">
-        <thead className="days-week">
-            <tr>
-                <th>Company</th>
-                <th>Job Posting</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr><td></td><td></td></tr> 
-          {
-            toDoJobs.map( (job, index) => {
-              return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job}  />) 
-              // return <JobListEntry key={`job-${index}`} job={job} index={index} />
-            })
-          }
-          <tr><td></td><td></td></tr> 
-        </tbody>
-      </table>
+      <ul>
+        {
+          activeJobs.map( (job, index) => {
+            return (<SortableItem key={`job-${index}`} index={index} job={job} />) 
+            // return <JobListEntry key={`job-${index}`} job={job} index={index} />
+          })
+        }
+      </ul>
+      <div>!!-----------------------------!!</div>
+      <ul>
+        {
+          toDoJobs.map( (job, index) => {
+            return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job} />) 
+            // return <JobListEntry key={`job-${index}`} job={job} index={index} />
+          })
+        }
+      </ul>
     </div>
-  );
+  )
+  // return (
+  //   <div>
+  //     <table className="jobPosting activeApps">
+  //       <thead className="days-week">
+  //           <tr>
+  //               <th>Company</th>
+  //               <th>Job Posting</th>
+  //           </tr>
+  //       </thead>
+  //       <tbody>
+  //         {
+  //           activeJobs.map( (job, index) => {
+  //             return (<SortableItem key={`job-${index}`} index={index} job={job} />) 
+  //             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
+  //           })
+  //         }
+  //       </tbody>
+  //     </table>
+
+  //     <table className="jobPosting toDoApps">
+  //       <thead className="days-week">
+  //           <tr>
+  //               <th>Company</th>
+  //               <th>Job Posting</th>
+  //           </tr>
+  //       </thead>
+  //       <tbody>
+  //         {
+  //           toDoJobs.map( (job, index) => {
+  //             return (<SortableItem key={`job-${index+adjustment}`} index={index+adjustment} job={job}  />) 
+  //             // return <JobListEntry key={`job-${index}`} job={job} index={index} />
+  //           })
+  //         }
+  //       </tbody>
+  //     </table>
+  //   </div>
+  // );
 });
 
 
